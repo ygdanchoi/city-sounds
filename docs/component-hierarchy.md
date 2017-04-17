@@ -6,21 +6,21 @@
 **HomeContainer**
  - Home
  - ExploreList
-  * ExploreListItem
+  + ExploreListItem
   * SoundPlayer
 
 **UserContainer**
  - NavBar
  - User
   * CollectionList
-    - CollectionListItem
+    + CollectionListItem
  - UserSidebar
 
 **CollectionContainer**
  - NavBar
  - Collection
   * CollectionPlayer
-  * SoundList
+  + SoundList
     - SoundListItem
 
 **SearchResultsContainer**
@@ -32,7 +32,7 @@
  - NavBar
  - CollectionForm
   * SoundForm
-    - SoundFormItem
+    + SoundFormItem
 
 ## Routes
 
