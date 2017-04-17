@@ -14,7 +14,7 @@
  * User
     * CollectionList
       * CollectionListItem
-    * UserSidebar
+ * UserSidebar
 
 **CollectionContainer**
  * NavBar
