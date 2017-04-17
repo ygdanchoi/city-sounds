@@ -6,33 +6,33 @@
 **HomeContainer**
  * Home
  * ExploreList
-  * ExploreListItem
-  * SoundPlayer
+    * ExploreListItem
+    * SoundPlayer
 
 **UserContainer**
  * NavBar
  * User
-  * CollectionList
-    * CollectionListItem
- * UserSidebar
+    * CollectionList
+      * CollectionListItem
+    * UserSidebar
 
 **CollectionContainer**
  * NavBar
  * Collection
-  * CollectionPlayer
-  * SoundList
-    * SoundListItem
+    * CollectionPlayer
+    * SoundList
+      * SoundListItem
 
 **SearchResultsContainer**
  * NavBar
  * SearchResultsList
-  * SearchResultsListItem
+    * SearchResultsListItem
 
 **CollectionFormContainer**
  * NavBar
  * CollectionForm
-  * SoundForm
-    * SoundFormItem
+    * SoundForm
+      * SoundFormItem
 
 ## Routes
 
