@@ -1,38 +1,38 @@
 ## Component Hierarchy
 
 **AuthFormContainer**
- - AuthForm
+ * AuthForm
 
 **HomeContainer**
- - Home
- - ExploreList
-  + ExploreListItem
+ * Home
+ * ExploreList
+  * ExploreListItem
   * SoundPlayer
 
 **UserContainer**
- - NavBar
- - User
+ * NavBar
+ * User
   * CollectionList
-    + CollectionListItem
- - UserSidebar
+    * CollectionListItem
+ * UserSidebar
 
 **CollectionContainer**
- - NavBar
- - Collection
+ * NavBar
+ * Collection
   * CollectionPlayer
-  + SoundList
-    - SoundListItem
+  * SoundList
+    * SoundListItem
 
 **SearchResultsContainer**
- - NavBar
- - SearchResultsList
+ * NavBar
+ * SearchResultsList
   * SearchResultsListItem
 
 **CollectionFormContainer**
- - NavBar
- - CollectionForm
+ * NavBar
+ * CollectionForm
   * SoundForm
-    + SoundFormItem
+    * SoundFormItem
 
 ## Routes
 
