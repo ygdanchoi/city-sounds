@@ -17,21 +17,21 @@ export const receiveErrors = (errors) => {
   };
 };
 
-export const signup = (user) => {
+export const signup = (user) => (dispatch) => {
   return APIUtil.signup(user).then(
     response => dispatch(receiveCurrentUser(response)),
     errors => dispatch(receiveErrors(response))
   );
 };
 
-export const login = (user) => {
+export const login = (user) => (dispatch) => {
   return APIUtil.login(user).then(
     response => dispatch(receiveCurrentUser(response)),
     errors => dispatch(receiveErrors(response))
   );
 };
 
-export const logout = () => {
+export const logout = () => (dispatch) => {
   return APIUtil.logout().then(
     response => dispatch(receiveCurrentUser(null))
   );
