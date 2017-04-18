@@ -1,4 +1,4 @@
-# CityHum
+# CitySounds
 
 [Heroku link][heroku]
 
@@ -9,7 +9,7 @@
 
 ## Minimum Viable Product
 
-CityHum is a place to share & play ambient sounds. Inspired by Bandcamp, CityHum is built using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling.
+CitySounds is a place to share & play ambient sounds. Inspired by Bandcamp, CitySounds is built using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling.
 
 1. New account creation, login, and guest/demo login
 2. Production README
