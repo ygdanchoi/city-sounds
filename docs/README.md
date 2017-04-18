@@ -4,7 +4,7 @@
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://city-sounds.herokuapp.com
 [trello]: https://trello.com/b/Kyp8xWZd
 
 ## Minimum Viable Product
