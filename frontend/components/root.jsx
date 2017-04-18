@@ -5,12 +5,20 @@ import App from './app';
 import AuthFormContainer from './auth_form/auth_form_container';
 
 const Root = (props) => {
+  const _redirectIfLoggedIn = (nextState, replace) => {
+    if (props.store.getState().session.currentUser) {
+      replace('/');
+    }
+  };
+
   return (
     <Provider store={ props.store }>
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
-          <Route path='login' component={ AuthFormContainer } />
-          <Route path='signup' component={ AuthFormContainer } />
+          <Route path='login'
+            component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
+          <Route path='signup'
+            component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
         </Route>
       </Router>
     </Provider>
