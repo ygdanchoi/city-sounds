@@ -18,7 +18,7 @@ const Root = (props) => {
           <Route path='login'
             component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
           <Route path='signup'
-            component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
+            component={ AuthFormContainer } />
         </Route>
       </Router>
     </Provider>

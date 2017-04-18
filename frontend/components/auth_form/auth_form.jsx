@@ -39,11 +39,11 @@ class AuthForm extends React.Component {
     if (this.props.formType === 'login') {
       headerText = 'Log in';
       buttonText = 'Log in';
-      footerText = "Don't have an account? Sign up.";
+      footerText = <p>Don't have an account? <Link to='/signup'>Sign up</Link>.</p>;
     } else if (this.props.formType === 'signup') {
       headerText = 'Sign up for an account';
       buttonText = 'Sign up';
-      footerText = "Already have an account? Log in.";
+      footerText = <p>Already have an account? <Link to='/login'>Log in</Link>.</p>;
     }
     return (
       <div>
@@ -65,7 +65,7 @@ class AuthForm extends React.Component {
           <br />
           <input type='submit' value={ buttonText } />
         </form>
-        <p>{ footerText }</p>
+        { footerText }
       </div>
     );
   }
