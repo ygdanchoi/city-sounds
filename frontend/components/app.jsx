@@ -5,7 +5,7 @@ const App = (props) => (
   <div>
     <h1>CitySounds</h1>
     <GreetingContainer />
-
+    { props.children }
   </div>
 );
 
