@@ -23,8 +23,8 @@ export const fetchUsers = () => (dispatch) => {
   );
 };
 
-export const fetchUser = (user) => (dispatch) => {
-  return APIUtil.fetchUser(user).then(
+export const fetchUser = (id) => (dispatch) => {
+  return APIUtil.fetchUser(id).then(
     response => dispatch(receiveUser(response))
   );
 };

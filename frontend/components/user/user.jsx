@@ -7,8 +7,19 @@ class User extends React.Component {
   }
 
   render() {
+    if (this.props.user === undefined) {
+      return(
+        <main>
+          <p>loading...</p>
+        </main>
+      );
+    }
     return (
-      <h2>user profile page</h2>
+      <main>
+        <p>{ this.props.user.username }</p>
+        <p>{ this.props.user.location }</p>
+        <p>{ this.props.user.bio }</p>
+      </main>
     );
   }
 }
