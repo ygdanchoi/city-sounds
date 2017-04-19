@@ -12,6 +12,12 @@ class AuthForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.formType !== newProps.formType) {
+      this.props.receiveErrors({});
+    }
+  }
+
   handleChange(field) {
     return (e) => {
       this.setState({
@@ -45,6 +51,20 @@ class AuthForm extends React.Component {
       buttonText = 'Sign up';
       footerText = <p>Already have an account? <Link to='/login'>Log in</Link>.</p>;
     }
+
+    let baseErrors = [];
+    let usernameErrors = [];
+    let passwordErrors = [];
+    if (this.props.errors.base) {
+      baseErrors = this.props.errors.base;
+    }
+    if (this.props.errors.username) {
+      usernameErrors = this.props.errors.username;
+    }
+    if (this.props.errors.password) {
+      passwordErrors = this.props.errors.password;
+    }
+
     return (
       <div>
         <h4>{ headerText }</h4>
@@ -55,6 +75,7 @@ class AuthForm extends React.Component {
               value={ this.state.username }
               onChange={ this.handleChange('username') } />
           </label>
+          { usernameErrors }
           <br />
           <label>Password
             <input
@@ -62,6 +83,8 @@ class AuthForm extends React.Component {
               value={ this.state.password }
               onChange={ this.handleChange('password') } />
           </label>
+          { passwordErrors }
+          { baseErrors }
           <br />
           <input type='submit' value={ buttonText } />
         </form>
