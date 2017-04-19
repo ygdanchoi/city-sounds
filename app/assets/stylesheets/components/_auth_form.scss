@@ -24,7 +24,7 @@
 }
 
 .auth-form-section {
-  border-top: 2px dotted black;
+  border-top: 2px dotted #cccccc;
   padding-top: 40px;
 }
 
@@ -45,11 +45,12 @@
 .auth-form-submit input {
   width: 300px;
   height: 36px;
+  border: 1px solid #cccccc;
 }
 
 .auth-form-submit input {
   background-color: #00a1c6;
-  border: none;
+  border: 1px solid #00a1c6;
   margin-top: 22px;
   margin-left: 174px;
   cursor: pointer;
@@ -61,4 +62,9 @@
 .auth-form-bottom {
   margin-top: 72px;
   text-align: center;
+}
+
+.auth-form-errors {
+  margin-left: 174px;
+  color: #c43329;
 }

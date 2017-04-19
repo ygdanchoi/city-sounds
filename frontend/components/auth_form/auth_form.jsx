@@ -59,10 +59,10 @@ class AuthForm extends React.Component {
     let passwordErrors = [];
     let baseErrors = [];
     if (this.props.errors.username) {
-      usernameErrors = this.props.errors.username;
+      usernameErrors = 'Username ' + this.props.errors.username.join(', ');
     }
     if (this.props.errors.password) {
-      passwordErrors = this.props.errors.password;
+      passwordErrors = 'Password ' + this.props.errors.password.join(', ');
     }
     if (this.props.errors.base) {
       baseErrors = this.props.errors.base;
@@ -85,7 +85,7 @@ class AuthForm extends React.Component {
                     value={ this.state.username }
                     onChange={ this.handleChange('username') } />
                 </div>
-                <p>{ usernameErrors }</p>
+                <p className='auth-form-errors'>{ usernameErrors }</p>
                 <div className='auth-form-password'>
                   <label for='auth-form-password-input'>Password</label>
                   <input id='auth-form-password-input'
@@ -93,8 +93,8 @@ class AuthForm extends React.Component {
                     value={ this.state.password }
                     onChange={ this.handleChange('password') } />
                 </div>
-                <p>{ passwordErrors }</p>
-                <p>{ baseErrors }</p>
+                <p className='auth-form-errors'>{ passwordErrors }</p>
+                <p className='auth-form-errors'>{ baseErrors }</p>
                 <div className='auth-form-submit'>
                   <input id='auth-form-submit-input'
                     type='submit'
