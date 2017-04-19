@@ -1,4 +1,4 @@
-header.home-header, nav.home-nav {
+.home-header, .home-nav {
   margin: 18px;
   display: flex;
   flex-direction: row;
@@ -6,10 +6,10 @@ header.home-header, nav.home-nav {
   align-items: center;
 }
 
-nav.home-nav-left {
+.home-nav-left {
 
 }
 
-nav.home-nav-right {
+.home-nav-right {
 
 }

@@ -39,17 +39,20 @@ class AuthForm extends React.Component {
   }
 
   render() {
-    let headerText;
+    let headingText;
     let buttonText;
-    let footerText;
+    let bottomText;
+    let bottomLink;
     if (this.props.formType === 'login') {
-      headerText = 'Log in';
+      headingText = 'Log in';
       buttonText = 'Log in';
-      footerText = <p>Don't have an account? <Link to='/signup'>Sign up</Link>.</p>;
+      bottomText = "Don't have an account? ";
+      bottomLink = <Link to='/signup'>Sign up</Link>;
     } else if (this.props.formType === 'signup') {
-      headerText = 'Sign up for an account';
+      headingText = 'Sign up for an account';
       buttonText = 'Sign up';
-      footerText = <p>Already have an account? <Link to='/login'>Log in</Link>.</p>;
+      bottomText = 'Already have an account? ';
+      bottomLink = <Link to='/login'>Log in</Link>;
     }
 
     let usernameErrors = [];
@@ -67,28 +70,35 @@ class AuthForm extends React.Component {
 
     return (
       <div>
-        <h4>{ headerText }</h4>
-        <form onSubmit={ this.handleSubmit }>
-          <label>Username
-            <input
-              type='text'
-              value={ this.state.username }
-              onChange={ this.handleChange('username') } />
-          </label>
-          { usernameErrors }
-          <br />
-          <label>Password
-            <input
-              type='password'
-              value={ this.state.password }
-              onChange={ this.handleChange('password') } />
-          </label>
-          { passwordErrors }
-          { baseErrors }
-          <br />
-          <input type='submit' value={ buttonText } />
-        </form>
-        { footerText }
+        <header className='auth-form-header'>
+          <h2>.:.:. citysounds</h2>
+        </header>
+        <div className='auth-form-body'>
+          <section className='auth-form-block'>
+            <h4 className='auth-form-heading'>{ headingText }</h4>
+            <form onSubmit={ this.handleSubmit }>
+              <label>Username
+                <input
+                  type='text'
+                  value={ this.state.username }
+                  onChange={ this.handleChange('username') } />
+              </label>
+              { usernameErrors }
+              <br />
+              <label>Password
+                <input
+                  type='password'
+                  value={ this.state.password }
+                  onChange={ this.handleChange('password') } />
+              </label>
+              { passwordErrors }
+              { baseErrors }
+              <br />
+              <input type='submit' value={ buttonText } />
+            </form>
+            <p>{ bottomText }{ bottomLink }.</p>
+          </section>
+        </div>
       </div>
     );
   }
