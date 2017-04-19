@@ -14,7 +14,7 @@ class AuthForm extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props.formType !== newProps.formType) {
-      this.props.receiveErrors({});
+      this.props.clearErrors();
     }
   }
 

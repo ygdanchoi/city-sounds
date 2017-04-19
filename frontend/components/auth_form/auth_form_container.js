@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   const formType = ownProps.location.pathname.slice(1);
   let processForm;
@@ -22,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     logout: () => dispatch(logout()),
     processForm: (user) => dispatch(processForm(user)),
-    receiveErrors: (errors) => dispatch(receiveErrors())
+    clearErrors: () => dispatch(receiveErrors({}))
   };
 };
 
