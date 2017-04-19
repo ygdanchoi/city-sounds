@@ -7,29 +7,41 @@ const Home = (props) => {
     props.logout();
   };
 
+  const header = (
+    <header className='home-header'>
+      <header className='home-header-left'>
+        <h2>.:.:. citysounds</h2>
+      </header>
+      <header className='home-header-right'>
+        <p>Search for collection, sound, or user</p>
+      </header>
+    </header>
+  );
+
+  let homeNavLeft;
+  let homeNavRight;
   if (props.loggedIn) {
-    return (
-      <nav className='home-nav'>
-        <nav className='home-nav-left'>
-          Hi { props.currentUser.username } | <Link to={`/users/${props.currentUser.id}`}>your profile</Link>
-        </nav>
-        <nav className='home-nav-right'>
-          <a onClick={ logout } href='/logout'>log out</a>
-        </nav>
-      </nav>
-    );
+    homeNavLeft = <p>Hi { props.currentUser.username } | <Link to={`/users/${props.currentUser.id}`}>your profile</Link></p>;
+    homeNavRight = <p><a onClick={ logout } href='/logout'>log out</a></p>;
   } else {
-    return (
+    homeNavLeft = <p>Share & play ambient city soundscapes.</p>;
+    homeNavRight = <p><Link to='/signup'>sign up</Link> | <Link to='/login'>log in</Link></p>;
+  }
+
+  return (
+    <div>
+      { header }
       <nav className='home-nav'>
         <nav className='home-nav-left'>
-          Share & play ambient city soundscapes.
+          { homeNavLeft }
         </nav>
         <nav className='home-nav-right'>
-          <Link to='/signup'>sign up</Link> | <Link to='/login'>log in</Link>
+          { homeNavRight }
         </nav>
       </nav>
-    );
-  }
+    </div>
+  );
+
 };
 
 export default Home;
