@@ -7,8 +7,16 @@ class NavBar extends React.Component {
   }
 
   render() {
+    let navBar;
+    if (this.props.loggedIn) {
+      navBar = <h2>.:.:. nav bar (logged in)</h2>;
+    } else {
+      navBar = null;
+    }
     return (
-      <p>nav me</p>
+      <header>
+        { navBar }
+      </header>
     );
   }
 }
