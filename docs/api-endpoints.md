@@ -10,6 +10,7 @@
 ### Users
 - `POST /api/users`
 - `PATCH /api/users`
+- `GET /api/users/:user_id`
 
 ### Session
 - `POST /api/session`
