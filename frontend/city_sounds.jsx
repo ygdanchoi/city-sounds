@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
+import { fetchUsers, fetchUser } from './actions/user_actions';
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
@@ -13,4 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, root);
+
+  window.store = store;
+  window.fetchUsers = fetchUsers;
+  window.fetchUser = fetchUser;
 });
