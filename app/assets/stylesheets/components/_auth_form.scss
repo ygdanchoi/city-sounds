@@ -15,3 +15,50 @@
   height: 550px;
   margin: auto;
 }
+
+.auth-form-heading {
+  padding-top: 56px;
+  text-align: center;
+  padding-bottom: 37px;
+  font-weight: normal;
+}
+
+.auth-form-section {
+  border-top: 2px dotted black;
+  padding-top: 40px;
+}
+
+.auth-form-username, .auth-form-password, .auth-form.submit {
+  height: 59px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.auth-form-username label, .auth-form-password label {
+  width: 155px;
+  padding-right: 19px;
+  text-align: right;
+}
+
+.auth-form-username input, .auth-form-password input,
+.auth-form-submit input {
+  width: 300px;
+  height: 36px;
+}
+
+.auth-form-submit input {
+  background-color: #00a1c6;
+  border: none;
+  margin-top: 22px;
+  margin-left: 174px;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+.auth-form-bottom {
+  margin-top: 72px;
+  text-align: center;
+}

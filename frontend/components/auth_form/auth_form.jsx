@@ -75,28 +75,34 @@ class AuthForm extends React.Component {
         </header>
         <div className='auth-form-body'>
           <section className='auth-form-block'>
-            <h4 className='auth-form-heading'>{ headingText }</h4>
-            <form onSubmit={ this.handleSubmit }>
-              <label>Username
-                <input
-                  type='text'
-                  value={ this.state.username }
-                  onChange={ this.handleChange('username') } />
-              </label>
-              { usernameErrors }
-              <br />
-              <label>Password
-                <input
-                  type='password'
-                  value={ this.state.password }
-                  onChange={ this.handleChange('password') } />
-              </label>
-              { passwordErrors }
-              { baseErrors }
-              <br />
-              <input type='submit' value={ buttonText } />
-            </form>
-            <p>{ bottomText }{ bottomLink }.</p>
+            <h3 className='auth-form-heading'>{ headingText }</h3>
+            <section className='auth-form-section'>
+              <form onSubmit={ this.handleSubmit }>
+                <div className='auth-form-username'>
+                  <label for='auth-form-username-input'>Username</label>
+                  <input id='auth-form-username-input'
+                    type='text'
+                    value={ this.state.username }
+                    onChange={ this.handleChange('username') } />
+                </div>
+                <p>{ usernameErrors }</p>
+                <div className='auth-form-password'>
+                  <label for='auth-form-password-input'>Password</label>
+                  <input id='auth-form-password-input'
+                    type='password'
+                    value={ this.state.password }
+                    onChange={ this.handleChange('password') } />
+                </div>
+                <p>{ passwordErrors }</p>
+                <p>{ baseErrors }</p>
+                <div className='auth-form-submit'>
+                  <input id='auth-form-submit-input'
+                    type='submit'
+                    value={ buttonText } />
+                </div>
+              </form>
+            </section>
+            <p className='auth-form-bottom'>{ bottomText }{ bottomLink }.</p>
           </section>
         </div>
       </div>
