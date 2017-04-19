@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import ExploreContainer from './explore/explore_container';
+import ExploreContainer from './explore_container';
 
 const Home = (props) => {
   const logout = (e) => {
