@@ -13,3 +13,41 @@
 .home-nav-right {
 
 }
+
+.home-figure {
+  height: 450px;
+  background-color: darkgrey;
+}
+
+.home-figure-photo {
+  width: 800px;
+  height: 450px;
+  background-color: grey;
+  margin: 0 auto;
+}
+
+.home-main {
+  background-color: #eef2f3;
+}
+
+.home-main-filter-bar {
+  display: flex;
+  align-items: center;
+}
+
+.home-main-filter-bar-filters {
+  display: flex;
+  align-items: center;
+}
+
+.home-main-filter-bar-filters ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.home-main-tag-bar ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}

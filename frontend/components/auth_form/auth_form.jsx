@@ -81,13 +81,13 @@ class AuthForm extends React.Component {
         <header className='auth-form-header'>
           <h2>.:.:. citysounds</h2>
         </header>
-        <div className='auth-form-body'>
+        <main className='auth-form-main'>
           <section className='auth-form-block'>
             <h3 className='auth-form-heading'>{ headingText }</h3>
             <section className='auth-form-section'>
               <form onSubmit={ this.handleSubmit }>
                 <div className='auth-form-username'>
-                  <label for='auth-form-username-input'>Username</label>
+                  <label htmlFor='auth-form-username-input'>Username</label>
                   <input id='auth-form-username-input'
                     type='text'
                     value={ this.state.username }
@@ -95,7 +95,7 @@ class AuthForm extends React.Component {
                 </div>
                 <p className='auth-form-errors'>{ usernameErrors }</p>
                 <div className='auth-form-password'>
-                  <label for='auth-form-password-input'>Password</label>
+                  <label htmlFor='auth-form-password-input'>Password</label>
                   <input id='auth-form-password-input'
                     type='password'
                     value={ this.state.password }
@@ -117,7 +117,7 @@ class AuthForm extends React.Component {
             </section>
             <p className='auth-form-bottom'>{ bottomText }{ bottomLink }.</p>
           </section>
-        </div>
+        </main>
       </div>
     );
   }
