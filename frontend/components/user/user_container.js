@@ -3,7 +3,7 @@ import User from './user';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-
+    
   };
 };
 
