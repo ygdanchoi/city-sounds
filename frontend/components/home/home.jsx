@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Greeting = (props) => {
+const Home = (props) => {
   const logout = (e) => {
     e.preventDefault();
     props.logout();
@@ -32,4 +32,4 @@ const Greeting = (props) => {
   }
 };
 
-export default Greeting;
+export default Home;

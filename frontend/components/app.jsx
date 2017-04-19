@@ -1,12 +1,12 @@
 import React from 'react';
-import GreetingContainer from './greeting/greeting_container';
+import HomeContainer from './home/home_container';
 
 const App = (props) => {
-  let greetingContainer = "";
+  let homeContainer = "";
   if (props.location.pathname === '/') {
-    greetingContainer = <GreetingContainer />;
+    homeContainer = <HomeContainer />;
   } else {
-    greetingContainer = "";
+    homeContainer = "";
   }
   return (
     <div>
@@ -18,7 +18,7 @@ const App = (props) => {
           <p>Search for collection, sound, or user</p>
         </header>
       </header>
-      { greetingContainer }
+      { homeContainer }
       { props.children }
     </div>
   );
