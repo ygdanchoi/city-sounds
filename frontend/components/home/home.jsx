@@ -7,7 +7,7 @@ const Home = (props) => {
     props.logout();
   };
 
-  const header = (
+  const homeHeader = (
     <header className='home-header'>
       <header className='home-header-left'>
         <h2>.:.:. citysounds</h2>
@@ -30,7 +30,7 @@ const Home = (props) => {
 
   return (
     <div>
-      { header }
+      { homeHeader }
       <nav className='home-nav'>
         <nav className='home-nav-left'>
           { homeNavLeft }
