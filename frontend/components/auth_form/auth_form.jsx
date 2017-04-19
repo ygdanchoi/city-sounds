@@ -52,17 +52,21 @@ class AuthForm extends React.Component {
       footerText = <p>Already have an account? <Link to='/login'>Log in</Link>.</p>;
     }
 
-    let baseErrors = [];
     let usernameErrors = [];
+    let signupLoggedInWarning = [];
     let passwordErrors = [];
-    if (this.props.errors.base) {
-      baseErrors = this.props.errors.base;
-    }
+    let baseErrors = [];
     if (this.props.errors.username) {
       usernameErrors = this.props.errors.username;
     }
+    if (this.props.loggedIn && this.props.formType === 'signup') {
+      signupLoggedInWarning = ['Already logged in'];
+    }
     if (this.props.errors.password) {
       passwordErrors = this.props.errors.password;
+    }
+    if (this.props.errors.base) {
+      baseErrors = this.props.errors.base;
     }
 
     return (
@@ -76,6 +80,7 @@ class AuthForm extends React.Component {
               onChange={ this.handleChange('username') } />
           </label>
           { usernameErrors }
+          { signupLoggedInWarning }
           <br />
           <label>Password
             <input
