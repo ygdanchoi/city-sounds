@@ -38,8 +38,14 @@
       title: 'Central Park Sounds',
       artworkUrl: 'collection001.png',
       description: 'Ambient noise from Central Park',
-      soundIds: [1],
-      tagIds: [1],
+      numSounds: 1,
+      length: 2423
+      tags: {
+        1: {
+          id: 1,
+          name: 'park',
+        },
+      },
     },
   },
   sounds: {
@@ -49,12 +55,6 @@
       length: 2423,
       streamUrl: 'https://www.sounds.com/12345/',
       downloadUrl: 'https://www.sounds.com/download/12345/',
-    },
-  },
-  tags: {
-    1: {
-      id: 1,
-      name: 'park',
     },
   },
 }
