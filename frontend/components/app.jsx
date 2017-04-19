@@ -1,16 +1,19 @@
 import React from 'react';
 import HomeContainer from './home/home_container';
+import NavBarContainer from './nav_bar_container';
 
 const App = (props) => {
-  let homeContainer;
+  let header;
   if (props.location.pathname === '/') {
-    homeContainer = <HomeContainer />;
+    header = <HomeContainer />;
+  } else if (props.location.pathname === '/login' || props.location.pathname === '/signup') {
+    header = null;
   } else {
-    homeContainer = "";
+    header = <NavBarContainer />;
   }
   return (
     <div>
-      { homeContainer }
+      { header }
       { props.children }
     </div>
   );
