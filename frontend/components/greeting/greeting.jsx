@@ -9,25 +9,25 @@ const Greeting = (props) => {
 
   if (props.loggedIn) {
     return (
-      <div>
-        <div>
+      <nav className='home-nav'>
+        <nav className='home-nav-left'>
           Hi { props.currentUser.username } | <Link to={`/users/${props.currentUser.id}`}>your profile</Link>
-        </div>
-        <div>
-          <Link to='/signup'>sign up</Link> | <Link onClick={ logout } to='/logout'>log out</Link>
-        </div>
-      </div>
+        </nav>
+        <nav className='home-nav-right'>
+          <a onClick={ logout } href='/logout'>log out</a>
+        </nav>
+      </nav>
     );
   } else {
     return (
-      <div>
-        <div>
+      <nav className='home-nav'>
+        <nav className='home-nav-left'>
           Share & play ambient city soundscapes.
-        </div>
-        <div>
+        </nav>
+        <nav className='home-nav-right'>
           <Link to='/signup'>sign up</Link> | <Link to='/login'>log in</Link>
-        </div>
-      </div>
+        </nav>
+      </nav>
     );
   }
 };

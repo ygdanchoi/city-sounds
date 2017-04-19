@@ -10,7 +10,14 @@ const App = (props) => {
   }
   return (
     <div>
-      <h1>CitySounds</h1>
+      <header className='home-header'>
+        <header className='home-header-left'>
+          <h2>.:.:. citysounds</h2>
+        </header>
+        <header className='home-header-right'>
+          <p>Search for collection, sound, or user</p>
+        </header>
+      </header>
       { greetingContainer }
       { props.children }
     </div>

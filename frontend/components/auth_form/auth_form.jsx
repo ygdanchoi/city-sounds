@@ -53,14 +53,10 @@ class AuthForm extends React.Component {
     }
 
     let usernameErrors = [];
-    let signupLoggedInWarning = [];
     let passwordErrors = [];
     let baseErrors = [];
     if (this.props.errors.username) {
       usernameErrors = this.props.errors.username;
-    }
-    if (this.props.loggedIn && this.props.formType === 'signup') {
-      signupLoggedInWarning = ['Already logged in'];
     }
     if (this.props.errors.password) {
       passwordErrors = this.props.errors.password;
@@ -80,7 +76,6 @@ class AuthForm extends React.Component {
               onChange={ this.handleChange('username') } />
           </label>
           { usernameErrors }
-          { signupLoggedInWarning }
           <br />
           <label>Password
             <input
