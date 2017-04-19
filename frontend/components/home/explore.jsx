@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import ExploreList from './explore_list';
 
 const Explore = (props) => {
   return (
@@ -23,6 +24,9 @@ const Explore = (props) => {
           <li>rain</li>
         </ul>
       </aside>
+      <section>
+        <ExploreList />
+      </section>
     </main>
   );
 };

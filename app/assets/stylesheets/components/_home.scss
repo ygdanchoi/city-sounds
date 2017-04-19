@@ -51,3 +51,20 @@
   align-items: center;
   list-style: none;
 }
+
+.explore-list {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.explore-list-item {
+  width: 173px;
+  margin: 18px 13px;
+}
+
+.explore-list-item-artwork {
+  width: 173px;
+  height: 173px;
+  background-color: grey;
+}
