@@ -42,13 +42,13 @@
 }
 
 .auth-form-username input, .auth-form-password input,
-.auth-form-submit input {
+.auth-form-submit input, .auth-form-guest button {
   width: 300px;
   height: 36px;
   border: 1px solid #cccccc;
 }
 
-.auth-form-submit input {
+.auth-form-submit input, .auth-form-guest button {
   background-color: #00a1c6;
   border: 1px solid #00a1c6;
   margin-top: 22px;

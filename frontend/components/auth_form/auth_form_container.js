@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const formType = ownProps.location.pathname.slice(1);
+  const guest = { user: { username: 'guest', password: 'password' } };
   let processForm;
   if (formType === 'login') {
     processForm = login;
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     logout: () => dispatch(logout()),
     processForm: (user) => dispatch(processForm(user)),
-    clearErrors: () => dispatch(receiveErrors({}))
+    clearErrors: () => dispatch(receiveErrors({})),
+    loginGuest: () => dispatch(login(guest))
   };
 };
 

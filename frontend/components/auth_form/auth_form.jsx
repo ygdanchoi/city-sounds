@@ -10,6 +10,7 @@ class AuthForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuest = this.handleGuest.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -30,6 +31,13 @@ class AuthForm extends React.Component {
     e.preventDefault();
     const user = { user: this.state };
     this.props.processForm(user).then(
+      () => this.redirect()
+    );
+  }
+
+  handleGuest(e) {
+    e.preventDefault();
+    this.props.loginGuest().then(
       () => this.redirect()
     );
   }
@@ -99,6 +107,11 @@ class AuthForm extends React.Component {
                   <input id='auth-form-submit-input'
                     type='submit'
                     value={ buttonText } />
+                </div>
+                <div className='auth-form-guest'>
+                  <button id='auth-form-guest-input'
+                    type='submit'
+                    onClick={ this.handleGuest }>Login as guest</button>
                 </div>
               </form>
             </section>
