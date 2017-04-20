@@ -23,12 +23,18 @@ class UserSidebar extends React.Component {
   componentWillReceiveProps(newProps) {
     if (this.props.user.avatarUrl !== newProps.user.avatarUrl) {
       this.setState({avatarUrl: newProps.user.avatarUrl});
+    } else {
+      this.setState({avatarUrl: this.props.user.avatarUrl});
     }
     if (this.props.user.location !== newProps.user.location) {
       this.setState({location: newProps.user.location});
+    } else {
+      this.setState({location: this.props.user.location});
     }
     if (this.props.user.bio !== newProps.user.bio) {
       this.setState({bio: newProps.user.bio});
+    } else {
+      this.setState({bio: this.props.user.bio});
     }
   }
 
@@ -98,12 +104,11 @@ class UserSidebar extends React.Component {
   }
 
   render() {
-    const ownProfile = this.props.user.id === this.props.currentUserId;
     let avatar = [<img src={ this.props.user.avatarUrl } />];
     const username = <p>{ this.props.user.username }</p>;
     let location = [<p>{ this.props.user.location }</p>];
     let bio = [<p>{ this.props.user.bio }</p>];
-    if (ownProfile) {
+    if (this.props.ownProfile) {
       avatar.push(
         <div>
           <a href='' onClick={ this.handleDeleteAvatar }>x</a>
