@@ -3,7 +3,9 @@ import User from './user';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.users[ownProps.params.userId]
+    user: state.users[ownProps.params.userId],
+    currentUser: state.session.currentUser,
+    loggedIn: state.session.currentUser !== null
   };
 };
 

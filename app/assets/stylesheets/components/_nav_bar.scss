@@ -1,0 +1,28 @@
+.nav-bar-stripe-top {
+  background-color: #848484;
+  height: 5px;
+}
+
+.nav-bar-main {
+  background-color: #dddddd;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dotted #b0b0b0;
+}
+
+.nav-bar-logo {
+  padding-left: 10px;
+}
+
+.nav-bar-profile-pic img {
+  width: 25px;
+  height: 25px;
+  outline: 1px solid #cccccc;
+}
+
+.nav-bar-right {
+  display: flex;
+  align-items: center;
+}
