@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import CollectionList from './collection_list';
+import UserSidebar from './user_sidebar';
 
 class User extends React.Component {
   constructor(props) {
@@ -16,10 +18,8 @@ class User extends React.Component {
     }
     return (
       <main>
-        <img src={ this.props.user.avatarUrl } />
-        <p>{ this.props.user.username }</p>
-        <p>{ this.props.user.location }</p>
-        <p>{ this.props.user.bio }</p>
+        <CollectionList />
+        <UserSidebar user={ this.props.user } />
       </main>
     );
   }
