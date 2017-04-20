@@ -4,43 +4,95 @@ import { Link } from 'react-router';
 class UserSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.user;
-    this.deleteAvatarHandler = this.deleteAvatarHandler.bind(this);
-    this.editLocationHandler = this.editLocationHandler.bind(this);
-    this.editBioHandler = this.editBioHandler.bind(this);
+    this.state = {
+      avatarUrl: this.props.user.avatarUrl,
+      location: this.props.user.location,
+      bio: this.props.user.bio,
+      editingLocation: false,
+      editingBio: false
+    };
+    this.handleDeleteAvatar = this.handleDeleteAvatar.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleOpenForm = this.handleOpenForm.bind(this);
+    this.handleSaveForm = this.handleSaveForm.bind(this);
   }
 
-  deleteAvatarHandler(e) {
+  handleDeleteAvatar(e) {
     e.preventDefault();
   }
 
-  editLocationHandler(e) {
-    e.preventDefault();
+  handleOpenForm(editingField) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({ [editingField]: true });
+    };
   }
 
-  editBioHandler(e) {
-    e.preventDefault();
+  handleSaveForm(field, editingField) {
+    return (e) => {
+      e.preventDefault();
+      this.setState({
+        [field]: e.currentTarget.value,
+        [editingField]: false
+      });
+    };
+  }
+
+  handleChange(field) {
+    return (e) => {
+      this.setState({
+        [field]: e.currentTarget.value
+      });
+    };
   }
 
   render() {
     const ownProfile = this.props.user.id === this.props.currentUserId;
-    let deleteAvatar = null;
-    let editLocation = null;
-    let editBio = null;
+    let avatar = [<img src={ this.state.avatarUrl } />];
+    const username = <p>{ this.props.user.username }</p>;
+    let location = [<p>{ this.state.location }</p>];
+    let bio = [<p>{ this.state.bio }</p>];
     if (ownProfile) {
-      deleteAvatar = <a href='' onClick={ this.deleteAvatarHandler }>x</a>;
-      editLocation = <a href='' onClick={ this.editLocationHandler }>edit location</a>;
-      editBio = <a href='' onClick={ this.editBioHandler }>edit bio</a>;
+      avatar.push(
+        <div>
+          <a href='' onClick={ this.handleDeleteAvatar }>x</a>
+        </div>
+      );
+      if (this.state.editingLocation) {
+        location = (
+          <div>
+            <input onChange={ this.handleChange('location') } value={this.state.location} />
+            <a href='' onClick={ this.handleSaveForm('location', 'editingLocation') }>save</a>
+          </div>
+        );
+      } else {
+        location.push(
+          <div>
+            <a href='' onClick={ this.handleOpenForm('editingLocation') }>edit location</a>
+          </div>
+        );
+      }
+      if (this.state.editingBio) {
+        bio = (
+          <div>
+            <input onChange={ this.handleChange('bio') } value={this.state.bio} />
+            <a href='' onClick={ this.handleSaveForm('bio', 'editingBio') }>save</a>
+          </div>
+        );
+      } else {
+        bio.push(
+          <div>
+            <a href='' onClick={ this.handleOpenForm('editingBio') }>edit bio</a>
+          </div>
+        );
+      }
     }
     return(
       <aside>
-        <img src={ this.props.user.avatarUrl } />
-        { deleteAvatar }
-        <p>{ this.props.user.username }</p>
-        <p>{ this.props.user.location }</p>
-        { editLocation }
-        <p>{ this.props.user.bio }</p>
-        { editBio }
+        { avatar }
+        { username }
+        { location }
+        { bio }
       </aside>
     );
   }
