@@ -13,6 +13,7 @@ class UserSidebar extends React.Component {
         <p>{ this.props.user.username }</p>
         <p>{ this.props.user.location }</p>
         <p>{ this.props.user.bio }</p>
+        <p>{ this.props.user.id === this.props.currentUserId ? 'can edit' : 'cannot edit' }</p>
       </aside>
     );
   }

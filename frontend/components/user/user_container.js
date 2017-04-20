@@ -5,7 +5,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     user: state.users[ownProps.params.userId],
     currentUser: state.session.currentUser,
-    loggedIn: state.session.currentUser !== null
   };
 };
 

@@ -11,15 +11,17 @@ class User extends React.Component {
   render() {
     if (this.props.user === undefined) {
       return(
-        <main>
+        <main className='user-main'>
           <p>loading...</p>
         </main>
       );
     }
     return (
-      <main>
+      <main className='user-main'>
         <CollectionList />
-        <UserSidebar user={ this.props.user } />
+        <UserSidebar
+          user={ this.props.user }
+          currentUserId={ currentUser.id } />
       </main>
     );
   }

@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 
 const CollectionList = (props) => {
   return (
-    <main className='collection-list-main'>
-      <p>i am a collection list</p>
-    </main>
+    <section className='collection-list-section'>
+      <p>uploaded collections</p>
+    </section>
   );
 };
 
