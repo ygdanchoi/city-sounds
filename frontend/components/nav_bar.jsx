@@ -19,7 +19,9 @@ class NavBar extends React.Component {
   render() {
     let navBarDropdown;
     if (this.state.showDropdown) {
-      navBarDropdown = <NavBarDropdown />;
+      navBarDropdown = <NavBarDropdown
+        currentUser={ this.props.currentUser }
+        logout={ this.props.logout } />;
     } else {
       navBarDropdown = null;
     }

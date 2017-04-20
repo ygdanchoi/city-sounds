@@ -104,12 +104,11 @@ class UserSidebar extends React.Component {
   }
 
   render() {
-    let ownProfile = this.props.user.id === this.props.currentUserId;
     let avatar = [<img src={ this.props.user.avatarUrl } />];
     const username = <p>{ this.props.user.username }</p>;
     let location = [<p>{ this.props.user.location }</p>];
     let bio = [<p>{ this.props.user.bio }</p>];
-    if (ownProfile) {
+    if (this.props.ownProfile) {
       avatar.push(
         <div>
           <a href='' onClick={ this.handleDeleteAvatar }>x</a>
