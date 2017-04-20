@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170418162426) do
     t.string   "username",        null: false
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
-    t.string   "image_url"
+    t.string   "profile_pic_url"
     t.text     "bio"
     t.string   "location"
     t.datetime "created_at",      null: false

@@ -4,7 +4,7 @@
     currentUser: {
       id: 1,
       username: 'dan',
-      imageUrl: 'user001.png',
+      profilePicUrl: 'user001.png',
       bio: 'Med school reject, aspiring supervillain.',
       location: 'New Jersey',
     },
@@ -18,9 +18,10 @@
     1: {
       id: 1,
       username: 'dan',
-      imageUrl: 'user001.png',
+      profilePicUrl: 'user001.png',
       bio: 'Med school reject, aspiring supervillain.',
       location: 'New Jersey',
+      collectionIds: [1],
     },
   },
   exploreListItems: {

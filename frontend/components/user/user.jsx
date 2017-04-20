@@ -16,6 +16,7 @@ class User extends React.Component {
     }
     return (
       <main>
+        <img src={ this.props.user.profile_pic_url } />
         <p>{ this.props.user.username }</p>
         <p>{ this.props.user.location }</p>
         <p>{ this.props.user.bio }</p>
