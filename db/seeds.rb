@@ -8,16 +8,16 @@
 
 ActiveRecord::Base.transaction do
   User.destroy_all
-  User.create!(
+  guest = User.create!(
     username: 'guest',
     password: 'password',
     location: 'Chelsea'
   )
-  User.create!(
+  dan = User.create!(
     username: 'dan',
     password: 'password',
-    profile_pic_url: 'http://i.imgur.com/YcP0tik.jpg',
     location: 'North Jersey',
-    bio: 'Med school reject, aspiring supervillain'
+    bio: 'Med school reject, aspiring supervillain',
+    avatar: File.open('app/assets/images/avatars/dan.jpg')
   )
 end

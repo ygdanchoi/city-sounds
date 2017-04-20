@@ -21,7 +21,7 @@ class NavBar extends React.Component {
           </nav>
           <nav className='nav-bar-right'>
             <figure className='nav-bar-profile-pic'>
-              <img src={ this.props.currentUser.profile_pic_url }></img>
+              <img src={ this.props.currentUser.avatarUrl }></img>
             </figure>
             <p>{ this.props.currentUser.username }</p>
           </nav>
