@@ -21,11 +21,15 @@ class UserSidebar extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({
-      avatarUrl: newProps.user.avatarUrl,
-      location: newProps.user.location,
-      bio: newProps.user.bio,
-    });
+    if (this.props.user.avatarUrl !== newProps.user.avatarUrl) {
+      this.setState({avatarUrl: newProps.user.avatarUrl});
+    }
+    if (this.props.user.location !== newProps.user.location) {
+      this.setState({location: newProps.user.location});
+    }
+    if (this.props.user.bio !== newProps.user.bio) {
+      this.setState({bio: newProps.user.bio});
+    }
   }
 
   handleDeleteAvatar(e) {
