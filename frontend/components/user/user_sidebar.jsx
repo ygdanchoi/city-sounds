@@ -16,7 +16,8 @@ class UserSidebar extends React.Component {
     this.handleOpenForm = this.handleOpenForm.bind(this);
     this.handleSaveLocation = this.handleSaveLocation.bind(this);
     this.handleSaveBio = this.handleSaveBio.bind(this);
-    this.handleCancelForm = this.handleCancelForm.bind(this);
+    this.handleCancelLocation = this.handleCancelLocation.bind(this);
+    this.handleCancelBio = this.handleCancelBio.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -64,15 +65,20 @@ class UserSidebar extends React.Component {
     });
   }
 
-  handleCancelForm(field, editingField) {
-    return (e) => {
-      e.preventDefault();
-      this.setState({
-        location: this.props.user.location,
-        bio: this.props.user.bio,
-        [editingField]: false
-      });
-    };
+  handleCancelLocation(e) {
+    e.preventDefault();
+    this.setState({
+      location: this.props.user.location,
+      editingLocation: false
+    });
+  }
+
+  handleCancelBio(e) {
+    e.preventDefault();
+    this.setState({
+      bio: this.props.user.bio,
+      editingBio: false
+    });
   }
 
   handleChange(field) {
@@ -104,7 +110,7 @@ class UserSidebar extends React.Component {
             <button
               onClick={ this.handleSaveLocation }>save</button>
             <a href=''
-              onClick={ this.handleCancelForm('location', 'editingLocation') }>cancel</a>
+              onClick={ this.handleCancelLocation }>cancel</a>
           </div>
         );
       } else {
@@ -124,7 +130,7 @@ class UserSidebar extends React.Component {
             <button
               onClick={ this.handleSaveBio }>save</button>
             <a href=''
-              onClick={ this.handleCancelForm('bio', 'editingBio') }>cancel</a>
+              onClick={ this.handleCancelBio }>cancel</a>
           </div>
         );
       } else {
