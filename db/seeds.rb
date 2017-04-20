@@ -8,6 +8,16 @@
 
 ActiveRecord::Base.transaction do
   User.destroy_all
-  User.create!(username: 'guest', password: 'password')
-  User.create!(username: 'dan', password: 'password')
+  User.create!(
+    username: 'guest',
+    password: 'password',
+    location: 'Chelsea'
+  )
+  User.create!(
+    username: 'dan',
+    password: 'password',
+    profile_pic_url: 'http://i.imgur.com/YcP0tik.jpg',
+    location: 'North Jersey',
+    bio: 'Med school reject, aspiring supervillain'
+  )
 end
