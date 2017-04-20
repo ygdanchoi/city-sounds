@@ -17,6 +17,14 @@ class UserSidebar extends React.Component {
     this.handleSaveForm = this.handleSaveForm.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      avatarUrl: newProps.user.avatarUrl,
+      location: newProps.user.location,
+      bio: newProps.user.bio,
+    });
+  }
+
   handleDeleteAvatar(e) {
     e.preventDefault();
   }
@@ -31,6 +39,13 @@ class UserSidebar extends React.Component {
   handleSaveForm(field, editingField) {
     return (e) => {
       e.preventDefault();
+      const user = {
+        id: this.props.user.id,
+        avatarUrl: this.state.avatarUrl,
+        location: this.state.location,
+        bio: this.state.bio
+      };
+      this.props.updateUser(user);
       this.setState({
         [field]: e.currentTarget.value,
         [editingField]: false
@@ -48,10 +63,10 @@ class UserSidebar extends React.Component {
 
   render() {
     const ownProfile = this.props.user.id === this.props.currentUserId;
-    let avatar = [<img src={ this.state.avatarUrl } />];
+    let avatar = [<img src={ this.props.user.avatarUrl } />];
     const username = <p>{ this.props.user.username }</p>;
-    let location = [<p>{ this.state.location }</p>];
-    let bio = [<p>{ this.state.bio }</p>];
+    let location = [<p>{ this.props.user.location }</p>];
+    let bio = [<p>{ this.props.user.bio }</p>];
     if (ownProfile) {
       avatar.push(
         <div>

@@ -21,7 +21,8 @@ class User extends React.Component {
         <CollectionList />
         <UserSidebar
           user={ this.props.user }
-          currentUserId={ currentUser.id } />
+          currentUserId={ currentUser.id }
+          updateUser={ this.props.updateUser } />
       </main>
     );
   }
