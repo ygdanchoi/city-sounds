@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
-import { fetchUsers, fetchUser } from './actions/user_actions';
+import { fetchUsers, fetchUser, updateUser } from './actions/user_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -19,4 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.fetchUsers = fetchUsers;
   window.fetchUser = fetchUser;
+  window.updateUser = updateUser;
 });

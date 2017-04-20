@@ -13,3 +13,12 @@ export const fetchUser = (id) => {
     error: err => console.log(err),
   });
 };
+
+export const updateUser = (user) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/users/${user.id}`,
+    data: { user: user },
+    error: err => console.log(err),
+  });
+};

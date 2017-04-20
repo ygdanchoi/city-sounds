@@ -28,3 +28,9 @@ export const fetchUser = (id) => (dispatch) => {
     response => dispatch(receiveUser(response))
   );
 };
+
+export const updateUser = (user) => (dispatch) => {
+  return APIUtil.updateUser(user).then(
+    response => dispatch(receiveUser(response))
+  );
+};
