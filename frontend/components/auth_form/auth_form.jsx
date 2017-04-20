@@ -31,19 +31,22 @@ class AuthForm extends React.Component {
     e.preventDefault();
     const user = { user: this.state };
     this.props.processForm(user).then(
-      () => this.redirect()
+      (response) => this.redirect(response)
     );
   }
 
   handleGuest(e) {
     e.preventDefault();
     this.props.loginGuest().then(
-      () => this.redirect()
+      (response) => this.redirect(response)
     );
   }
 
-  redirect() {
-    hashHistory.push('/');
+  redirect(response) {
+    const id = response.currentUser.id;
+    this.props.fetchUser(id).then(
+      () => hashHistory.push(`/users/${id}`)
+    );
   }
 
   render() {
