@@ -25,4 +25,24 @@
 .nav-bar-right {
   display: flex;
   align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-bar-dropdown {
+  position: absolute;
+  background-color: #f1f1f1;
+  list-style: none;
+  width: 205px;
+  top: 40px;
+  right: 0px;
+  padding: 5px;
+}
+
+.nav-bar-dropdown li {
+  padding: 5px;
+}
+
+.hidden {
+  display: none;
 }

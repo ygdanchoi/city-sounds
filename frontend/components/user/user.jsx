@@ -8,6 +8,14 @@ class User extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchUser(this.props.params.userId);
+  }
+
+  componentWillReceiveProps(newProps) {
+
+  }
+
   render() {
     if (this.props.user === undefined) {
       return(
@@ -21,7 +29,8 @@ class User extends React.Component {
         <CollectionList />
         <UserSidebar
           user={ this.props.user }
-          currentUserId={ currentUser.id }
+          currentUserId = { this.props.currentUser.id }
+          ownProfile={ this.props.user.id === this.props.currentUser.id }
           updateUser={ this.props.updateUser } />
       </main>
     );

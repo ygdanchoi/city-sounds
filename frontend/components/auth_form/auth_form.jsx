@@ -11,6 +11,7 @@ class AuthForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGuest = this.handleGuest.bind(this);
+    this.handleDan = this.handleDan.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -42,11 +43,17 @@ class AuthForm extends React.Component {
     );
   }
 
+  handleDan(e) {
+    e.preventDefault();
+    this.props.loginDan().then(
+      (response) => this.redirect(response)
+    );
+  }
+
   redirect(response) {
     const id = response.currentUser.id;
-    this.props.fetchUser(id).then(
-      () => hashHistory.push(`/users/${id}`)
-    );
+    hashHistory.push(`/users/${id}`);
+    this.fetchUser(id);
   }
 
   render() {
@@ -116,6 +123,7 @@ class AuthForm extends React.Component {
                     type='submit'
                     onClick={ this.handleGuest }>Login as guest</button>
                 </div>
+                <a href='' onClick={ this.handleDan }>log in as dan</a>
               </form>
             </section>
             <p className='auth-form-bottom'>{ bottomText }{ bottomLink }.</p>
