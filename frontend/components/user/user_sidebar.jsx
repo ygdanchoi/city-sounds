@@ -14,7 +14,8 @@ class UserSidebar extends React.Component {
     this.handleDeleteAvatar = this.handleDeleteAvatar.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleOpenForm = this.handleOpenForm.bind(this);
-    this.handleSaveForm = this.handleSaveForm.bind(this);
+    this.handleSaveLocation = this.handleSaveLocation.bind(this);
+    this.handleSaveBio = this.handleSaveBio.bind(this);
     this.handleCancelForm = this.handleCancelForm.bind(this);
   }
 
@@ -37,21 +38,30 @@ class UserSidebar extends React.Component {
     };
   }
 
-  handleSaveForm(field, editingField) {
-    return (e) => {
-      e.preventDefault();
-      const user = {
-        id: this.props.user.id,
-        avatarUrl: this.state.avatarUrl,
-        location: this.state.location,
-        bio: this.state.bio
-      };
-      this.props.updateUser(user);
-      this.setState({
-        [field]: e.currentTarget.value,
-        [editingField]: false
-      });
+  handleSaveLocation(e) {
+    e.preventDefault();
+    const user = {
+      id: this.props.user.id,
+      location: this.state.location,
     };
+    this.props.updateUser(user);
+    this.setState({
+      location: e.currentTarget.value,
+      editingLocation: false
+    });
+  }
+
+  handleSaveBio(e) {
+    e.preventDefault();
+    const user = {
+      id: this.props.user.id,
+      bio: this.state.bio,
+    };
+    this.props.updateUser(user);
+    this.setState({
+      bio: e.currentTarget.value,
+      editingBio: false
+    });
   }
 
   handleCancelForm(field, editingField) {
@@ -88,34 +98,45 @@ class UserSidebar extends React.Component {
       if (this.state.editingLocation) {
         location = (
           <div>
-            <input onChange={ this.handleChange('location') } value={this.state.location} />
-            <button onClick={ this.handleSaveForm('location', 'editingLocation') }>save</button>
-            <a href='' onClick={ this.handleCancelForm('location', 'editingLocation') }>cancel</a>
+            <input
+              onChange={ this.handleChange('location') }
+              value={this.state.location} />
+            <button
+              onClick={ this.handleSaveLocation }>save</button>
+            <a href=''
+              onClick={ this.handleCancelForm('location', 'editingLocation') }>cancel</a>
           </div>
         );
       } else {
         location.push(
           <div>
-            <a href='' onClick={ this.handleOpenForm('editingLocation') }>edit location</a>
+            <a href=''
+              onClick={ this.handleOpenForm('editingLocation') }>edit location</a>
           </div>
         );
       }
       if (this.state.editingBio) {
         bio = (
           <div>
-            <input onChange={ this.handleChange('bio') } value={this.state.bio} />
-            <button onClick={ this.handleSaveForm('bio', 'editingBio') }>save</button>
-            <a href='' onClick={ this.handleCancelForm('bio', 'editingBio') }>cancel</a>
+            <input
+              onChange={ this.handleChange('bio') }
+              value={this.state.bio} />
+            <button
+              onClick={ this.handleSaveBio }>save</button>
+            <a href=''
+              onClick={ this.handleCancelForm('bio', 'editingBio') }>cancel</a>
           </div>
         );
       } else {
         bio.push(
           <div>
-            <a href='' onClick={ this.handleOpenForm('editingBio') }>edit bio</a>
+            <a href=''
+              onClick={ this.handleOpenForm('editingBio') }>edit bio</a>
           </div>
         );
       }
     }
+
     return(
       <aside>
         { avatar }
