@@ -38,7 +38,7 @@ class NavBar extends React.Component {
               <h3><Link to='/' style={{ textDecoration: 'none' }}>.:.:.</Link></h3>
             </figure>
           </nav>
-          <nav className='nav-bar-right' onClick={ this.toggleDropdown }>
+          <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
             <figure className='nav-bar-profile-pic'>
               { avatar }
             </figure>
@@ -46,6 +46,8 @@ class NavBar extends React.Component {
             <NavBarDropdown
               currentUser={ this.props.currentUser }
               logout={ this.props.logout } />
+          </nav>
+          <nav className='nav-bar-right'>
           </nav>
         </nav>
       </header>

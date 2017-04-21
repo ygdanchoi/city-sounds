@@ -5,15 +5,29 @@
 
 .nav-bar-main {
   background-color: #dddddd;
-  height: 43px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px dotted #b0b0b0;
+  position: relative;
 }
 
-.nav-bar-logo {
-  padding-left: 10px;
+.nav-bar-left, .nav-bar-right {
+  width: 57px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar-left figure {
+  margin: auto;
+}
+
+.nav-bar-center {
+  width: 975px;
+  background-color: blue;
+  height: 100%;
 }
 
 .nav-bar-profile-pic img {
@@ -22,7 +36,7 @@
   outline: 1px solid #cccccc;
 }
 
-.nav-bar-right {
+.nav-bar-center {
   display: flex;
   align-items: center;
   position: relative;

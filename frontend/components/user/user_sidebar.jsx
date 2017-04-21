@@ -136,7 +136,7 @@ class UserSidebar extends React.Component {
     const username = <p>{ this.props.user.username }</p>;
 
     return(
-      <aside>
+      <aside className='user-sidebar'>
         <UserSidebarAvatar
           avatarUrl={ this.state.avatarUrl }
           ownProfile={ this.props.ownProfile }

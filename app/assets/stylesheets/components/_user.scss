@@ -1,8 +1,20 @@
+.user-page {
+
+}
+
 .user-main {
   display: flex;
+  width: 975px;
+  background-color: green;
+  margin: 0 auto;
 }
 
 .collection-list-section {
   background-color: gray;
   width: 100%;
+}
+
+.user-sidebar {
+  width: 120px;
+  padding: 35px 30px 45px;
 }

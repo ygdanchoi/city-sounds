@@ -19,20 +19,24 @@ class User extends React.Component {
   render() {
     if (this.props.user === undefined) {
       return(
-        <main className='user-main'>
-          <p>loading...</p>
-        </main>
+        <div className='user-page'>
+          <main className='user-main'>
+            <p>loading...</p>
+          </main>
+        </div>
       );
     }
     return (
-      <main className='user-main'>
-        <CollectionList />
-        <UserSidebar
-          user={ this.props.user }
-          ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
-          updateUser={ this.props.updateUser }
-          updateUserAvatar={ this.props.updateUserAvatar } />
-      </main>
+      <div className='user-page'>
+        <main className='user-main'>
+          <CollectionList />
+          <UserSidebar
+            user={ this.props.user }
+            ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
+            updateUser={ this.props.updateUser }
+            updateUserAvatar={ this.props.updateUserAvatar } />
+        </main>
+      </div>
     );
   }
 }
