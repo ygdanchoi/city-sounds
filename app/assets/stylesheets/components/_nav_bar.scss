@@ -1,16 +1,28 @@
-.nav-bar-stripe-top {
-  background-color: #848484;
-  height: 5px;
+.nav-bar-main {
+  display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  list-style: none;
 }
 
-.nav-bar-main {
+.nav-bar-main-li {
   background-color: #dddddd;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  border-top: 5px solid #848484;
   border-bottom: 1px dotted #b0b0b0;
-  position: relative;
+  height: 100%;
+}
+
+.nav-bar-main-li-selectable:hover {
+  background-color: #cccccc;
+  border-top: 5px solid #666666;
+}
+
+.nav-bar-main-li-empty {
+  flex-grow: 1;
+}
+
+.nav-bar-main li nav {
+  height: 48px;
 }
 
 .nav-bar-left, .nav-bar-right {
@@ -26,7 +38,6 @@
 
 .nav-bar-center {
   width: 975px;
-  background-color: blue;
   height: 100%;
 }
 

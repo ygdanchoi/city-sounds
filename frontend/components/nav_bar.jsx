@@ -31,25 +31,35 @@ class NavBar extends React.Component {
     }
     return (
       <header className='nav-bar'>
-        <div className='nav-bar-stripe-top' />
-        <nav className='nav-bar-main'>
-          <nav className='nav-bar-left'>
-            <figure className='nav-bar-logo'>
-              <h3><Link to='/' style={{ textDecoration: 'none' }}>.:.:.</Link></h3>
-            </figure>
-          </nav>
-          <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
-            <figure className='nav-bar-profile-pic'>
-              { avatar }
-            </figure>
-            <p>{ this.props.currentUser.username } &#9662;</p>
-            <NavBarDropdown
-              currentUser={ this.props.currentUser }
-              logout={ this.props.logout } />
-          </nav>
-          <nav className='nav-bar-right'>
-          </nav>
-        </nav>
+        <ul className='nav-bar-main'>
+          <li className='nav-bar-main-li nav-bar-main-li-selectable'>
+            <nav className='nav-bar-left'>
+              <figure className='nav-bar-logo'>
+                <h3><Link to='/' style={{ textDecoration: 'none' }}>.:.:.</Link></h3>
+              </figure>
+            </nav>
+          </li>
+          <li className='nav-bar-main-li nav-bar-main-li-empty'>
+            <nav className='nav-bar-empty' />
+          </li>
+          <li className='nav-bar-main-li nav-bar-main-li-selectable'>
+            <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
+              <figure className='nav-bar-profile-pic'>
+                { avatar }
+              </figure>
+              <p>{ this.props.currentUser.username } &#9662;</p>
+              <NavBarDropdown
+                currentUser={ this.props.currentUser }
+                logout={ this.props.logout } />
+            </nav>
+          </li>
+          <li className='nav-bar-main-li nav-bar-main-li-empty'>
+            <nav className='nav-bar-empty' />
+          </li>
+          <li className='nav-bar-main-li'>
+            <nav className='nav-bar-right' />
+          </li>
+        </ul>
       </header>
     );
   }
