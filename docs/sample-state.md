@@ -18,7 +18,7 @@
     1: {
       id: 1,
       username: 'dan',
-      profilePicUrl: 'user001.png',
+      avatarUrl: 'http://s3.amazonaws.com/dan.jpg',
       bio: 'Med school reject, aspiring supervillain.',
       location: 'New Jersey',
       collectionIds: [1],
