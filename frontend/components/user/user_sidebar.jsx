@@ -134,30 +134,8 @@ class UserSidebar extends React.Component {
 
   render() {
     const username = <p>{ this.props.user.username }</p>;
-    let location = <p>{ this.props.user.location }</p>;
     let bio = <p>{ this.props.user.bio }</p>;
     if (this.props.ownProfile) {
-      if (this.state.editingLocation) {
-        location = (
-          <div>
-            <input
-              onChange={ this.handleChange('location') }
-              value={this.state.location} />
-            <button
-              onClick={ this.handleSaveLocation }>save</button>
-            <a href=''
-              onClick={ this.handleCancelLocation }>cancel</a>
-          </div>
-        );
-      } else {
-        location = (
-          <div>
-            { location }
-            <a href=''
-              onClick={ this.handleOpenForm('editingLocation') }>edit location</a>
-          </div>
-        );
-      }
       if (this.state.editingBio) {
         bio = (
           <div>
@@ -189,7 +167,6 @@ class UserSidebar extends React.Component {
           handleAddAvatar={ this.handleAddAvatar }
           handleDeleteAvatar={ this.handleDeleteAvatar } />
         { username }
-        { location }
         <UserSidebarLocation
           locationFromProps={ this.props.user.location }
           locationFromState={ this.state.location }
