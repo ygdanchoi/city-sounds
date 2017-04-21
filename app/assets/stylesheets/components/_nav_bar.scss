@@ -27,18 +27,16 @@
 
 .nav-bar-left, .nav-bar-right {
   width: 57px;
-  height: 100%;
   display: flex;
   align-items: center;
 }
 
-.nav-bar-left figure {
-  margin: auto;
-}
-
 .nav-bar-center {
   width: 975px;
-  height: 100%;
+}
+
+.nav-bar-left figure {
+  margin: auto;
 }
 
 .nav-bar-profile-pic img {

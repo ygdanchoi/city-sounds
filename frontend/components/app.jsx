@@ -3,11 +3,11 @@ import HomeContainer from './home/home_container';
 import NavBarContainer from './nav_bar_container';
 
 const closeNavBarDropdown = (e) => {
-  const navBarDropdown = $('#nav-bar-dropdown');
-  if (navBarDropdown.hasClass('opened')) {
-    navBarDropdown.removeClass('opened');
+  const navBarDropdown = document.getElementById('nav-bar-dropdown');
+  if (navBarDropdown.classList.contains('opened')) {
+    navBarDropdown.classList.remove('opened');
   } else {
-    navBarDropdown.addClass('hidden');
+    navBarDropdown.classList.add('hidden');
   }
 };
 

@@ -9,13 +9,13 @@ class NavBar extends React.Component {
   }
 
   toggleDropdown() {
-    const navBarDropdown = $('#nav-bar-dropdown');
-    if (navBarDropdown.hasClass('hidden')) {
-      navBarDropdown.removeClass('hidden');
-      navBarDropdown.addClass('opened');
+    const navBarDropdown = document.getElementById('nav-bar-dropdown');
+    if (navBarDropdown.classList.contains('hidden')) {
+      navBarDropdown.classList.remove('hidden');
+      navBarDropdown.classList.add('opened');
     } else {
-      navBarDropdown.addClass('hidden');
-      navBarDropdown.removeClass('opened');
+      navBarDropdown.classList.add('hidden');
+      navBarDropdown.classList.remove('opened');
     }
   }
 
