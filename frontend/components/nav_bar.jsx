@@ -23,6 +23,12 @@ class NavBar extends React.Component {
     if (!this.props.loggedIn) {
       return <header className='nav-bar'>{null}</header>;
     }
+    let avatar;
+    if (this.props.currentUser.avatarUrl === '/avatars/original/missing.png') {
+      avatar = <img />;
+    } else {
+      avatar = <img src={ this.props.currentUser.avatarUrl } />;
+    }
     return (
       <header className='nav-bar'>
         <div className='nav-bar-stripe-top' />
@@ -34,7 +40,7 @@ class NavBar extends React.Component {
           </nav>
           <nav className='nav-bar-right' onClick={ this.toggleDropdown }>
             <figure className='nav-bar-profile-pic'>
-              <img src={ this.props.currentUser.avatarUrl }></img>
+              { avatar }
             </figure>
             <p>{ this.props.currentUser.username } &#9662;</p>
             <NavBarDropdown
