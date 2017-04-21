@@ -1,8 +1,12 @@
-.nav-bar-main {
+.nav-bar {
   display: flex;
-  // align-items: center;
-  // justify-content: space-between;
+  justify-content: space-between;
+}
+
+.nav-bar-main-ul {
+  display: flex;
   list-style: none;
+  flex-grow: 1;
 }
 
 .nav-bar-main-li {
@@ -21,8 +25,8 @@
   flex-grow: 1;
 }
 
-.nav-bar-main li nav {
-  height: 48px;
+.nav-bar-main-ul li nav {
+  height: 43px;
 }
 
 .nav-bar-left, .nav-bar-right {
@@ -60,6 +64,7 @@
   top: 40px;
   right: 0px;
   padding: 5px;
+  z-index: 1;
 }
 
 .nav-bar-dropdown li {

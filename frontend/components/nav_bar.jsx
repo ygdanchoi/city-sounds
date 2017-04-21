@@ -31,7 +31,7 @@ class NavBar extends React.Component {
     }
     return (
       <header className='nav-bar'>
-        <ul className='nav-bar-main'>
+        <ul className='nav-bar-main-ul'>
           <li className='nav-bar-main-li nav-bar-main-li-selectable'>
             <nav className='nav-bar-left'>
               <figure className='nav-bar-logo'>
@@ -39,6 +39,11 @@ class NavBar extends React.Component {
               </figure>
             </nav>
           </li>
+          <li className='nav-bar-main-li nav-bar-main-li-empty'>
+            <nav className='nav-bar-empty' />
+          </li>
+        </ul>
+        <ul className='nav-bar-main-ul'>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
             <nav className='nav-bar-empty' />
           </li>
@@ -56,8 +61,10 @@ class NavBar extends React.Component {
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
             <nav className='nav-bar-empty' />
           </li>
-          <li className='nav-bar-main-li'>
-            <nav className='nav-bar-right' />
+        </ul>
+        <ul className='nav-bar-main-ul'>
+          <li className='nav-bar-main-li nav-bar-main-li-empty'>
+            <nav className='nav-bar-empty' />
           </li>
         </ul>
       </header>
