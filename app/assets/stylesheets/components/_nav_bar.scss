@@ -24,6 +24,7 @@
 .nav-bar-main-li-selectable:hover {
   background-color: #cccccc;
   border-top: 5px solid #666666;
+  cursor: pointer;
 }
 
 .nav-bar-main-li-empty {
@@ -63,7 +64,6 @@
   display: flex;
   align-items: center;
   position: relative;
-  cursor: pointer;
 }
 
 .nav-bar-dropdown {
@@ -71,14 +71,24 @@
   background-color: #f1f1f1;
   list-style: none;
   width: 205px;
-  top: 40px;
+  top: 50px;
   right: 0px;
-  padding: 5px;
   z-index: 1;
 }
 
 .nav-bar-dropdown li {
-  padding: 5px;
+  position: relative;
+  top: 0px;
+  padding: 10px;
+}
+
+.nav-bar-dropdown li p {
+  position: relative;
+  top: 0px;
+}
+
+.nav-bar-dropdown li:hover {
+  background-color: #dedede;
 }
 
 .hidden {
