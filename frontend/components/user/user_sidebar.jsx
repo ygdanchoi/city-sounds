@@ -132,23 +132,25 @@ class UserSidebar extends React.Component {
   render() {
     let avatar;
     if (this.state.avatarUrl === '/avatars/original/missing.png') {
-      avatar = [<div><p>add photo</p></div>];
+      avatar = <div><p>add photo</p></div>;
     } else {
-      avatar = [<img width='120px' src={ this.state.avatarUrl } />];
+      avatar = <img width='120px' src={ this.state.avatarUrl } />;
     }
     const username = <p>{ this.props.user.username }</p>;
-    let location = [<p>{ this.props.user.location }</p>];
-    let bio = [<p>{ this.props.user.bio }</p>];
+    let location = <p>{ this.props.user.location }</p>;
+    let bio = <p>{ this.props.user.bio }</p>;
     if (this.props.ownProfile) {
       if (this.state.avatarUrl === '/avatars/original/missing.png') {
-        avatar.push(
+        avatar = (
           <div>
+            { avatar }
             <input type='file' onChange={ this.handleAddAvatar } />
           </div>
         );
       } else {
-        avatar.push(
+        avatar = (
           <div>
+            { avatar }
             <a href='' onClick={ this.handleDeleteAvatar }>x</a>
           </div>
         );
@@ -166,8 +168,9 @@ class UserSidebar extends React.Component {
           </div>
         );
       } else {
-        location.push(
+        location = (
           <div>
+            { location }
             <a href=''
               onClick={ this.handleOpenForm('editingLocation') }>edit location</a>
           </div>
@@ -186,8 +189,9 @@ class UserSidebar extends React.Component {
           </div>
         );
       } else {
-        bio.push(
+        bio = (
           <div>
+            { bio }
             <a href=''
               onClick={ this.handleOpenForm('editingBio') }>edit bio</a>
           </div>
