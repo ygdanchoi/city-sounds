@@ -66,10 +66,10 @@ class UserSidebar extends React.Component {
 
   handleDeleteAvatar(e) {
     e.preventDefault();
-    const user = {
-      id: this.props.user.id,
-    };
-    this.props.updateUser(user);
+    let formData = new FormData();
+    formData.append('user[id]', this.props.user.id);
+    formData.append('user[avatar]', null);
+    this.props.updateUserAvatar(this.props.user.id, formData);
   }
 
   handleOpenForm(editingField) {

@@ -32,6 +32,11 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :avatar, :location, :bio)
+    result = params.require(:user).permit(:username, :password, :avatar, :location, :bio)
+    if result[:avatar] == 'null'
+      return result.merge(avatar: nil)
+    else
+      return result
+    end
   end
 end
