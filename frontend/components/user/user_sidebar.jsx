@@ -134,30 +134,6 @@ class UserSidebar extends React.Component {
 
   render() {
     const username = <p>{ this.props.user.username }</p>;
-    let bio = <p>{ this.props.user.bio }</p>;
-    if (this.props.ownProfile) {
-      if (this.state.editingBio) {
-        bio = (
-          <div>
-            <input
-              onChange={ this.handleChange('bio') }
-              value={this.state.bio} />
-            <button
-              onClick={ this.handleSaveBio }>save</button>
-            <a href=''
-              onClick={ this.handleCancelBio }>cancel</a>
-          </div>
-        );
-      } else {
-        bio = (
-          <div>
-            { bio }
-            <a href=''
-              onClick={ this.handleOpenForm('editingBio') }>edit bio</a>
-          </div>
-        );
-      }
-    }
 
     return(
       <aside>
@@ -177,7 +153,6 @@ class UserSidebar extends React.Component {
           handleCancelLocation={ this.handleCancelLocation }
           handleOpenForm={ this.handleOpenForm('editingLocation') }
           />
-        { bio }
         <UserSidebarBio
           bioFromProps={ this.props.user.bio }
           bioFromState={ this.state.bio }
