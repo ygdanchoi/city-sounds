@@ -45,7 +45,7 @@ class NavBar extends React.Component {
             <p>{ this.props.currentUser.username } &#9662;</p>
             <NavBarDropdown
               currentUser={ this.props.currentUser }
-              logout={ this.props.logout } />;
+              logout={ this.props.logout } />
           </nav>
         </nav>
       </header>
