@@ -1,10 +1,10 @@
 import React from 'react';
 
-const UserSidebarAvatar = (props) => {
+const UserSidebarBio = (props) => {
   return (
     <div>
     </div>
   );
 };
 
-export default UserSidebarAvatar;
+export default UserSidebarBio;

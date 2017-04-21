@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
+import UserSidebarAvatar from './user_sidebar_avatar';
+import UserSidebarLocation from './user_sidebar_location';
+import UserSidebarBio from './user_sidebar_bio';
 
 class UserSidebar extends React.Component {
   constructor(props) {
@@ -202,9 +205,32 @@ class UserSidebar extends React.Component {
     return(
       <aside>
         { avatar }
+        <UserSidebarAvatar
+          avatarUrl={ null }
+          ownProfile={ null }
+          handleAddAvatar={ null }
+          handleDeleteAvatar={ null } />
         { username }
         { location }
+        <UserSidebarLocation
+          locationFromProps={ null }
+          locationFromState={ null }
+          ownProfile={ null }
+          editingLocation={ null }
+          handleChange={ null }
+          handleSaveLocation={ null }
+          handleCancelLocation={ null }
+          handleOpenForm={ null } />
         { bio }
+        <UserSidebarBio
+          bioFromProps={ null }
+          bioFromState={ null }
+          ownProfile={ null }
+          editingBio={ null }
+          handleChange={ null }
+          handleSaveBio={ null }
+          handleCancelBio={ null }
+          handleOpenForm={ null } />
       </aside>
     );
   }
