@@ -5,12 +5,14 @@ class UserSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      avatarFile: null,
       avatarUrl: this.props.user.avatarUrl,
       location: this.props.user.location,
       bio: this.props.user.bio,
       editingLocation: false,
       editingBio: false
     };
+    this.handleAddAvatar = this.handleAddAvatar.bind(this);
     this.handleDeleteAvatar = this.handleDeleteAvatar.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleOpenForm = this.handleOpenForm.bind(this);
@@ -36,6 +38,26 @@ class UserSidebar extends React.Component {
     } else {
       this.setState({bio: this.props.user.bio});
     }
+  }
+
+  handleAddAvatar(e) {
+    e.preventDefault();
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = (() => {
+      this.setState({
+        avatarFile: file,
+        avatarUrl: fileReader.result
+      });
+    }).bind(this);
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+    const user = {
+      id: this.props.user.id,
+      avatar: file
+    };
+    this.props.updateUser(user);
   }
 
   handleDeleteAvatar(e) {
@@ -104,13 +126,14 @@ class UserSidebar extends React.Component {
   }
 
   render() {
-    let avatar = [<img src={ this.props.user.avatarUrl } />];
+    let avatar = [<img width='120px' src={ this.state.avatarUrl } />];
     const username = <p>{ this.props.user.username }</p>;
     let location = [<p>{ this.props.user.location }</p>];
     let bio = [<p>{ this.props.user.bio }</p>];
     if (this.props.ownProfile) {
       avatar.push(
         <div>
+          <input type='file' value='hi' onChange={ this.handleAddAvatar } />
           <a href='' onClick={ this.handleDeleteAvatar }>x</a>
         </div>
       );
