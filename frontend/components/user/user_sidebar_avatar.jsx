@@ -1,10 +1,16 @@
 import React from 'react';
 
+const handleClickFile = (e) => {
+  e.preventDefault();
+  const fileInput = document.getElementById('file-input');
+  fileInput.click();
+};
+
 const UserSidebarAvatar = (props) => {
   let avatar;
   const avatarMissing = props.avatarUrl === '/avatars/original/missing.png';
   if (avatarMissing) {
-    avatar = <div><p>add photo</p></div>;
+    avatar = <div><p>no photo</p></div>;
   } else {
     avatar = <img width='120px' src={ props.avatarUrl } />;
   }
@@ -13,7 +19,10 @@ const UserSidebarAvatar = (props) => {
       avatar = (
         <div>
           { avatar }
-          <input type='file' onChange={ props.handleAddAvatar } />
+          <input id='file-input' type='file'
+            onChange={ props.handleAddAvatar }
+            style={ { display: 'none' } } />
+          <a href='' onClick={ handleClickFile }>add photo</a>
         </div>
       );
     } else {
