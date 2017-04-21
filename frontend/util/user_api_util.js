@@ -22,3 +22,14 @@ export const updateUser = (user) => {
     error: err => console.log(err),
   });
 };
+
+export const updateUserAvatar = (id, formData) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/users/${id}`,
+    contentType: false,
+    processData: false,
+    data: formData,
+    error: err => console.log(err),
+  });
+};

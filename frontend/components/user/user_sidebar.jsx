@@ -13,6 +13,7 @@ class UserSidebar extends React.Component {
       editingBio: false
     };
     this.handleAddAvatar = this.handleAddAvatar.bind(this);
+    this.handleSubmitAvatar = this.handleSubmitAvatar.bind(this);
     this.handleDeleteAvatar = this.handleDeleteAvatar.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleOpenForm = this.handleOpenForm.bind(this);
@@ -53,11 +54,14 @@ class UserSidebar extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
-    const user = {
-      id: this.props.user.id,
-      avatar: file
-    };
-    this.props.updateUser(user);
+    this.handleSubmitAvatar(file);
+  }
+
+  handleSubmitAvatar(avatarFile) {
+    let formData = new FormData();
+    formData.append('user[id]', this.props.user.id);
+    formData.append('user[avatar]', avatarFile);
+    this.props.updateUserAvatar(this.props.user.id, formData);
   }
 
   handleDeleteAvatar(e) {
@@ -133,7 +137,7 @@ class UserSidebar extends React.Component {
     if (this.props.ownProfile) {
       avatar.push(
         <div>
-          <input type='file' value='hi' onChange={ this.handleAddAvatar } />
+          <input type='file' onChange={ this.handleAddAvatar } />
           <a href='' onClick={ this.handleDeleteAvatar }>x</a>
         </div>
       );

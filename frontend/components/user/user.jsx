@@ -30,7 +30,8 @@ class User extends React.Component {
         <UserSidebar
           user={ this.props.user }
           ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
-          updateUser={ this.props.updateUser } />
+          updateUser={ this.props.updateUser }
+          updateUserAvatar={ this.props.updateUserAvatar } />
       </main>
     );
   }
