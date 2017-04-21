@@ -9,6 +9,11 @@
   flex-grow: 1;
 }
 
+.nav-bar-main-ul-center {
+  min-width: 975px;
+  max-width: 975px;
+}
+
 .nav-bar-main-li {
   background-color: #dddddd;
   border-top: 5px solid #848484;
@@ -29,14 +34,19 @@
   height: 43px;
 }
 
-.nav-bar-left, .nav-bar-right {
+.nav-bar-left {
   width: 57px;
   display: flex;
   align-items: center;
 }
 
+.nav-bar-center * {
+  position: relative;
+  top: 2.5px;
+}
+
 .nav-bar-center {
-  width: 975px;
+  display: block;
 }
 
 .nav-bar-left figure {

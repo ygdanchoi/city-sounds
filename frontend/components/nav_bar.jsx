@@ -43,7 +43,12 @@ class NavBar extends React.Component {
             <nav className='nav-bar-empty' />
           </li>
         </ul>
-        <ul className='nav-bar-main-ul'>
+        <ul className='nav-bar-main-ul nav-bar-main-ul-center'>
+          <li className='nav-bar-main-li nav-bar-main-li-selectable'>
+            <nav className='nav-bar-center'>
+              <p>add sound</p>
+            </nav>
+          </li>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
             <nav className='nav-bar-empty' />
           </li>
@@ -58,13 +63,13 @@ class NavBar extends React.Component {
                 logout={ this.props.logout } />
             </nav>
           </li>
-          <li className='nav-bar-main-li nav-bar-main-li-empty'>
-            <nav className='nav-bar-empty' />
-          </li>
         </ul>
         <ul className='nav-bar-main-ul'>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
             <nav className='nav-bar-empty' />
+          </li>
+          <li className='nav-bar-main-li'>
+            <nav className='nav-bar-left' />
           </li>
         </ul>
       </header>
