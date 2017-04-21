@@ -53,7 +53,7 @@ class AuthForm extends React.Component {
   redirect(response) {
     const id = response.currentUser.id;
     hashHistory.push(`/users/${id}`);
-    this.fetchUser(id);
+    // this.props.fetchUser(id);
   }
 
   render() {
