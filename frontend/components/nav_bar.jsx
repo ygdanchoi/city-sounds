@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import NavBarDropdown from './nav_bar_dropdown';
 
 class NavBar extends React.Component {
@@ -19,6 +19,10 @@ class NavBar extends React.Component {
     }
   }
 
+  redirectToRoot() {
+    hashHistory.push('/');
+  }
+
   render() {
     if (!this.props.loggedIn) {
       return <header className='nav-bar'>{null}</header>;
@@ -32,10 +36,10 @@ class NavBar extends React.Component {
     return (
       <header className='nav-bar'>
         <ul className='nav-bar-main-ul'>
-          <li className='nav-bar-main-li nav-bar-main-li-selectable'>
+          <li className='nav-bar-main-li nav-bar-main-li-selectable' onClick={ this.redirectToRoot }>
             <nav className='nav-bar-left'>
               <figure className='nav-bar-logo'>
-                <h3><Link to='/' style={{ textDecoration: 'none' }}>.:.:.</Link></h3>
+                <h3>.:.:.</h3>
               </figure>
             </nav>
           </li>
