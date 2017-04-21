@@ -206,31 +206,33 @@ class UserSidebar extends React.Component {
       <aside>
         { avatar }
         <UserSidebarAvatar
-          avatarUrl={ null }
-          ownProfile={ null }
-          handleAddAvatar={ null }
-          handleDeleteAvatar={ null } />
+          avatarUrl={ this.state.avatarUrl }
+          ownProfile={ this.props.ownProfile }
+          handleAddAvatar={ this.handleAddAvatar }
+          handleDeleteAvatar={ this.handleDeleteAvatar } />
         { username }
         { location }
         <UserSidebarLocation
-          locationFromProps={ null }
-          locationFromState={ null }
-          ownProfile={ null }
-          editingLocation={ null }
-          handleChange={ null }
-          handleSaveLocation={ null }
-          handleCancelLocation={ null }
-          handleOpenForm={ null } />
+          locationFromProps={ this.props.user.location }
+          locationFromState={ this.state.location }
+          ownProfile={ this.props.ownProfile }
+          editingLocation={ this.state.editingLocation }
+          handleChange={ this.handleChange('location') }
+          handleSaveLocation={ this.handleSaveLocation }
+          handleCancelLocation={ this.handleCancelLocation }
+          handleOpenForm={ this.handleOpenForm('editingLocation') }
+          />
         { bio }
         <UserSidebarBio
-          bioFromProps={ null }
-          bioFromState={ null }
-          ownProfile={ null }
-          editingBio={ null }
-          handleChange={ null }
-          handleSaveBio={ null }
-          handleCancelBio={ null }
-          handleOpenForm={ null } />
+          bioFromProps={ this.props.user.bio }
+          bioFromState={ this.state.bio }
+          ownProfile={ this.props.ownProfile }
+          editingBio={ this.state.editingBio }
+          handleChange={ this.handleChange('bio') }
+          handleSaveBio={ this.handleSaveBio }
+          handleCancelBio={ this.handleCancelBio }
+          handleOpenForm={ this.handleOpenForm('editingBio') }
+          />
       </aside>
     );
   }
