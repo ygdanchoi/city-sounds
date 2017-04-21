@@ -2,7 +2,7 @@ import * as APIUtil from '../util/user_api_util';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER = 'RECEIVE_USER';
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+export const RECEIVE_UPDATED_USER = 'RECEIVE_UPDATED_USER';
 
 export const receiveUsers = (users) => {
   return {
@@ -18,10 +18,10 @@ export const receiveUser = (user) => {
   };
 };
 
-export const receiveCurrentUser = (currentUser) => {
+export const receiveUpdatedUser = (updatedUser) => {
   return {
-    type: RECEIVE_CURRENT_USER,
-    currentUser: currentUser
+    type: RECEIVE_UPDATED_USER,
+    updatedUser: updatedUser
   };
 };
 
@@ -39,12 +39,12 @@ export const fetchUser = (id) => (dispatch) => {
 
 export const updateUser = (user) => (dispatch) => {
   return APIUtil.updateUser(user).then(
-    response => dispatch(receiveCurrentUser(response))
+    response => dispatch(receiveUpdatedUser(response))
   );
 };
 
 export const updateUserAvatar = (id, formData) => (dispatch) => {
   return APIUtil.updateUserAvatar(id, formData).then(
-    response => dispatch(receiveCurrentUser(response))
+    response => dispatch(receiveUpdatedUser(response))
   );
 };
