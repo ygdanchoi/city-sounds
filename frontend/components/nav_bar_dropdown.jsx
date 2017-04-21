@@ -29,7 +29,7 @@ class NavBarDropdown extends React.Component {
 
   render() {
     return (
-      <ul className='nav-bar-dropdown'>
+      <ul className='nav-bar-dropdown hidden' id='nav-bar-dropdown'>
         <li><p><Link onClick={ this.handleProfile }>your profile</Link></p></li>
         <li><p><Link onClick={ this.handleLogOut }>log out</Link></p></li>
       </ul>

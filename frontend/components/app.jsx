@@ -2,6 +2,15 @@ import React from 'react';
 import HomeContainer from './home/home_container';
 import NavBarContainer from './nav_bar_container';
 
+const closeNavBarDropdown = (e) => {
+  const navBarDropdown = $('#nav-bar-dropdown');
+  if (navBarDropdown.hasClass('opened')) {
+    navBarDropdown.removeClass('opened');
+  } else {
+    navBarDropdown.addClass('hidden');
+  }
+};
+
 const App = (props) => {
   let header;
   if (props.location.pathname === '/') {
@@ -12,7 +21,7 @@ const App = (props) => {
     header = <NavBarContainer />;
   }
   return (
-    <div>
+    <div onClick={ closeNavBarDropdown } >
       { header }
       { props.children }
     </div>

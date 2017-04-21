@@ -5,26 +5,21 @@ import NavBarDropdown from './nav_bar_dropdown';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showDropdown: false
-    };
     this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
   toggleDropdown() {
-    console.log('toggle');
-    this.setState({ showDropdown: !this.state.showDropdown });
+    const navBarDropdown = $('#nav-bar-dropdown');
+    if (navBarDropdown.hasClass('hidden')) {
+      navBarDropdown.removeClass('hidden');
+      navBarDropdown.addClass('opened');
+    } else {
+      navBarDropdown.addClass('hidden');
+      navBarDropdown.removeClass('opened');
+    }
   }
 
   render() {
-    let navBarDropdown;
-    if (this.state.showDropdown) {
-      navBarDropdown = <NavBarDropdown
-        currentUser={ this.props.currentUser }
-        logout={ this.props.logout } />;
-    } else {
-      navBarDropdown = null;
-    }
     if (!this.props.loggedIn) {
       return <header className='nav-bar'>{null}</header>;
     }
@@ -42,7 +37,9 @@ class NavBar extends React.Component {
               <img src={ this.props.currentUser.avatarUrl }></img>
             </figure>
             <p>{ this.props.currentUser.username } &#9662;</p>
-            { navBarDropdown }
+            <NavBarDropdown
+              currentUser={ this.props.currentUser }
+              logout={ this.props.logout } />;
           </nav>
         </nav>
       </header>
