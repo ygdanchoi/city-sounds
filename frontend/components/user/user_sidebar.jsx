@@ -204,7 +204,6 @@ class UserSidebar extends React.Component {
 
     return(
       <aside>
-        { avatar }
         <UserSidebarAvatar
           avatarUrl={ this.state.avatarUrl }
           ownProfile={ this.props.ownProfile }
