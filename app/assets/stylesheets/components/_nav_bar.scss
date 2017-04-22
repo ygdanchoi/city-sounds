@@ -1,6 +1,7 @@
 .nav-bar {
   display: flex;
   justify-content: space-between;
+  color: #408294;
 }
 
 .nav-bar-main-ul {
@@ -19,12 +20,27 @@
   border-top: 5px solid #848484;
   border-bottom: 1px dotted #b0b0b0;
   height: 100%;
+  transition: border-top-color 0.1s ease-out,
+    background-color 0.1s ease-out,
+    color 0.1s ease-out;
 }
 
 .nav-bar-main-li-selectable:hover {
   background-color: #cccccc;
   border-top: 5px solid #666666;
   cursor: pointer;
+}
+
+.pressed {
+  background-color: #b1b1b1;
+  border-top: 5px solid #666666;
+  color: white;
+}
+
+.pressed:hover {
+  background-color: #b1b1b1;
+  border-top: 5px solid #666666;
+  color: white;
 }
 
 .nav-bar-main-li-empty {
@@ -74,6 +90,7 @@
   top: 50px;
   right: 0px;
   z-index: 1;
+  color: #408294;
 }
 
 .nav-bar-dropdown li {

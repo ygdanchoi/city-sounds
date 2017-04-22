@@ -10,12 +10,15 @@ class NavBar extends React.Component {
 
   toggleDropdown() {
     const navBarDropdown = document.getElementById('nav-bar-dropdown');
+    const navBarCurrentUser = document.getElementById('nav-bar-current-user');
     if (navBarDropdown.classList.contains('hidden')) {
       navBarDropdown.classList.remove('hidden');
       navBarDropdown.classList.add('opened');
+      navBarCurrentUser.classList.add('pressed');
     } else {
       navBarDropdown.classList.add('hidden');
       navBarDropdown.classList.remove('opened');
+      navBarCurrentUser.classList.remove('pressed');
     }
   }
 
@@ -56,7 +59,7 @@ class NavBar extends React.Component {
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
             <nav className='nav-bar-empty' />
           </li>
-          <li className='nav-bar-main-li nav-bar-main-li-selectable'>
+          <li id='nav-bar-current-user' className='nav-bar-main-li nav-bar-main-li-selectable'>
             <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
               <figure className='nav-bar-profile-pic'>
                 { avatar }
