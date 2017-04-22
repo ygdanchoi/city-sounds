@@ -4,10 +4,12 @@ import NavBarContainer from './nav_bar_container';
 
 const closeNavBarDropdown = (e) => {
   const navBarDropdown = document.getElementById('nav-bar-dropdown');
+  const navBarCurrentUser = document.getElementById('nav-bar-current-user');
   if (navBarDropdown.classList.contains('opened')) {
     navBarDropdown.classList.remove('opened');
   } else {
     navBarDropdown.classList.add('hidden');
+    navBarCurrentUser.classList.remove('pressed');
   }
 };
 
