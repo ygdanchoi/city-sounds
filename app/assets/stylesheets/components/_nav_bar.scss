@@ -105,17 +105,20 @@
   position: absolute;
   background-color: #f1f1f1;
   list-style: none;
-  width: 205px;
-  top: 50px;
-  right: 0px;
+  width: 203px;
+  top: 43px;
+  left: 0px;
   z-index: 1;
   color: #408294;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
 }
 
 .nav-bar-dropdown li {
   position: relative;
   top: 0px;
-  padding: 10px;
+  padding: 10px 11px;
 }
 
 .nav-bar-dropdown li p {
