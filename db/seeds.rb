@@ -16,7 +16,7 @@ ActiveRecord::Base.transaction do
     password: 'password',
     location: 'Chelsea'
   )
-  
+
   dan = User.create!(
     username: 'dan',
     password: 'password',
@@ -42,9 +42,9 @@ TEXT
   beijing = Collection.create!(
     title: 'Beijing',
     description: <<-TEXT,
-Sound 1: A walkthrough of China's most visited tourist destination. There were SO many people in this immense square, many with their own megaphones, rhymes, and reasons. I walk around the square, through the underpass, and towards the Forbidden City.
+1. A walkthrough of China's most visited tourist destination. There were SO many people in this immense square, many with their own megaphones, rhymes, and reasons. I walk around the square, through the underpass, and towards the Forbidden City.
 
-Sound 2: Recorded on the newly built D trains that can travel from Shanghai to Beijing at speeds up to 350 kmh. This recording was made on the second day the trains opened, July 2, 2011, there are not many people on the train. You can hear some pretty cool oscillating wind resistance.
+2. Recorded on the newly built D trains that can travel from Shanghai to Beijing at speeds up to 350 kmh. This recording was made on the second day the trains opened, July 2, 2011, there are not many people on the train. You can hear some pretty cool oscillating wind resistance.
 
 Recorded with an Edirol R-09 HR in Beijing, China, July, 2011.
 TEXT
@@ -62,4 +62,31 @@ TEXT
     duration: 482,
     collection_id: beijing.id
   )
+
+  emanuele_correani = User.create!(
+    username: 'Emanuele_Correani',
+    password: 'Emanuele_Correani',
+    bio: <<-TEXT
+Sound Recordist, sound editor and foley artist based in London.
+TEXT
+  )
+
+  location_recordings = Collection.create!(
+    title: 'Location Recordings',
+    description: <<-TEXT,
+1. Journey on the Victoria Line - Tottenham Hale to Oxford Circus
+
+2. A journey in the Bakeloo Line: Waterloo Station to Oxford Circus
+
+3. Inside Liverpool Street Station, London, 3:30pm
+
+Equipment used:
+
+- Two spaced Oktava 012 with omnidirectional capsules.
+- PSC M4 MKII Mixer
+- Tascam DR40 Recorder
+TEXT
+    user_id: emanuele_correani.id
+  )
+
 end
