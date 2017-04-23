@@ -1,6 +1,7 @@
 .user-page {
   position: relative;
   top: 6px;
+  font-size: 10pt;
 }
 
 .user-main {
@@ -8,7 +9,9 @@
   width: 975px;
   margin: 0 auto;
   background-color: white;
-  border: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
 }
 
 .collection-list-section {

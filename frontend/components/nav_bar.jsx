@@ -53,7 +53,7 @@ class NavBar extends React.Component {
         <ul className='nav-bar-main-ul nav-bar-main-ul-center'>
           <li className='nav-bar-main-li nav-bar-main-li-selectable'>
             <nav className='nav-bar-center'>
-              <p>add sound</p>
+              <p className='nav-bar-add-sound'>add sound</p>
             </nav>
           </li>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
@@ -61,10 +61,11 @@ class NavBar extends React.Component {
           </li>
           <li id='nav-bar-current-user' className='nav-bar-main-li nav-bar-main-li-selectable'>
             <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
-              <figure className='nav-bar-profile-pic'>
+              <figure className='current-user-avatar'>
                 { avatar }
               </figure>
-              <p>{ this.props.currentUser.username } &#9662;</p>
+              <p className='current-user-username'>{ this.props.currentUser.username }</p>
+              <img className='current-user-caret' src={ window.images.caret } />
               <NavBarDropdown
                 currentUser={ this.props.currentUser }
                 logout={ this.props.logout } />

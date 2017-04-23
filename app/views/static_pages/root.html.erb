@@ -4,6 +4,9 @@
       'api/users/user.json', user: current_user
     ).html_safe %>
   <% end %>
+  window.images = {
+    caret: "<%= image_path("caret.png") %>"
+  }
 </script>
 
 <main id="root"></main>

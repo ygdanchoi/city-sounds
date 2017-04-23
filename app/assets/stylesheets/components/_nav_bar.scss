@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   color: #408294;
+  font-size: 10pt;
 }
 
 .nav-bar-main-ul {
@@ -48,7 +49,7 @@
 }
 
 .nav-bar-main-ul li nav {
-  height: 43px;
+  height: 36px;
 }
 
 .nav-bar-left {
@@ -62,6 +63,10 @@
   top: 2.5px;
 }
 
+.nav-bar-add-sound {
+  margin: 0 11px;
+}
+
 .nav-bar-center {
   display: block;
 }
@@ -70,10 +75,24 @@
   margin: auto;
 }
 
-.nav-bar-profile-pic img {
+.current-user-avatar {
+  margin-left: 11px;
+}
+
+.current-user-avatar img {
   width: 25px;
   height: 25px;
-  outline: 1px solid #cccccc;
+  background-color: white;
+  border: 1px solid #cccccc;
+}
+
+.current-user-username {
+  font-weight: bold;
+  margin: 0 11px;
+}
+
+.current-user-caret {
+  margin-right: 11px;
 }
 
 .nav-bar-center {

@@ -13,7 +13,6 @@ class User extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-
   }
 
   render() {
