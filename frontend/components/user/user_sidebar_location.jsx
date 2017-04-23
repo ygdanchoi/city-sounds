@@ -7,12 +7,15 @@ const UserSidebarLocation = (props) => {
         location = (
           <div className='user-sidebar-location'>
             <input
+              className='user-sidebar-location-input'
               onChange={ props.handleChange }
               value={ props.locationFromState } />
             <button
+              className='user-sidebar-location-save'
               onClick={ props.handleSaveLocation }>save</button>
-            <a href=''
-              onClick={ props.handleCancelLocation }>cancel</a>
+            <button
+              className='user-sidebar-location-cancel'
+              onClick={ props.handleCancelLocation }>cancel</button>
           </div>
         );
       } else {

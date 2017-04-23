@@ -87,3 +87,34 @@ p.user-sidebar-location {
   display: block;
   padding-top: 13px;
 }
+
+.user-sidebar-location-input {
+  width: 120px;
+}
+
+.user-sidebar-bio-input {
+  width: 120px;
+  height: 190px;
+}
+
+.user-sidebar-location button, .user-sidebar-bio button {
+  border: none;
+  width: 60px;
+  height: 25px;
+}
+
+.user-sidebar-location button:hover,
+.user-sidebar-bio button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.user-sidebar-location-save, .user-sidebar-bio-save {
+  background-color: #0687f5;
+  color: white;
+}
+
+.user-sidebar-location-cancel, .user-sidebar-bio-cancel {
+  background-color: transparent;
+  color: #0687f5;
+}
