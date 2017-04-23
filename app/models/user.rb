@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :collections
+  has_many :sounds, through: :collections
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

@@ -8,6 +8,9 @@
 
 ActiveRecord::Base.transaction do
   User.destroy_all
+  Collection.destroy_all
+  Sound.destroy_all
+
   guest = User.create!(
     username: 'guest',
     password: 'password',
@@ -19,5 +22,29 @@ ActiveRecord::Base.transaction do
     location: 'North Jersey',
     bio: 'Med school reject, aspiring supervillain',
     avatar: File.open('app/assets/images/avatars/dan.jpg')
+  )
+  taurindb = User.create!(
+    username: 'taurindb',
+    password: 'taurindb',
+    bio: <<-TEXT
+Hi!
+
+I exclusively post field recordings on Freesound.org.
+
+I use an Edirol R-09HR to record all of my field recordings. 
+
+Visit me @ www.taurinbarrera.com
+TEXT
+  )
+  beijing = Collection.create!(
+    title: 'Beijing',
+    description: <<-TEXT,
+Sound 1: A walkthrough of China's most visited tourist destination. There were SO many people in this immense square, many with their own megaphones, rhymes, and reasons. I walk around the square, through the underpass, and towards the Forbidden City.
+
+Sound 2: Recorded on the newly built D trains that can travel from Shanghai to Beijing at speeds up to 350 kmh. This recording was made on the second day the trains opened, July 2, 2011, there are not many people on the train. You can hear some pretty cool oscillating wind resistance.
+
+Recorded with an Edirol R-09 HR in Beijing, China, July, 2011.
+TEXT
+    user_id: taurindb.id
   )
 end
