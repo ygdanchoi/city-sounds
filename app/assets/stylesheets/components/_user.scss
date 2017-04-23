@@ -49,3 +49,26 @@
   text-align: center;
   width: 100%;
 }
+
+.user-sidebar-avatar-container {
+  position: relative;
+}
+
+.user-sidebar-avatar-delete {
+  background-color: white;
+  border: 1px solid #eeeeee;
+  position: absolute;
+  bottom: 6px;
+  right: 3px;
+}
+
+.user-sidebar-avatar-delete a {
+  display: block;
+  position: relative;
+  top: 1px;
+  width: 15px;
+  height: 14px;
+  text-align: center;
+  font-size: 8pt;
+  font-weight: bold;
+}

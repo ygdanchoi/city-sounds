@@ -26,9 +26,11 @@ const UserSidebarAvatar = (props) => {
       );
     } else {
       avatar = (
-        <div>
+        <div className='user-sidebar-avatar-container'>
           { avatar }
-          <a href='' onClick={ props.handleDeleteAvatar }>X</a>
+          <div className='user-sidebar-avatar-delete' >
+            <a href='' onClick={ props.handleDeleteAvatar }>X</a>
+          </div>
         </div>
       );
     }
