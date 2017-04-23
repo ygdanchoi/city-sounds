@@ -16,6 +16,7 @@ ActiveRecord::Base.transaction do
     password: 'password',
     location: 'Chelsea'
   )
+  
   dan = User.create!(
     username: 'dan',
     password: 'password',
@@ -23,6 +24,7 @@ ActiveRecord::Base.transaction do
     bio: 'Med school reject, aspiring supervillain',
     avatar: File.open('app/assets/images/avatars/dan.jpg')
   )
+
   taurindb = User.create!(
     username: 'taurindb',
     password: 'taurindb',
@@ -36,6 +38,7 @@ I use an Edirol R-09HR to record all of my field recordings.
 Visit me @ www.taurinbarrera.com
 TEXT
   )
+
   beijing = Collection.create!(
     title: 'Beijing',
     description: <<-TEXT,
@@ -46,5 +49,17 @@ Sound 2: Recorded on the newly built D trains that can travel from Shanghai to B
 Recorded with an Edirol R-09 HR in Beijing, China, July, 2011.
 TEXT
     user_id: taurindb.id
+  )
+
+  tianmen_square = Sound.create!(
+    title: 'Tianmen Square',
+    duration: 424,
+    collection_id: beijing.id
+  )
+
+  bullet_train_from_shanghai_to_beijing = Sound.create!(
+    title: 'Bullet train from Shanghai to Beijing',
+    duration: 482,
+    collection_id: beijing.id
   )
 end
