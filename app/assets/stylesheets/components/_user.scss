@@ -1,7 +1,8 @@
 .user-page {
   position: relative;
   top: 6px;
-  font-size: 10pt;
+  font-size: 9pt;
+  color: #363636;
 }
 
 .user-main {
@@ -25,12 +26,9 @@
 }
 
 .user-sidebar-username {
-  font-size: 11pt;
+  font-size: 10.5pt;
   font-weight: bold;
-}
-
-.user-sidebar-location {
-  color: #888888;
+  margin-top: 5px;
 }
 
 .user-sidebar-avatar {
@@ -71,4 +69,21 @@
   text-align: center;
   font-size: 8pt;
   font-weight: bold;
+}
+
+.user-sidebar-location {
+  margin-top: 3px;
+}
+
+p.user-sidebar-location {
+  color: #888888;
+}
+
+.user-sidebar-bio {
+  margin-top: 12px;
+}
+
+.user-sidebar-edit-bio, .user-sidebar-edit-location {
+  display: block;
+  padding-top: 13px;
 }

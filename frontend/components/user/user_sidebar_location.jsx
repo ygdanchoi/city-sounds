@@ -5,7 +5,7 @@ const UserSidebarLocation = (props) => {
     if (props.ownProfile) {
       if (props.editingLocation) {
         location = (
-          <div>
+          <div className='user-sidebar-location'>
             <input
               onChange={ props.handleChange }
               value={ props.locationFromState } />
@@ -17,9 +17,9 @@ const UserSidebarLocation = (props) => {
         );
       } else {
         location = (
-          <div>
+          <div className='user-sidebar-location'>
             { location }
-            <a href=''
+            <a className='user-sidebar-edit-location' href=''
               onClick={ props.handleOpenForm }>edit location</a>
           </div>
         );

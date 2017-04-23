@@ -1,11 +1,11 @@
 import React from 'react';
 
 const UserSidebarBio = (props) => {
-  let bio = <p>{ props.bioFromProps }</p>;
+  let bio = <p className='user-sidebar-bio'>{ props.bioFromProps }</p>;
   if (props.ownProfile) {
     if (props.editingBio) {
       bio = (
-        <div>
+        <div className='user-sidebar-bio'>
           <input
             onChange={ props.handleChange }
             value={ props.bioFromState } />
@@ -17,9 +17,9 @@ const UserSidebarBio = (props) => {
       );
     } else {
       bio = (
-        <div>
+        <div className='user-sidebar-bio'>
           { bio }
-          <a href=''
+          <a className='user-sidebar-edit-bio' href=''
             onClick={ props.handleOpenForm }>edit bio</a>
         </div>
       );
