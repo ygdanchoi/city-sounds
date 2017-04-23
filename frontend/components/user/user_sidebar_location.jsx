@@ -1,7 +1,7 @@
 import React from 'react';
 
 const UserSidebarLocation = (props) => {
-  let location = <p>{ props.locationFromProps }</p>;
+  let location = <p className='user-sidebar-location'>{ props.locationFromProps }</p>;
     if (props.ownProfile) {
       if (props.editingLocation) {
         location = (

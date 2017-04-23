@@ -4,6 +4,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  font-size: 11pt;
+}
+
+.home-header a, .home-nav a {
+  color: black;
+  font-weight: bold;
 }
 
 .home-nav-left {

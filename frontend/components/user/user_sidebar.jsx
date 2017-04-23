@@ -133,8 +133,6 @@ class UserSidebar extends React.Component {
   }
 
   render() {
-    const username = <p>{ this.props.user.username }</p>;
-
     return(
       <aside className='user-sidebar'>
         <UserSidebarAvatar
@@ -142,7 +140,7 @@ class UserSidebar extends React.Component {
           ownProfile={ this.props.ownProfile }
           handleAddAvatar={ this.handleAddAvatar }
           handleDeleteAvatar={ this.handleDeleteAvatar } />
-        { username }
+        <p className='user-sidebar-username'>{ this.props.user.username }</p>
         <UserSidebarLocation
           locationFromProps={ this.props.user.location }
           locationFromState={ this.state.location }
