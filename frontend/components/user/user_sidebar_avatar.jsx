@@ -10,15 +10,14 @@ const UserSidebarAvatar = (props) => {
   let avatar;
   const avatarMissing = props.avatarUrl === '/avatars/original/missing.png';
   if (avatarMissing) {
-    avatar = <div><p>no photo</p></div>;
+    avatar = <img style={ { display: 'none' } } />;
   } else {
-    avatar = <img width='120px' src={ props.avatarUrl } />;
+    avatar = <img className='user-sidebar-avatar' src={ props.avatarUrl } />;
   }
   if (props.ownProfile) {
     if (avatarMissing) {
       avatar = (
-        <div>
-          { avatar }
+        <div className='user-sidebar-avatar-missing'>
           <input id='file-input' type='file'
             onChange={ props.handleAddAvatar }
             style={ { display: 'none' } } />
@@ -29,7 +28,7 @@ const UserSidebarAvatar = (props) => {
       avatar = (
         <div>
           { avatar }
-          <a href='' onClick={ props.handleDeleteAvatar }>x</a>
+          <a href='' onClick={ props.handleDeleteAvatar }>X</a>
         </div>
       );
     }

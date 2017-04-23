@@ -32,3 +32,20 @@
 .user-sidebar-location {
   color: #888888;
 }
+
+.user-sidebar-avatar {
+  width: 120px;
+}
+
+.user-sidebar-avatar-missing {
+  width: 120px;
+  height: 102px;
+  display: flex;
+  border: 1px dashed #c0c0c0;
+  align-items: center;
+}
+
+.user-sidebar-avatar-missing a {
+  text-align: center;
+  width: 100%;
+}
