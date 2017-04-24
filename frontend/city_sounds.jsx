@@ -4,7 +4,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 import { fetchAllCollections, fetchUserCollections, fetchCollection } from './actions/collection_actions';
-import { fetchAllSounds, fetchSound } from './actions/sound_actions';
+import { fetchAllSounds, fetchCollectionSounds, fetchSound } from './actions/sound_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -23,5 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchUserCollections = fetchUserCollections;
   window.fetchCollection = fetchCollection;
   window.fetchAllSounds = fetchAllSounds;
+  window.fetchCollectionSounds = fetchCollectionSounds;
   window.fetchSound = fetchSound;
 });

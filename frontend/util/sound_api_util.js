@@ -6,6 +6,15 @@ export const fetchAllSounds = () => {
   });
 };
 
+export const fetchCollectionSounds = (collectionId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/collections/${collectionId}/sounds/`,
+    error: err => console.log(err),
+  });
+};
+
+
 export const fetchSound = (id) => {
   return $.ajax({
     method: 'GET',
