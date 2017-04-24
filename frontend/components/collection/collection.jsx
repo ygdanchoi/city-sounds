@@ -39,6 +39,10 @@ class Collection extends React.Component {
           <section className='collection-info-section'>
             <p>{ this.props.collection.title }</p>
             <p>by { this.props.collection.user.username }</p>
+            <Link to={ `/edit-collection?id=${this.props.collection.id}` }>
+              <p>Edit</p>
+            </Link>
+            <Link>Delete</Link>
             <p>{ this.props.collection.description }</p>
             <ol>
               { soundListItems }

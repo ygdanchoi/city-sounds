@@ -29,6 +29,10 @@ class NavBar extends React.Component {
     hashHistory.push('/');
   }
 
+  redirectToAddSounds() {
+    hashHistory.push('/add-collection');
+  }
+
   render() {
     if (!this.props.loggedIn) {
       return (
@@ -69,9 +73,9 @@ class NavBar extends React.Component {
           </li>
         </ul>
         <ul className='nav-bar-main-ul nav-bar-main-ul-center'>
-          <li className='nav-bar-main-li nav-bar-main-li-selectable'>
+          <li className='nav-bar-main-li nav-bar-main-li-selectable' onClick={ this.redirectToAddSounds }>
             <nav className='nav-bar-center'>
-              <p className='nav-bar-add-sound'>add sound</p>
+              <p className='nav-bar-add-sound'>add sounds</p>
             </nav>
           </li>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>

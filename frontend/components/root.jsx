@@ -26,6 +26,10 @@ const Root = (props) => {
             component={ UserContainer } />
           <Route path='collections/:collectionId'
             component={ CollectionContainer } />
+          <Route path='add-collection'
+            component={ CollectionFormContainer } />
+          <Route path='edit-collection'
+            component={ CollectionFormContainer } />
         </Route>
       </Router>
     </Provider>

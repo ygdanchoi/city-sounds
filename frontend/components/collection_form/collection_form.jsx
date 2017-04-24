@@ -6,10 +6,23 @@ class CollectionForm extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    const id = this.props.collectionId;
+    if (id) {
+      this.props.fetchCollection(this.props.collectionId);
+    }
+  }
+
   render() {
+    let collection;
+    if (this.props.collectionId) {
+      collection = this.props.collectionId;
+    } else {
+      collection = 'add';
+    }
     return (
       <div>
-        <h1>form!</h1>
+        <h1>{ collection }</h1>
       </div>
     );
   }
