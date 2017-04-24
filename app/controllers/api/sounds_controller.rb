@@ -17,15 +17,31 @@ class Api::SoundsController < ApplicationController
   end
 
   def create
+    @sound = Sound.new(sound_params)
+    if @sound.save
+      render 'api/sounds/show'
+    else
+      render json: @sound.errors, status: 422
+    end
   end
 
   def update
+    @sound = Sound.find(params[:id])
+    if @sound.update(sound_params)
+      render 'api/sounds/show'
+    else
+      render json: @sound.errors, status: 422
+    end
   end
 
   def destroy
+    @sound = Sound.find(params[:id])
+    @sound.destroy
+    render 'api/sounds/show'
   end
 
   private
   def sound_params
+    params.require(:sound).permit(:title, :duration, :audio)
   end
 end
