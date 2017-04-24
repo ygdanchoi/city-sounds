@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
-import { fetchUsers, fetchUser, updateUser } from './actions/user_actions';
+import { fetchCollections, fetchCollection } from './util/collection_api_util';
+import { fetchSounds, fetchSound } from './util/sound_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={ store } />, root);
 
   window.store = store;
-  window.fetchUsers = fetchUsers;
-  window.fetchUser = fetchUser;
-  window.updateUser = updateUser;
+  window.fetchCollections = fetchCollections;
+  window.fetchCollection = fetchCollection;
+  window.fetchSounds = fetchSounds;
+  window.fetchSound = fetchSound;
 });
