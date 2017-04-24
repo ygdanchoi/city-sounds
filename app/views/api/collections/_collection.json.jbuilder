@@ -1,5 +1,9 @@
 json.id _collection.id
-json.userId _collection.user.id
+json.user do
+  json.id _collection.user.id
+  json.username _collection.user.username
+  json.avatarUrl asset_path(_collection.user.avatar.url)
+end
 json.title _collection.title
 json.artworkUrl asset_path(_collection.artwork.url)
 json.description _collection.description

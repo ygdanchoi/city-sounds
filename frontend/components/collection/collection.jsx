@@ -8,17 +8,13 @@ class Collection extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchCollection(this.props.params.collectionId).then(
-      (response) => this.props.fetchUser(response.collection.userId)
-    );
+    this.props.fetchCollection(this.props.params.collectionId);
     this.props.fetchCollectionSounds(this.props.params.collectionId);
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.params.collectionId !== newProps.params.collectionId) {
-      this.props.fetchCollection(newProps.params.collectionId).then(
-        (response) => this.props.fetchUser(response.collection.userId)
-      );
+      this.props.fetchCollection(newProps.params.collectionId);
       this.props.fetchCollectionSounds(newProps.params.collectionId);
     }
   }
@@ -37,13 +33,16 @@ class Collection extends React.Component {
       <div className='collection-page'>
         <main className='collection-main'>
           <section className='collection-info-section'>
+            <p>{ this.props.collection.title }</p>
+            <p>by { this.props.collection.user.username }</p>
+            <p>{ this.props.collection.description }</p>
             <ul>
-              <li>hi</li>
+              { this.props.collection.soundIds.map(id => this.props.sounds[id].title ) }
             </ul>
           </section>
           <UserSidebar
-            user={ this.props.user }
-            ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
+            user={ this.props.collection.user }
+            ownProfile={ this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id }
             updateUser={ this.props.updateUser }
             updateUserAvatar={ this.props.updateUserAvatar } />
         </main>

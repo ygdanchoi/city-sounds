@@ -6,14 +6,7 @@ import { fetchCollection } from '../../actions/collection_actions';
 import { fetchCollectionSounds } from '../../actions/sound_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  let user;
-  if (Object.keys(state.users)[0]) {
-    user = state.users[Object.keys(state.users)[0]];
-  } else {
-    user = {};
-  }
   return {
-    user: user,
     currentUser: state.session.currentUser,
     collection: state.collections[ownProps.params.collectionId],
     sounds: state.sounds
