@@ -14,6 +14,10 @@ class User extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    if (this.props.params.userId !== newProps.params.userId) {
+      this.props.fetchUser(newProps.params.userId);
+      this.props.fetchUserCollections(newProps.params.userId);
+    }
   }
 
   render() {

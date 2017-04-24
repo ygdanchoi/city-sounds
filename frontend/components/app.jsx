@@ -6,12 +6,14 @@ const closeNavBarDropdown = (e) => {
   const navBarDropdown = document.getElementById('nav-bar-dropdown');
   const navBarCurrentUser = document.getElementById('nav-bar-current-user');
   const navBarCaret = document.getElementById('nav-bar-caret');
-  if (navBarDropdown.classList.contains('opened')) {
-    navBarDropdown.classList.remove('opened');
-  } else {
-    navBarDropdown.classList.add('hidden');
-    navBarCurrentUser.classList.remove('pressed');
-    navBarCaret.src = window.images.caret;
+  if (navBarDropdown && navBarCurrentUser) {
+    if (navBarDropdown.classList.contains('opened')) {
+      navBarDropdown.classList.remove('opened');
+    } else {
+      navBarDropdown.classList.add('hidden');
+      navBarCurrentUser.classList.remove('pressed');
+      navBarCaret.src = window.images.caret;
+    }
   }
 };
 
