@@ -158,4 +158,41 @@ TEXT
     collection_id: walking_time_square.id
   )
 
+  corsica_s_in_mongolia = Collection.create!(
+    title: 'Corsica_S in Mongolia',
+    description: <<-TEXT,
+1. Walking around Ulaanbaatar at approximately 10 PM. First I walk by a fountain, then into the large square, stopping near a group of people for a short time, before heading to a bus stop, then a quiet park and finally into my hotel.
+
+2. Walking around the Incheon ticketing area in the early morning before anyone is really there. At the start of the recording there is a waxing machine that comes close, then turns off. 
+
+3. I stood amongst a large group of pigeons that were being fed and chased by others. 
+
+Recorded with The Sound Professionals in-ear mics into a modified Marantz PMD661.
+Original sources:
+https://www.freesound.org/s/78576/
+https://www.freesound.org/s/78575/
+https://www.freesound.org/s/78561/
+Licensed under CC BY 3.0
+TEXT
+    user_id: corsica_s.id
+  )
+
+  ulaanbaatar_night = Sound.create!(
+    title: 'ulaanbaatar_night',
+    duration: 1845,
+    collection_id: corsica_s_in_mongolia.id
+  )
+
+  incheon_4am = Sound.create!(
+    title: 'incheon_4am',
+    duration: 258,
+    collection_id: corsica_s_in_mongolia.id
+  )
+
+  piegons = Sound.create!(
+    title: 'piegons',
+    duration: 82,
+    collection_id: corsica_s_in_mongolia.id
+  )
+
 end
