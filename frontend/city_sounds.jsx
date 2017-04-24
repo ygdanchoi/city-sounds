@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
-import { fetchCollections, fetchCollection } from './util/collection_api_util';
-import { fetchSounds, fetchSound } from './util/sound_api_util';
+import { fetchCollections, fetchCollection } from './actions/collection_actions';
+import { fetchSounds, fetchSound } from './actions/sound_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
