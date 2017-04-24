@@ -5,7 +5,6 @@ import App from './app';
 import AuthFormContainer from './auth_form/auth_form_container';
 import UserContainer from './user/user_container';
 import CollectionContainer from './collection/collection_container';
-import CollectionFormContainer from './collection_form/collection_form_container';
 
 const Root = (props) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
@@ -22,9 +21,10 @@ const Root = (props) => {
             component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
           <Route path='signup'
             component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
-          <Route path='users/:userId' component={ UserContainer } />
-          <Route path='collections/:collectionId' component={ CollectionContainer } />
-          <Route path='edit-collection' component={ CollectionFormContainer } />
+          <Route path='users/:userId'
+            component={ UserContainer } />
+          <Route path='collections/:collectionId'
+            component={ CollectionContainer } />
         </Route>
       </Router>
     </Provider>
