@@ -53,19 +53,22 @@ https://www.freesound.org/s/135998/
 https://www.freesound.org/s/135995/
 Licensed under CC BY 3.0
 TEXT
-    user_id: taurindb.id
+    user_id: taurindb.id,
+    artwork: File.open('app/assets/images/artworks/beijing.jpg')
   )
 
   tianmen_square = Sound.create!(
     title: 'Tianmen Square',
     duration: 424,
-    collection_id: beijing.id
+    collection_id: beijing.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   bullet_train_from_shanghai_to_beijing = Sound.create!(
     title: 'Bullet train from Shanghai to Beijing',
     duration: 482,
-    collection_id: beijing.id
+    collection_id: beijing.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   emanuele_correani = User.create!(
@@ -97,25 +100,29 @@ https://www.freesound.org/s/332593/
 https://www.freesound.org/s/332768/
 Licensed under CC BY 3.0
 TEXT
-    user_id: emanuele_correani.id
+    user_id: emanuele_correani.id,
+    artwork: File.open('app/assets/images/artworks/location_recordings.jpg')
   )
 
   ambience_train_station_inside = Sound.create!(
     title: 'Ambience - Train Station - Inside',
     duration: 473,
-    collection_id: location_recordings.id
+    collection_id: location_recordings.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   ambience_day_city_backyard_noon = Sound.create!(
     title: 'Ambience - Day - City - Backyard - Noon',
     duration: 848,
-    collection_id: location_recordings.id
+    collection_id: location_recordings.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   underground_inside_the_train_london_tube = Sound.create!(
     title: 'Underground - Inside the train - London Tube',
     duration: 492,
-    collection_id: location_recordings.id
+    collection_id: location_recordings.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   corsica_s = User.create!(
@@ -143,19 +150,22 @@ https://www.freesound.org/s/31982/
 https://www.freesound.org/s/31983/
 Licensed under CC BY 3.0
 TEXT
-    user_id: corsica_s.id
+    user_id: corsica_s.id,
+    artwork: File.open('app/assets/images/artworks/walking_time_square.jpg')
   )
 
   walking_time_square_part_1 = Sound.create!(
     title: 'walking time square part 1',
     duration: 545,
-    collection_id: walking_time_square.id
+    collection_id: walking_time_square.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   walking_time_square_part_2 = Sound.create!(
     title: 'walking time square part 2',
     duration: 407,
-    collection_id: walking_time_square.id
+    collection_id: walking_time_square.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   corsica_s_in_mongolia = Collection.create!(
@@ -174,25 +184,29 @@ https://www.freesound.org/s/78575/
 https://www.freesound.org/s/78561/
 Licensed under CC BY 3.0
 TEXT
-    user_id: corsica_s.id
+    user_id: corsica_s.id,
+    artwork: File.open('app/assets/images/artworks/corsica_s_in_mongolia.jpg')
   )
 
   ulaanbaatar_night = Sound.create!(
     title: 'ulaanbaatar_night',
     duration: 1845,
-    collection_id: corsica_s_in_mongolia.id
+    collection_id: corsica_s_in_mongolia.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   incheon_4am = Sound.create!(
     title: 'incheon_4am',
     duration: 258,
-    collection_id: corsica_s_in_mongolia.id
+    collection_id: corsica_s_in_mongolia.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
   piegons = Sound.create!(
     title: 'piegons',
     duration: 82,
-    collection_id: corsica_s_in_mongolia.id
+    collection_id: corsica_s_in_mongolia.id,
+    audio: File.open('app/assets/audio/beep.mp3')
   )
 
 end
