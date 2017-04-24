@@ -6,6 +6,7 @@ import AuthFormContainer from './auth_form/auth_form_container';
 import UserContainer from './user/user_container';
 import CollectionContainer from './collection/collection_container';
 import { fetchUser } from '../actions/user_actions';
+import { fetchUserCollections } from '../actions/collection_actions';
 
 const Root = (props) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
@@ -18,6 +19,7 @@ const Root = (props) => {
     const id = nextState.params.userId;
     if (props.store.getState().users[id] === undefined) {
       props.store.dispatch(fetchUser(id));
+      props.store.dispatch(fetchUserCollections(id));
     }
   };
 
