@@ -1,0 +1,22 @@
+.collection-page {
+  position: relative;
+  top: 6px;
+  font-size: 9pt;
+  color: #363636;
+}
+
+.collection-main {
+  display: flex;
+  width: 975px;
+  margin: 0 auto;
+  background-color: white;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+}
+
+.collection-info-section {
+  padding: 35px 0px 45px 30px;
+  width: 100%;
+  background-color: red;
+}

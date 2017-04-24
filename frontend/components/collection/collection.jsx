@@ -34,11 +34,13 @@ class Collection extends React.Component {
       );
     }
     return (
-      <div className='user-page'>
-        <main className='user-main'>
-          <div>
-            <p>sounds</p>
-          </div>
+      <div className='collection-page'>
+        <main className='collection-main'>
+          <section className='collection-info-section'>
+            <ul>
+              <li>hi</li>
+            </ul>
+          </section>
           <UserSidebar
             user={ this.props.user }
             ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
