@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
-import { fetchAllCollections, fetchCollection } from './actions/collection_actions';
+import { fetchAllCollections, fetchUserCollections, fetchCollection } from './actions/collection_actions';
 import { fetchAllSounds, fetchSound } from './actions/sound_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.store = store;
   window.fetchAllCollections = fetchAllCollections;
+  window.fetchUserCollections = fetchUserCollections;
   window.fetchCollection = fetchCollection;
   window.fetchAllSounds = fetchAllSounds;
   window.fetchSound = fetchSound;
