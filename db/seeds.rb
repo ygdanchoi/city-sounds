@@ -33,7 +33,7 @@ Hi!
 
 I exclusively post field recordings on Freesound.org.
 
-I use an Edirol R-09HR to record all of my field recordings. 
+I use an Edirol R-09HR to record all of my field recordings.
 
 Visit me @ www.taurinbarrera.com
 TEXT
@@ -61,14 +61,14 @@ TEXT
     title: 'Tianmen Square',
     duration: 424,
     collection_id: beijing.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/tianmen_square.mp3')
   )
 
   bullet_train_from_shanghai_to_beijing = Sound.create!(
     title: 'Bullet train from Shanghai to Beijing',
     duration: 482,
     collection_id: beijing.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/bullet_train_from_shanghai_to_beijing.mp3')
   )
 
   emanuele_correani = User.create!(
@@ -108,21 +108,21 @@ TEXT
     title: 'Ambience - Train Station - Inside',
     duration: 473,
     collection_id: location_recordings.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/ambience_train_station_inside.mp3')
   )
 
   ambience_day_city_backyard_noon = Sound.create!(
     title: 'Ambience - Day - City - Backyard - Noon',
     duration: 848,
     collection_id: location_recordings.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/ambience_day_city_backyard_noon.mp3')
   )
 
   underground_inside_the_train_london_tube = Sound.create!(
     title: 'Underground - Inside the train - London Tube',
     duration: 492,
     collection_id: location_recordings.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/underground_inside_the_train_london_tube.mp3')
   )
 
   corsica_s = User.create!(
@@ -158,14 +158,14 @@ TEXT
     title: 'walking time square part 1',
     duration: 545,
     collection_id: walking_time_square.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/walking_time_square_part_1.mp3')
   )
 
   walking_time_square_part_2 = Sound.create!(
     title: 'walking time square part 2',
     duration: 407,
     collection_id: walking_time_square.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/walking_time_square_part_2.mp3')
   )
 
   corsica_s_in_mongolia = Collection.create!(
@@ -173,9 +173,9 @@ TEXT
     description: <<-TEXT,
 1. Walking around Ulaanbaatar at approximately 10 PM. First I walk by a fountain, then into the large square, stopping near a group of people for a short time, before heading to a bus stop, then a quiet park and finally into my hotel.
 
-2. Walking around the Incheon ticketing area in the early morning before anyone is really there. At the start of the recording there is a waxing machine that comes close, then turns off. 
+2. Walking around the Incheon ticketing area in the early morning before anyone is really there. At the start of the recording there is a waxing machine that comes close, then turns off.
 
-3. I stood amongst a large group of pigeons that were being fed and chased by others. 
+3. I stood amongst a large group of pigeons that were being fed and chased by others.
 
 Recorded with The Sound Professionals in-ear mics into a modified Marantz PMD661.
 Original sources:
@@ -192,21 +192,21 @@ TEXT
     title: 'ulaanbaatar_night',
     duration: 1845,
     collection_id: corsica_s_in_mongolia.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/ulaanbaatar_night.mp3')
   )
 
   incheon_4am = Sound.create!(
     title: 'incheon_4am',
     duration: 258,
     collection_id: corsica_s_in_mongolia.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/incheon_4am.mp3')
   )
 
-  piegons = Sound.create!(
-    title: 'piegons',
+  pigeons = Sound.create!(
+    title: 'pigeons',
     duration: 82,
     collection_id: corsica_s_in_mongolia.id,
-    audio: File.open('app/assets/audio/beep.mp3')
+    audio: File.open('app/assets/audio/pigeons.mp3')
   )
 
 end
