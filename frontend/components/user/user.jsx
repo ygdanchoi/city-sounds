@@ -10,6 +10,7 @@ class User extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.params.userId);
+    this.props.fetchUserCollections(this.props.params.userId);
   }
 
   componentWillReceiveProps(newProps) {
@@ -28,7 +29,8 @@ class User extends React.Component {
     return (
       <div className='user-page'>
         <main className='user-main'>
-          <CollectionList />
+          <CollectionList
+            collections={ this.props.collections } />
           <UserSidebar
             user={ this.props.user }
             ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
