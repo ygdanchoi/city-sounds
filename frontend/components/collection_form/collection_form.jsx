@@ -6,11 +6,17 @@ class CollectionForm extends React.Component {
     super(props);
     if (this.props.collection) {
       this.state = {
+        artworkFile: null,
+        artworkUrl: this.props.collection.artworkUrl,
+        soundIds: this.props.collection.soundIds,
         title: this.props.collection.title,
         description: this.props.collection.description,
       };
     } else {
       this.state = {
+        artworkFile: null,
+        artworkUrl: '/avatars/original/missing.png',
+        soundIds: [],
         title: '',
         description: '',
       };
@@ -23,6 +29,9 @@ class CollectionForm extends React.Component {
       this.props.fetchCollection(id).then(
         (response) => {
           this.setState({
+            artworkFile: null,
+            artworkUrl: response.collection.artworkUrl,
+            soundIds: response.collection.soundIds,
             title: response.collection.title,
             description: response.collection.description
           });
@@ -38,11 +47,21 @@ class CollectionForm extends React.Component {
     } else {
       tempHeader = 'add collection';
     }
+    let artwork;
+    const artworkMissing = this.state.artworkUrl === '/avatars/original/missing.png';
+    if (artworkMissing) {
+      artwork = <img style={ { width: '72px', height: '72px' } } />;
+    } else {
+      artwork = <img style={ { width: '72px', height: '72px' } } src={ this.state.artworkUrl } />;
+    }
     return (
       <div>
         <h1>{ tempHeader }</h1>
+        { artwork }
         <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
         <p>by { this.props.currentUser.username }</p>
+        <p>sounds</p>
+        <p>{ this.state.soundIds.join(', ') }</p>
         <input placeholder='collection name' type='text' value= { this.state.title } />
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.state.description } />
