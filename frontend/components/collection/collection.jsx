@@ -33,16 +33,24 @@ class Collection extends React.Component {
     const soundListItems = this.props.collection.soundIds.map(
       (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } />
     );
+    let editDelete = null;
+    if (this.props.collection.user.id === this.props.currentUser.id) {
+      editDelete = (
+        <div>
+          <Link to={ `/edit-collection?id=${this.props.collection.id}` }>
+            <p>Edit</p>
+          </Link>
+          <Link>Delete</Link>
+        </div>
+      );
+    }
     return (
       <div className='collection-page'>
         <main className='collection-main'>
           <section className='collection-info-section'>
             <p>{ this.props.collection.title }</p>
             <p>by { this.props.collection.user.username }</p>
-            <Link to={ `/edit-collection?id=${this.props.collection.id}` }>
-              <p>Edit</p>
-            </Link>
-            <Link>Delete</Link>
+            { editDelete }
             <p>{ this.props.collection.description }</p>
             <ol>
               { soundListItems }
