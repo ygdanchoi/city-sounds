@@ -1,0 +1,2 @@
+module Api::SoundsHelper
+end
