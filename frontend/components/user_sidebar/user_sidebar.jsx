@@ -7,14 +7,25 @@ import UserSidebarBio from './user_sidebar_bio';
 class UserSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      avatarFile: null,
-      avatarUrl: this.props.user.avatarUrl,
-      location: this.props.user.location,
-      bio: this.props.user.bio,
-      editingLocation: false,
-      editingBio: false
-    };
+    if (this.props.user) {
+      this.state = {
+        avatarFile: null,
+        avatarUrl: this.props.user.avatarUrl,
+        location: this.props.user.location,
+        bio: this.props.user.bio,
+        editingLocation: false,
+        editingBio: false
+      };
+    } else {
+      this.state = {
+        avatarFile: null,
+        avatarUrl: '/avatars/original/missing.png',
+        location: '',
+        bio: '',
+        editingLocation: false,
+        editingBio: false
+      };
+    }
     this.handleAddAvatar = this.handleAddAvatar.bind(this);
     this.handleSubmitAvatar = this.handleSubmitAvatar.bind(this);
     this.handleDeleteAvatar = this.handleDeleteAvatar.bind(this);
@@ -26,21 +37,37 @@ class UserSidebar extends React.Component {
     this.handleCancelBio = this.handleCancelBio.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.users[this.props.userId] === undefined) {
+      this.props.fetchUser(this.props.userId).then(
+        (response) => {
+          this.setState({
+            avatarUrl: response.user.avatarUrl,
+            location: response.user.location,
+            bio: response.user.bio
+          });
+        }
+      );
+    }
+  }
+
   componentWillReceiveProps(newProps) {
-    if (this.props.user.avatarUrl !== newProps.user.avatarUrl) {
-      this.setState({avatarUrl: newProps.user.avatarUrl});
-    } else {
-      this.setState({avatarUrl: this.props.user.avatarUrl});
-    }
-    if (this.props.user.location !== newProps.user.location) {
-      this.setState({location: newProps.user.location});
-    } else {
-      this.setState({location: this.props.user.location});
-    }
-    if (this.props.user.bio !== newProps.user.bio) {
-      this.setState({bio: newProps.user.bio});
-    } else {
-      this.setState({bio: this.props.user.bio});
+    if (this.props.user) {
+      if (this.props.user.avatarUrl !== newProps.user.avatarUrl) {
+        this.setState({avatarUrl: newProps.user.avatarUrl});
+      } else {
+        this.setState({avatarUrl: this.props.user.avatarUrl});
+      }
+      if (this.props.user.location !== newProps.user.location) {
+        this.setState({location: newProps.user.location});
+      } else {
+        this.setState({location: this.props.user.location});
+      }
+      if (this.props.user.bio !== newProps.user.bio) {
+        this.setState({bio: newProps.user.bio});
+      } else {
+        this.setState({bio: this.props.user.bio});
+      }
     }
   }
 
@@ -133,18 +160,24 @@ class UserSidebar extends React.Component {
   }
 
   render() {
+    if (this.props.user === undefined || this.state === null) {
+      return (
+        <aside className='user-sidebar' />
+      );
+    }
+    const ownProfile = this.props.currentUser && this.props.user.id === this.props.currentUser.id;
     return(
       <aside className='user-sidebar'>
         <UserSidebarAvatar
           avatarUrl={ this.state.avatarUrl }
-          ownProfile={ this.props.ownProfile }
+          ownProfile={ ownProfile }
           handleAddAvatar={ this.handleAddAvatar }
           handleDeleteAvatar={ this.handleDeleteAvatar } />
         <p className='user-sidebar-username'>{ this.props.user.username }</p>
         <UserSidebarLocation
           locationFromProps={ this.props.user.location }
           locationFromState={ this.state.location }
-          ownProfile={ this.props.ownProfile }
+          ownProfile={ ownProfile }
           editingLocation={ this.state.editingLocation }
           handleChange={ this.handleChange('location') }
           handleSaveLocation={ this.handleSaveLocation }
@@ -154,7 +187,7 @@ class UserSidebar extends React.Component {
         <UserSidebarBio
           bioFromProps={ this.props.user.bio }
           bioFromState={ this.state.bio }
-          ownProfile={ this.props.ownProfile }
+          ownProfile={ ownProfile }
           editingBio={ this.state.editingBio }
           handleChange={ this.handleChange('bio') }
           handleSaveBio={ this.handleSaveBio }

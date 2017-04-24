@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import UserSidebar from '../user_sidebar/user_sidebar';
+import UserSidebarContainer from '../user_sidebar/user_sidebar_container';
 
 class Collection extends React.Component {
   constructor(props) {
@@ -37,14 +37,10 @@ class Collection extends React.Component {
             <p>by { this.props.collection.user.username }</p>
             <p>{ this.props.collection.description }</p>
             <ul>
-              { this.props.collection.soundIds.map(id => this.props.sounds[id].title ) }
+              { this.props.collection.soundIds }
             </ul>
           </section>
-          <UserSidebar
-            user={ this.props.collection.user }
-            ownProfile={ this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id }
-            updateUser={ this.props.updateUser }
-            updateUserAvatar={ this.props.updateUserAvatar } />
+          <UserSidebarContainer userId={ this.props.collection.user.id } />
         </main>
       </div>
     );

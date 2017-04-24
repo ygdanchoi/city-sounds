@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import CollectionList from './collection_list';
-import UserSidebar from '../user_sidebar/user_sidebar';
+import UserSidebarContainer from '../user_sidebar/user_sidebar_container';
 
 class User extends React.Component {
   constructor(props) {
@@ -35,11 +35,7 @@ class User extends React.Component {
         <main className='user-main'>
           <CollectionList
             collections={ this.props.collections } />
-          <UserSidebar
-            user={ this.props.user }
-            ownProfile={ this.props.currentUser && this.props.user.id === this.props.currentUser.id }
-            updateUser={ this.props.updateUser }
-            updateUserAvatar={ this.props.updateUserAvatar } />
+          <UserSidebarContainer userId={ this.props.user.id } />
         </main>
       </div>
     );
