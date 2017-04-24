@@ -31,7 +31,22 @@ class NavBar extends React.Component {
 
   render() {
     if (!this.props.loggedIn) {
-      return <header className='nav-bar'>{null}</header>;
+      return (
+        <header className='nav-bar'>
+          <ul className='nav-bar-main-ul'>
+            <li className='nav-bar-main-li nav-bar-main-li-selectable' onClick={ this.redirectToRoot }>
+              <nav className='nav-bar-left'>
+                <figure className='nav-bar-logo'>
+                  <h3>.:.:.</h3>
+                </figure>
+              </nav>
+            </li>
+            <li className='nav-bar-main-li nav-bar-main-li-empty'>
+              <nav className='nav-bar-empty' />
+            </li>
+          </ul>
+        </header>
+      );
     }
     let avatar;
     if (this.props.currentUser.avatarUrl === '/avatars/original/missing.png') {
