@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import CollectionList from './collection_list';
-import UserSidebar from './user_sidebar';
+import UserSidebar from '../user_sidebar/user_sidebar';
 
 class User extends React.Component {
   constructor(props) {
