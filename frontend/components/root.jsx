@@ -5,6 +5,7 @@ import App from './app';
 import AuthFormContainer from './auth_form/auth_form_container';
 import UserContainer from './user/user_container';
 import CollectionContainer from './collection/collection_container';
+import CollectionFormContainer from './collection_form/collection_form_container';
 
 const Root = (props) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
