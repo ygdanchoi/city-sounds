@@ -29,6 +29,15 @@ class Collection extends React.Component {
         </div>
       );
     }
+    const soundListItems = this.props.collection.soundIds.map(
+      (id) => {
+        if (this.props.sounds[id]) {
+          return <li key={ id }>{ this.props.sounds[id].title }</li>;
+        } else {
+          return <li key={ id } />;
+        }
+      }
+    );
     return (
       <div className='collection-page'>
         <main className='collection-main'>
@@ -37,8 +46,9 @@ class Collection extends React.Component {
             <p>by { this.props.collection.user.username }</p>
             <p>{ this.props.collection.description }</p>
             <ul>
-              { this.props.collection.soundIds }
+              { soundListItems }
             </ul>
+            <img src={ this.props.collection.artworkUrl } />
           </section>
           <UserSidebarContainer userId={ this.props.collection.user.id } />
         </main>
