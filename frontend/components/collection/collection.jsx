@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import SoundListItem from './sound_list_item';
 import UserSidebarContainer from '../user_sidebar/user_sidebar_container';
 
 class Collection extends React.Component {
@@ -30,13 +31,7 @@ class Collection extends React.Component {
       );
     }
     const soundListItems = this.props.collection.soundIds.map(
-      (id) => {
-        if (this.props.sounds[id]) {
-          return <li key={ id }>{ this.props.sounds[id].title }</li>;
-        } else {
-          return <li key={ id } />;
-        }
-      }
+      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } />
     );
     return (
       <div className='collection-page'>
@@ -45,9 +40,9 @@ class Collection extends React.Component {
             <p>{ this.props.collection.title }</p>
             <p>by { this.props.collection.user.username }</p>
             <p>{ this.props.collection.description }</p>
-            <ul>
+            <ol>
               { soundListItems }
-            </ul>
+            </ol>
             <img src={ this.props.collection.artworkUrl } />
           </section>
           <UserSidebarContainer userId={ this.props.collection.user.id } />
