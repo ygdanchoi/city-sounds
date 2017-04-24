@@ -20,9 +20,21 @@
   width: 100%;
 }
 
+.collection-list-section ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.collection-list-item-artwork {
+  width: 368px;
+  height: 368px;
+  margin-right: 29px
+}
+
 .user-sidebar {
   width: 120px;
-  padding: 35px 30px 45px 30px;
+  padding: 35px 30px 45px 0px;
 }
 
 .user-sidebar-username {
