@@ -17,8 +17,8 @@ export const receiveSound = (sound) => {
   };
 };
 
-export const fetchSounds = () => (dispatch) => {
-  return APIUtil.fetchSounds().then(
+export const fetchAllSounds = () => (dispatch) => {
+  return APIUtil.fetchAllSounds().then(
     response => dispatch(receiveSounds(response))
   );
 };

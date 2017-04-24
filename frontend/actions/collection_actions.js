@@ -17,8 +17,8 @@ export const receiveCollection = (collection) => {
   };
 };
 
-export const fetchCollections = () => (dispatch) => {
-  return APIUtil.fetchCollections().then(
+export const fetchAllCollections = () => (dispatch) => {
+  return APIUtil.fetchAllCollections().then(
     response => dispatch(receiveCollections(response))
   );
 };

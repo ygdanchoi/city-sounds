@@ -1,4 +1,4 @@
-export const fetchCollections = () => {
+export const fetchAllCollections = () => {
   return $.ajax({
     method: 'GET',
     url: '/api/sounds/',
