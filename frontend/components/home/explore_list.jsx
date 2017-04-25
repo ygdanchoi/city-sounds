@@ -8,8 +8,6 @@ const ExploreList = (props) => {
   return (
     <ul className='explore-list'>
       { exploreListItems }
-      { exploreListItems }
-      { exploreListItems }
     </ul>
   );
 };

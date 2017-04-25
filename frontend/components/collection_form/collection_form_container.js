@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CollectionForm from './collection_form';
 
-import { fetchCollection, createCollection } from '../../actions/collection_actions';
+import { fetchCollection, createCollection, updateCollection } from '../../actions/collection_actions';
 import { fetchCollectionSounds } from '../../actions/sound_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchCollection: (id) => dispatch(fetchCollection(id)),
     fetchCollectionSounds: (collectionId) => dispatch(fetchCollectionSounds(collectionId)),
     createCollection: (collection) => dispatch(createCollection(collection)),
+    updateCollection: (id, collection) => dispatch(updateCollection(id, collection)),
   };
 };
 

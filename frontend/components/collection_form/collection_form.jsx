@@ -17,7 +17,8 @@ class CollectionForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -120,7 +121,7 @@ class CollectionForm extends React.Component {
     });
   }
 
-  handleSubmit(e) {
+  handleCreate(e) {
     e.preventDefault();
     let formData = new FormData();
     formData.append('collection[artwork]', this.state.artworkFile);
@@ -132,6 +133,22 @@ class CollectionForm extends React.Component {
     formData.append('collection[description]', this.state.description);
     formData.append('collection[user_id]', this.props.currentUser.id);
     this.props.createCollection(formData);
+  }
+
+  handleUpdate(e) {
+    const id = this.props.collectionId;
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('collection[id]', id);
+    formData.append('collection[artwork]', this.state.artworkFile);
+    formData.append('collection[sounds]', JSON.stringify(this.state.sounds));
+    for (let i = 0; i < this.state.sounds.length; i++) {
+      formData.append(`collection[audio${i}]`, this.state.sounds[i].audioFile);
+    }
+    formData.append('collection[title]', this.state.title);
+    formData.append('collection[description]', this.state.description);
+    formData.append('collection[user_id]', this.props.currentUser.id);
+    this.props.updateCollection(id, formData);
   }
 
   render() {
@@ -194,7 +211,8 @@ class CollectionForm extends React.Component {
         { artworkForm }
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
-        <button onClick={ this.handleSubmit }>this.props.createCollection(formData)</button>
+        <button onClick={ this.handleCreate }>handleCreate</button>
+        <button onClick={ this.handleUpdate }>handleUpdate</button>
       </div>
     );
   }

@@ -32,3 +32,14 @@ export const createCollection = (formData) => {
     error: err => console.log(err),
   });
 };
+
+export const updateCollection = (id, formData) => {
+  return $.ajax({
+    method: 'PATCH',
+    url: `/api/collections/${id}`,
+    contentType: false,
+    processData: false,
+    data: formData,
+    error: err => console.log(err),
+  });
+};

@@ -2,7 +2,6 @@ import * as APIUtil from '../util/collection_api_util';
 
 export const RECEIVE_COLLECTIONS = 'RECEIVE_COLLECTIONS';
 export const RECEIVE_COLLECTION = 'RECEIVE_COLLECTION';
-export const RECEIVE_COLLECTION_WITH_SOUNDS = 'RECEIVE_COLLECTION_WITH_SOUNDS';
 
 export const receiveCollections = (collections) => {
   return {
@@ -14,13 +13,6 @@ export const receiveCollections = (collections) => {
 export const receiveCollection = (collection) => {
   return {
     type: RECEIVE_COLLECTION,
-    collection: collection
-  };
-};
-
-export const receiveCollectionWithSounds = (collection) => {
-  return {
-    type: RECEIVE_COLLECTION_WITH_SOUNDS,
     collection: collection
   };
 };
@@ -45,6 +37,12 @@ export const fetchCollection = (id) => (dispatch) => {
 
 export const createCollection = (collection) => (dispatch) => {
   return APIUtil.createCollection(collection).then(
-    response => dispatch(receiveCollectionWithSounds(response))
+    response => dispatch(receiveCollection(response))
+  );
+};
+
+export const updateCollection = (id, collection) => (dispatch) => {
+  return APIUtil.updateCollection(id, collection).then(
+    response => dispatch(receiveCollection(response))
   );
 };
