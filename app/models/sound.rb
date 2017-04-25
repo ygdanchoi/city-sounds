@@ -1,8 +1,8 @@
 class Sound < ApplicationRecord
-  validates :title, :duration, :collection, presence: true
+  validates :title, :duration, presence: true
 
   belongs_to :collection
-  has_one :user, through: :collection
+  has_one :user, through: :collection, inverse_of: :sounds
 
   has_attached_file :audio
     validates_attachment_content_type :audio,
