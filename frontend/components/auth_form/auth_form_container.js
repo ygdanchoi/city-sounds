@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
-import { signup, login, logout, receiveErrors } from '../../actions/session_actions';
+import { signup, login, logout } from '../../actions/session_actions';
+import { receiveErrors } from '../../actions/error_actions';
 import AuthForm from './auth_form';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     loggedIn: state.session.currentUser !== null,
-    errors: state.session.errors,
+    errors: state.errors,
     formType: ownProps.location.pathname.slice(1)
   };
 };
