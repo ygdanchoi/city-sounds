@@ -191,7 +191,7 @@ class CollectionForm extends React.Component {
         { artworkForm }
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
-        <button onClick={ this.handleSubmit }>Publish/Update</button>
+        <button onClick={ this.handleSubmit }>Log state to console</button>
       </div>
     );
   }
