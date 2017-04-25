@@ -22,6 +22,7 @@ class CollectionForm extends React.Component {
   }
 
   componentDidMount() {
+    this.props.clearErrors();
     const id = this.props.collectionId;
     if (id) {
       this.props.fetchCollection(id).then(
@@ -199,6 +200,16 @@ class CollectionForm extends React.Component {
           handleChange={ this.handleChangeSound(idx) } />
       )
     );
+
+    let titleErrors = [];
+    let soundsErrors = [];
+    if (this.props.errors.title) {
+      titleErrors = 'Title ' + this.props.errors.title.join(', ');
+    }
+    if (this.props.errors.sounds) {
+      soundsErrors = this.props.errors.sounds.join(', ');
+    }
+
     return (
       <div>
         <h1>{ tempHeader }</h1>
@@ -214,8 +225,10 @@ class CollectionForm extends React.Component {
               onChange={ this.handleAddSound }
               style={ { display: 'none' } } />
             <a href='' onClick={ this.handleClickSound }>add sound</a>
+            { soundsErrors }
           </div>
         <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
+        { titleErrors }
         { artworkForm }
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
