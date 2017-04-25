@@ -13,6 +13,8 @@ class CollectionForm extends React.Component {
     };
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddArtwork = this.handleAddArtwork.bind(this);
+    this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
   }
 
   componentDidMount() {
@@ -43,12 +45,6 @@ class CollectionForm extends React.Component {
     e.preventDefault();
     const soundInput = document.getElementById('sound-input');
     soundInput.click();
-  }
-
-  handleClickArtwork(e) {
-    e.preventDefault();
-    const artworkInput = document.getElementById('artwork-input');
-    artworkInput.click();
   }
 
   handleAddSound(e) {
@@ -84,6 +80,35 @@ class CollectionForm extends React.Component {
     };
   }
 
+  handleClickArtwork(e) {
+    e.preventDefault();
+    const artworkInput = document.getElementById('artwork-input');
+    artworkInput.click();
+  }
+
+  handleAddArtwork(e) {
+    e.preventDefault();
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = (() => {
+      this.setState({
+        artworkFile: file,
+        artworkUrl: fileReader.result
+      });
+    }).bind(this);
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  handleDeleteArtwork(e) {
+    e.preventDefault();
+    this.setState({
+      artworkFile: null,
+      artworkUrl: '/avatars/original/missing.png',
+    });
+  }
+
   render() {
     let tempHeader;
     if (this.props.collectionId) {
@@ -99,18 +124,18 @@ class CollectionForm extends React.Component {
       artworkForm = (
         <div className='collection-form-artwork-missing'>
           <input id='artwork-input' type='file'
-            onChange={ null }
+            onChange={ this.handleAddArtwork }
             style={ { display: 'none' } } />
-          <a href='' onClick={ null }>upload artwork</a>
+          <a href='' onClick={ this.handleClickArtwork }>upload artwork</a>
         </div>
       );
     } else {
       artwork = <img style={ { width: '72px', height: '72px' } } src={ this.state.artworkUrl } />;
       artworkForm = (
         <div className='collection-form-avatar-container'>
-          <img style={ { width: '210px', height: '210px' } } src={ this.state.artworkUrl } />;
+          <img style={ { width: '210px', height: '210px' } } src={ this.state.artworkUrl } />
           <div className='collection-form-avatar-delete' >
-            <a href='' onClick={ null }>X</a>
+            <a href='' onClick={ this.handleDeleteArtwork }>X</a>
           </div>
         </div>
       );
