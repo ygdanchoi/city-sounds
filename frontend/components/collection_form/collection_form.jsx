@@ -174,10 +174,10 @@ class CollectionForm extends React.Component {
             <ul>
               { sounds }
             </ul>
-            <input id='file-input' type='file'
+            <input id='sound-input' type='file'
               onChange={ this.handleAddSound }
               style={ { display: 'none' } } />
-            <a href='' onClick={ this.handleClickFile }>add sound</a>
+            <a href='' onClick={ this.handleClickSound }>add sound</a>
           </div>
         <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
         { artworkForm }
