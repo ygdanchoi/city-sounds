@@ -75,7 +75,7 @@ class NavBar extends React.Component {
         <ul className='nav-bar-main-ul nav-bar-main-ul-center'>
           <li className='nav-bar-main-li nav-bar-main-li-selectable' onClick={ this.redirectToAddSounds }>
             <nav className='nav-bar-center'>
-              <p className='nav-bar-add-sound'>add sounds</p>
+              <p className='nav-bar-add-sound'>add sound collection</p>
             </nav>
           </li>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
