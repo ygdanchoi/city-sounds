@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
+import SoundListItem from './sound_list_item';
 
 class CollectionForm extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class CollectionForm extends React.Component {
       description: '',
     };
     this.handleAddSound = this.handleAddSound.bind(this);
+    this.handleChangeSound = this.handleChangeSound.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
@@ -54,7 +56,7 @@ class CollectionForm extends React.Component {
     const fileReader = new FileReader();
     fileReader.onloadend = (() => {
       const sound = {
-        title: 'new sound',
+        title: '',
         duration: 0,
         audioFile: file,
         audioUrl: fileReader.result,
@@ -74,6 +76,18 @@ class CollectionForm extends React.Component {
       this.setState({
         [field]: e.currentTarget.value
       });
+    };
+  }
+
+  handleChangeSound(idx) {
+    return (field) => {
+      return (e) => {
+        const sounds = this.state.sounds.slice();
+        sounds[idx][field] = e.currentTarget.value;
+        this.setState({
+          sounds: sounds
+        });
+      };
     };
   }
 
@@ -148,15 +162,13 @@ class CollectionForm extends React.Component {
         </div>
       );
     }
-    let soundKey = 0;
     const sounds = this.state.sounds.map(
-      sound => (
-        <li key={ ++soundKey }>
-          <p>{ soundKey + '. title: ' + sound.title }</p>
-          <p>{ soundKey + '. duration: ' + sound.duration }</p>
-          <p>{ soundKey + '. audioUrl: ' + sound.audioUrl }</p>
-          <p>{ soundKey + '. audioFile: ' + (sound.audioFile ? sound.audioFile.name : null) }</p>
-        </li>
+      (sound, idx) => (
+        <SoundListItem
+          key={ idx }
+          sound={ sound }
+          idx={ idx }
+          handleChange={ this.handleChangeSound(idx) } />
       )
     );
     return (
