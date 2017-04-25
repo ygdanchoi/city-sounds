@@ -11,7 +11,8 @@ class CollectionForm extends React.Component {
       title: '',
       description: '',
     };
-    this.handleAddAudio = this.handleAddAudio.bind(this);
+    this.handleAddSound = this.handleAddSound.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -38,13 +39,19 @@ class CollectionForm extends React.Component {
     }
   }
 
-  handleClickFile(e) {
+  handleClickSound(e) {
     e.preventDefault();
-    const fileInput = document.getElementById('file-input');
-    fileInput.click();
+    const soundInput = document.getElementById('sound-input');
+    soundInput.click();
   }
 
-  handleAddAudio(e) {
+  handleClickArtwork(e) {
+    e.preventDefault();
+    const artworkInput = document.getElementById('artwork-input');
+    artworkInput.click();
+  }
+
+  handleAddSound(e) {
     e.preventDefault();
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -59,13 +66,22 @@ class CollectionForm extends React.Component {
     }
     const sound = {
       title: 'new sound',
-      duration: 1,
+      duration: 0,
       audioUrl: null,
       audioFile: file,
     };
     this.setState({
       sounds: this.state.sounds.concat(sound)
     });
+    e.currentTarget.value = '';
+  }
+
+  handleChange(field) {
+    return (e) => {
+      this.setState({
+        [field]: e.currentTarget.value
+      });
+    };
   }
 
   render() {
@@ -76,11 +92,28 @@ class CollectionForm extends React.Component {
       tempHeader = 'add collection';
     }
     let artwork;
+    let artworkForm;
     const artworkMissing = this.state.artworkUrl === '/avatars/original/missing.png';
     if (artworkMissing) {
       artwork = <img style={ { width: '72px', height: '72px' } } />;
+      artworkForm = (
+        <div className='collection-form-artwork-missing'>
+          <input id='artwork-input' type='file'
+            onChange={ null }
+            style={ { display: 'none' } } />
+          <a href='' onClick={ null }>upload artwork</a>
+        </div>
+      );
     } else {
       artwork = <img style={ { width: '72px', height: '72px' } } src={ this.state.artworkUrl } />;
+      artworkForm = (
+        <div className='collection-form-avatar-container'>
+          <img style={ { width: '210px', height: '210px' } } src={ this.state.artworkUrl } />;
+          <div className='collection-form-avatar-delete' >
+            <a href='' onClick={ null }>X</a>
+          </div>
+        </div>
+      );
     }
     let soundKey = 0;
     const sounds = this.state.sounds.map(
@@ -105,13 +138,14 @@ class CollectionForm extends React.Component {
               { sounds }
             </ul>
             <input id='file-input' type='file'
-              onChange={ this.handleAddAudio }
+              onChange={ this.handleAddSound }
               style={ { display: 'none' } } />
             <a href='' onClick={ this.handleClickFile }>add sound</a>
           </div>
-        <input placeholder='collection name' type='text' value= { this.state.title } />
+        <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
+        { artworkForm }
         <label htmlFor='collection-form-description-input'>about this collection</label>
-        <textarea id='collection-form-desciption-input' value= { this.state.description } />
+        <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
       </div>
     );
   }
