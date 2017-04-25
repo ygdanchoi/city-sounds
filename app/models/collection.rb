@@ -1,7 +1,7 @@
 class Collection < ApplicationRecord
   validates :title, :user, presence: true
 
-  has_many :sounds, inverse_of: :collection
+  has_many :sounds, dependent: :destroy, inverse_of: :collection
   belongs_to :user
 
   has_attached_file :artwork

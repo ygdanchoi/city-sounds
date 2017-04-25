@@ -21,3 +21,14 @@ export const fetchCollection = (id) => {
     error: err => console.log(err),
   });
 };
+
+export const createCollection = (formData) => {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/collections',
+    contentType: false,
+    processData: false,
+    data: formData,
+    error: err => console.log(err),
+  });
+};

@@ -19,6 +19,10 @@ class Api::CollectionsController < ApplicationController
   def create
     @collection = Collection.new(collection_params)
     if @collection.save
+      @sounds.each do |sound|
+        sound.collection_id = @collection.id
+        sound.save!
+      end
       render 'api/collections/show'
     else
       render json: @collection.errors, status: 422
@@ -42,7 +46,16 @@ class Api::CollectionsController < ApplicationController
 
   private
   def collection_params
-    result = params.require(:collection).permit(:title, :description, :artwork)
+    sounds_meta = JSON.parse(params[:collection][:sounds])
+    @sounds = []
+    sounds_meta.each_with_index do |sound, idx|
+      @sounds << Sound.new(
+        title: sound['title'],
+        duration: sound['duration'].to_i,
+        audio: params[:collection]["audio#{idx}"]
+      )
+    end
+    result = params.require(:collection).permit(:title, :description, :artwork, :user_id)
     if result[:artwork] == 'null'
       return result.merge(artwork: nil)
     else
