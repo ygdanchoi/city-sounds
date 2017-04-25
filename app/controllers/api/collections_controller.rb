@@ -18,25 +18,33 @@ class Api::CollectionsController < ApplicationController
 
   def create
     @collection = Collection.new(collection_params)
-    ActiveRecord::Base.transaction do
-      if @collection.save
-        parse_and_save_sounds
-        render 'api/collections/show'
-      else
-        render json: @collection.errors, status: 422
+    begin
+      ActiveRecord::Base.transaction do
+        if @collection.save
+          parse_and_save_sounds
+          render 'api/collections/show'
+        else
+          render json: @collection.errors, status: 422
+        end
       end
+    rescue ActiveRecord::RecordInvalid => exception
+      render json: { sounds: exception.message[19..-1].split(', ') }, status: 422
     end
   end
 
   def update
     @collection = Collection.find(params[:id])
-    ActiveRecord::Base.transaction do
-      if @collection.update!(collection_params)
-        parse_and_save_sounds
-        render 'api/collections/show'
-      else
-        render json: @collection.errors, status: 422
+    begin
+      ActiveRecord::Base.transaction do
+        if @collection.update(collection_params)
+          parse_and_save_sounds
+          render 'api/collections/show'
+        else
+          render json: @collection.errors, status: 422
+        end
       end
+    rescue ActiveRecord::RecordInvalid => exception
+      render json: @collection.errors, status: 422
     end
   end
 
@@ -60,8 +68,7 @@ class Api::CollectionsController < ApplicationController
     sounds = JSON.parse(params[:collection][:sounds])
     sounds.each_with_index do |sound, idx|
       if sound['id']
-        s = Sound.find(sound['id'])
-        s.update!(
+        Sound.find(sound['id']).update!(
           id: sound['id'],
           title: sound['title'],
           duration: sound['duration'].to_i,

@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/collection_api_util';
+import { RECEIVE_ERRORS, receiveErrors } from '../actions/error_actions';
 
 export const RECEIVE_COLLECTIONS = 'RECEIVE_COLLECTIONS';
 export const RECEIVE_COLLECTION = 'RECEIVE_COLLECTION';
@@ -37,18 +38,21 @@ export const fetchCollection = (id) => (dispatch) => {
 
 export const createCollection = (collection) => (dispatch) => {
   return APIUtil.createCollection(collection).then(
-    response => dispatch(receiveCollection(response))
+    response => dispatch(receiveCollection(response)),
+    response => dispatch(receiveErrors(response.responseJSON))
   );
 };
 
 export const updateCollection = (id, collection) => (dispatch) => {
   return APIUtil.updateCollection(id, collection).then(
-    response => dispatch(receiveCollection(response))
+    response => dispatch(receiveCollection(response)),
+    response => dispatch(receiveErrors(response.responseJSON))
   );
 };
 
 export const deleteCollection = (id) => (dispatch) => {
   return APIUtil.deleteCollection(id).then(
-    response => dispatch(receiveCollection(response))
+    response => dispatch(receiveCollection(response)),
+    response => dispatch(receiveErrors(response.responseJSON))
   );
 };
