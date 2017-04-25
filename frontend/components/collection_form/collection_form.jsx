@@ -132,7 +132,9 @@ class CollectionForm extends React.Component {
     formData.append('collection[title]', this.state.title);
     formData.append('collection[description]', this.state.description);
     formData.append('collection[user_id]', this.props.currentUser.id);
-    this.props.createCollection(formData);
+    this.props.createCollection(formData).then(
+      (response) => this.redirectToCollection(response.collection.id)
+    );
   }
 
   handleUpdate(e) {
@@ -148,7 +150,13 @@ class CollectionForm extends React.Component {
     formData.append('collection[title]', this.state.title);
     formData.append('collection[description]', this.state.description);
     formData.append('collection[user_id]', this.props.currentUser.id);
-    this.props.updateCollection(id, formData);
+    this.props.updateCollection(id, formData).then(
+      () => this.redirectToCollection(id)
+    );
+  }
+
+  redirectToCollection(id) {
+    hashHistory.push(`collections/${id}`);
   }
 
   render() {

@@ -18,21 +18,25 @@ class Api::CollectionsController < ApplicationController
 
   def create
     @collection = Collection.new(collection_params)
-    if @collection.save
-      parse_and_save_sounds
-      render 'api/collections/show'
-    else
-      render json: @collection.errors, status: 422
+    ActiveRecord::Base.transaction do
+      if @collection.save
+        parse_and_save_sounds
+        render 'api/collections/show'
+      else
+        render json: @collection.errors, status: 422
+      end
     end
   end
 
   def update
     @collection = Collection.find(params[:id])
-    if @collection.update!(collection_params)
-      parse_and_save_sounds
-      render 'api/collections/show'
-    else
-      render json: @collection.errors, status: 422
+    ActiveRecord::Base.transaction do
+      if @collection.update!(collection_params)
+        parse_and_save_sounds
+        render 'api/collections/show'
+      else
+        render json: @collection.errors, status: 422
+      end
     end
   end
 

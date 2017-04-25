@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import SoundListItem from './sound_list_item';
 import UserSidebarContainer from '../user_sidebar/user_sidebar_container';
 
@@ -7,6 +7,7 @@ class Collection extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +24,13 @@ class Collection extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteCollection(this.props.params.collectionId);
+    this.props.deleteCollection(this.props.params.collectionId).then(
+      () => this.redirectToCurrentUser()
+    );
+  }
+
+  redirectToCurrentUser() {
+    hashHistory.push(`users/${this.props.currentUser.id}`);
   }
 
   render() {
