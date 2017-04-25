@@ -28,7 +28,8 @@ class Api::CollectionsController < ApplicationController
 
   def update
     @collection = Collection.find(params[:id])
-    if @collection.update(collection_params)
+    if @collection.update!(collection_params)
+      parse_and_save_sounds
       render 'api/collections/show'
     else
       render json: @collection.errors, status: 422
@@ -43,9 +44,9 @@ class Api::CollectionsController < ApplicationController
 
   private
   def collection_params
-    result = params.require(:collection).permit(:title, :description, :artwork, :user_id)
-    if result[:artwork] == 'null'
-      return result.merge(artwork: nil)
+    result = params.require(:collection).permit(:title, :description, :user_id)
+    if params[:collection][:artwork] != 'null'
+      return result.merge(artwork: params[:collection][:artwork])
     else
       return result
     end
@@ -54,12 +55,21 @@ class Api::CollectionsController < ApplicationController
   def parse_and_save_sounds
     sounds = JSON.parse(params[:collection][:sounds])
     sounds.each_with_index do |sound, idx|
-      Sound.create(
-        title: sound['title'],
-        duration: sound['duration'].to_i,
-        audio: params[:collection]["audio#{idx}"],
-        collection_id: @collection.id
-      )
+      if sound['id']
+        s = Sound.find(sound['id'])
+        s.update!(
+          id: sound['id'],
+          title: sound['title'],
+          duration: sound['duration'].to_i,
+        )
+      else
+        Sound.create!(
+          title: sound['title'],
+          duration: sound['duration'].to_i,
+          audio: params[:collection]["audio#{idx}"],
+          collection_id: @collection.id
+        )
+      end
     end
   end
 end
