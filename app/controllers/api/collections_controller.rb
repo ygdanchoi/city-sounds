@@ -44,7 +44,7 @@ class Api::CollectionsController < ApplicationController
         end
       end
     rescue ActiveRecord::RecordInvalid => exception
-      render json: @collection.errors, status: 422
+      render json: { sounds: exception.message[19..-1].split(', ') }, status: 422
     end
   end
 
