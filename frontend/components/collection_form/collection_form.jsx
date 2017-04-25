@@ -15,6 +15,7 @@ class CollectionForm extends React.Component {
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChangeSound = this.handleChangeSound.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDeleteSound = this.handleDeleteSound.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
@@ -90,6 +91,16 @@ class CollectionForm extends React.Component {
           sounds: sounds
         });
       };
+    };
+  }
+
+  handleDeleteSound(idx) {
+    return (e) => {
+      e.preventDefault();
+      const sounds = this.state.sounds;
+      this.setState({
+        sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1))
+      });
     };
   }
 
@@ -197,7 +208,8 @@ class CollectionForm extends React.Component {
           key={ idx }
           sound={ sound }
           idx={ idx }
-          handleChange={ this.handleChangeSound(idx) } />
+          handleChange={ this.handleChangeSound(idx) }
+          handleDeleteSound={ this.handleDeleteSound(idx) } />
       )
     );
 

@@ -26,6 +26,7 @@ const SoundListItem = (props) => {
         <p>{ props.idx + '. duration: ' + toHHMMSS(props.sound.duration) }</p>
         <p>{ props.idx + '. audioUrl: ' + props.sound.audioUrl }</p>
         <p>{ props.idx + '. audioFile: ' + (props.sound.audioFile ? props.sound.audioFile.name : null) }</p>
+        <a onClick={ props.handleDeleteSound }>X</a>
         <input type='text' placeholder='track name' value={ props.sound.title } onChange={ props.handleChange('title') }  />
         <label htmlFor={`duration-${props.idx}`}>duration</label>
         <input type='number' id={`duration-${props.idx}`} value={ props.sound.duration } onChange={ props.handleChange('duration') }  />
