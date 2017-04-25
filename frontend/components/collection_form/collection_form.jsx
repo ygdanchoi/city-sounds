@@ -9,6 +9,7 @@ class CollectionForm extends React.Component {
       artworkFile: null,
       artworkUrl: '/avatars/original/missing.png',
       sounds: [],
+      soundsToDelete: [],
       title: '',
       description: '',
     };
@@ -99,7 +100,8 @@ class CollectionForm extends React.Component {
       e.preventDefault();
       const sounds = this.state.sounds;
       this.setState({
-        sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1))
+        sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1)),
+        soundsToDelete: this.state.soundsToDelete.concat(sounds[idx])
       });
     };
   }
@@ -162,6 +164,9 @@ class CollectionForm extends React.Component {
     formData.append('collection[title]', this.state.title);
     formData.append('collection[description]', this.state.description);
     formData.append('collection[user_id]', this.props.currentUser.id);
+    this.state.soundsToDelete.forEach((sound) => {
+      this.props.deleteSound(sound.id);
+    });
     this.props.updateCollection(id, formData).then(
       () => this.redirectToCollection(id)
     );

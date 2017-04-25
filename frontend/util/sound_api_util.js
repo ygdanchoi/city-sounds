@@ -22,3 +22,11 @@ export const fetchSound = (id) => {
     error: err => console.log(err),
   });
 };
+
+export const deleteSound = (id) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/sounds/${id}`,
+    error: err => console.log(err),
+  });
+};
