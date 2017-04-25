@@ -14,6 +14,10 @@ class AuthForm extends React.Component {
     this.handleAnyone = this.handleAnyone.bind(this);
   }
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   componentWillReceiveProps(newProps) {
     if (this.props.formType !== newProps.formType) {
       this.props.clearErrors();
