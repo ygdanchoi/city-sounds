@@ -1,26 +1,18 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
+import SoundForm from './sound_form';
 
 class CollectionForm extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.collection) {
-      this.state = {
-        artworkFile: null,
-        artworkUrl: this.props.collection.artworkUrl,
-        soundIds: this.props.collection.soundIds,
-        title: this.props.collection.title,
-        description: this.props.collection.description,
-      };
-    } else {
-      this.state = {
-        artworkFile: null,
-        artworkUrl: '/avatars/original/missing.png',
-        soundIds: [],
-        title: '',
-        description: '',
-      };
-    }
+    this.state = {
+      artworkFile: null,
+      artworkUrl: '/avatars/original/missing.png',
+      audioFiles: [],
+      audioUrls: [],
+      title: '',
+      description: '',
+    };
   }
 
   componentDidMount() {
@@ -29,11 +21,19 @@ class CollectionForm extends React.Component {
       this.props.fetchCollection(id).then(
         (response) => {
           this.setState({
-            artworkFile: null,
             artworkUrl: response.collection.artworkUrl,
-            soundIds: response.collection.soundIds,
             title: response.collection.title,
             description: response.collection.description
+          });
+        }
+      )
+      this.props.fetchCollectionSounds(id).then(
+        (response) => {
+          this.setState({
+            audioUrls: Object.keys(response.sounds).map(
+              id => response.sounds[id].audioUrl
+            ),
+            audioFiles: Array(Object.keys(response.sounds).length)
           });
         }
       );
@@ -60,8 +60,7 @@ class CollectionForm extends React.Component {
         { artwork }
         <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
         <p>by { this.props.currentUser.username }</p>
-        <p>sounds</p>
-        <p>{ this.state.soundIds.join(', ') }</p>
+        <SoundForm audioUrls={ this.state.audioUrls } audioFiles={ this.state.audioFiles } />
         <input placeholder='collection name' type='text' value= { this.state.title } />
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.state.description } />
