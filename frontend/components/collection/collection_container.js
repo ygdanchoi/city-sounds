@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Collection from './collection';
 
 import { fetchUser, updateUser, updateUserAvatar } from '../../actions/user_actions';
-import { fetchCollection } from '../../actions/collection_actions';
+import { fetchCollection, deleteCollection } from '../../actions/collection_actions';
 import { fetchCollectionSounds } from '../../actions/sound_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     updateUserAvatar: (id, formData) => dispatch(updateUserAvatar(id, formData)),
     fetchCollection: (id) => dispatch(fetchCollection(id)),
     fetchCollectionSounds: (collectionId) => dispatch(fetchCollectionSounds(collectionId)),
+    deleteCollection: (id) => dispatch(deleteCollection(id)),
   };
 };
 

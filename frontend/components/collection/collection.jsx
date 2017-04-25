@@ -6,6 +6,7 @@ import UserSidebarContainer from '../user_sidebar/user_sidebar_container';
 class Collection extends React.Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +19,11 @@ class Collection extends React.Component {
       this.props.fetchCollection(newProps.params.collectionId);
       this.props.fetchCollectionSounds(newProps.params.collectionId);
     }
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteCollection(this.props.params.collectionId);
   }
 
   render() {
@@ -40,7 +46,7 @@ class Collection extends React.Component {
           <Link to={ `/edit-collection?id=${ this.props.collection.id }` }>
             <p>Edit</p>
           </Link>
-          <Link>Delete</Link>
+          <a onClick={ this.handleDelete }>Delete</a>
         </div>
       );
     }

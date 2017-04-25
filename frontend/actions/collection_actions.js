@@ -46,3 +46,9 @@ export const updateCollection = (id, collection) => (dispatch) => {
     response => dispatch(receiveCollection(response))
   );
 };
+
+export const deleteCollection = (id) => (dispatch) => {
+  return APIUtil.deleteCollection(id).then(
+    response => dispatch(receiveCollection(response))
+  );
+};

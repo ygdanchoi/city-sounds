@@ -43,3 +43,11 @@ export const updateCollection = (id, formData) => {
     error: err => console.log(err),
   });
 };
+
+export const deleteCollection = (id) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/collections/${id}`,
+    error: err => console.log(err),
+  });
+};
