@@ -15,6 +15,7 @@ class CollectionForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -109,6 +110,17 @@ class CollectionForm extends React.Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('collection[artworkFile]', this.state.artworkFile);
+    formData.append('collection[artworkUrl]', null);
+    formData.append('collection[sounds]', this.state.sounds);
+    formData.append('collection[title]', this.state.title);
+    formData.append('collection[description]', this.state.description);
+    console.log({ collection: this.state });
+  }
+
   render() {
     let tempHeader;
     if (this.props.collectionId) {
@@ -171,6 +183,7 @@ class CollectionForm extends React.Component {
         { artworkForm }
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
+        <button onClick={ this.handleSubmit }>Publish/Update</button>
       </div>
     );
   }
