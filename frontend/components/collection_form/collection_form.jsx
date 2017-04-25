@@ -51,25 +51,21 @@ class CollectionForm extends React.Component {
   handleAddSound(e) {
     e.preventDefault();
     const file = e.currentTarget.files[0];
-    // const fileReader = new FileReader();
-    // fileReader.onloadend = (() => {
-    //   this.setState({
-    //     avatarFile: file,
-    //     avatarUrl: fileReader.result
-    //   });
-    // }).bind(this);
-    // if (file) {
-    //   fileReader.readAsDataURL(file);
-    // }
-    const sound = {
-      title: 'new sound',
-      duration: 0,
-      audioUrl: null,
-      audioFile: file,
-    };
-    this.setState({
-      sounds: this.state.sounds.concat(sound)
-    });
+    const fileReader = new FileReader();
+    fileReader.onloadend = (() => {
+      const sound = {
+        title: 'new sound',
+        duration: 0,
+        audioFile: file,
+        audioUrl: fileReader.result,
+      };
+      this.setState({
+        sounds: this.state.sounds.concat(sound)
+      });
+    }).bind(this);
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
     e.currentTarget.value = '';
   }
 
