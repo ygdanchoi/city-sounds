@@ -34,10 +34,10 @@ class Collection extends React.Component {
       (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } />
     );
     let editDelete = null;
-    if (this.props.collection.user.id === this.props.currentUser.id) {
+    if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {
       editDelete = (
         <div>
-          <Link to={ `/edit-collection?id=${this.props.collection.id}` }>
+          <Link to={ `/edit-collection?id=${ this.props.collection.id }` }>
             <p>Edit</p>
           </Link>
           <Link>Delete</Link>
