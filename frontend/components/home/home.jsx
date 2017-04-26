@@ -19,6 +19,10 @@ class Home extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
   logout(e) {
     e.preventDefault();
     this.props.logout();
