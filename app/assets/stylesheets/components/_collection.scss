@@ -29,6 +29,7 @@
 .collection-info-user {
   font-weight: normal;
   font-size: 10.5pt;
+  margin-bottom: 12px;
 }
 
 .collection-edit-delete {
@@ -38,10 +39,15 @@
 .collection-edit, .collection-delete {
   background-color: #ffffe0;
   border: 1px solid #c0c0c0;
+  width: 56px;
+  height: 22px;
+  font-size: 9pt;
+  margin-right: 9px;
 }
 
 .collection-edit:hover, .collection-delete:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .collection-artwork-section {
