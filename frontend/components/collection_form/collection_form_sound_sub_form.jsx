@@ -15,7 +15,6 @@ class CollectionFormSoundSubForm extends React.Component {
     return (
       <div>
         <input className='sub-form-title-input' type='text' placeholder=' track name' value={ this.props.title } onChange={ this.props.handleChange('title', formProps) } />
-        <div className='sub-form-divider' />
       </div>
     );
   }
@@ -23,5 +22,6 @@ class CollectionFormSoundSubForm extends React.Component {
 
 export default CollectionFormSoundSubForm;
 
+// <div className='sub-form-divider' />
 // <label htmlFor={`duration-${this.props.idx}`}>duration</label>
 // <input type='number' id={`duration-${this.props.idx}`} value={ this.props.duration } onChange={ this.props.handleChange('duration', formProps) } />

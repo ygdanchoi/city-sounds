@@ -38,8 +38,8 @@ class CollectionFormCollectionSubForm extends React.Component {
         <div className='sub-form-divider' />
         { artworkForm }
         <div className='sub-form-divider' />
-        <label htmlFor='collection-form-description-input'>about this collection</label>
-        <textarea id='collection-form-desciption-input' value= { this.props.description } onChange={ this.props.handleChange('description') } />
+        <label className='sub-form-field-label' htmlFor='collection-form-description-input'>about this collection:</label>
+        <textarea id='collection-form-field' className='sub-form-field' value= { this.props.description } onChange={ this.props.handleChange('description') } />
       </div>
     );
   }
