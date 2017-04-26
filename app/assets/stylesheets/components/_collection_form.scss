@@ -19,8 +19,14 @@
   width: 448px;
 }
 
-.collection-form-collection-tab {
+.collection-form-collection-tab:hover {
+  cursor: pointer;
   background-color: red;
+}
+
+.collection-form-sound-tab:hover {
+  cursor: pointer;
+  background-color: blue;
 }
 
 .collection-form-artwork-missing {

@@ -25,6 +25,7 @@ class CollectionForm extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleClickCollectionTab = this.handleClickCollectionTab.bind(this);
+    this.handleClickSoundTab = this.handleClickSoundTab.bind(this);
   }
 
   componentDidMount() {
@@ -228,6 +229,14 @@ class CollectionForm extends React.Component {
     });
   }
 
+  handleClickSoundTab(collectionFormSoundSubForm) {
+    return () => {
+      this.setState({
+        currentForm: collectionFormSoundSubForm
+      });
+    }
+  }
+
   render() {
     const id = this.props.collectionId;
     let artwork;
@@ -261,7 +270,8 @@ class CollectionForm extends React.Component {
           sound={ sound }
           idx={ idx }
           handleChange={ this.handleChangeSound(idx) }
-          handleDeleteSound={ this.handleDeleteSound(idx) } />
+          handleDeleteSound={ this.handleDeleteSound(idx) }
+          handleClickSoundTab={ this.handleClickSoundTab } />
       )
     );
 
