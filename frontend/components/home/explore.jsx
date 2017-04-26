@@ -15,9 +15,6 @@ class Explore extends React.Component {
     return (
       <div className='explore'>
         <main className='explore-main'>
-          <div className='explore-heading'>
-            <h3>Explore</h3>
-          </div>
           <section>
             <ExploreList collections={ this.props.collections } />
           </section>

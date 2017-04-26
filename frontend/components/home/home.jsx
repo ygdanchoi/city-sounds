@@ -67,7 +67,9 @@ class Home extends React.Component {
             <figure className='home-header-logo'>
               <h2><font color="#639aa9">.:.:.</font> citysounds</h2>
             </figure>
-            <p>Search... &#9906;</p>
+            <div className='home-header-search'>
+              <p>Search... &#9906;</p>
+            </div>
           </header>
           <header className='home-header-main-bottom'>
             { homeNavLeft }
@@ -84,6 +86,11 @@ class Home extends React.Component {
         </div>
         <figure className='home-figure'>
         </figure>
+        <div className='explore-heading'>
+          <div className='explore-heading-main'>
+            <h3>Discover</h3>
+          </div>
+        </div>
         <ExploreContainer />
       </div>
     );
