@@ -33,11 +33,11 @@ class CollectionFormCollectionSubForm extends React.Component {
     }
     return (
       <div>
-        <input placeholder='collection name' type='text' value= { this.props.title } onChange={ this.props.handleChange('title') } />
+        <input placeholder='collection name' type='text' value= { this.props.title } onChange={ this.props.handleChangeTitle } />
           { titleErrors }
           { artworkForm }
         <label htmlFor='collection-form-description-input'>about this collection</label>
-        <textarea id='collection-form-desciption-input' value= { this.props.description } onChange={ this.props.handleChange('description') } />
+        <textarea id='collection-form-desciption-input' value= { this.props.description } onChange={ this.props.handleChangeDescription } />
       </div>
     );
   }

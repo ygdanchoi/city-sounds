@@ -17,7 +17,8 @@ class CollectionForm extends React.Component {
     };
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChangeSound = this.handleChangeSound.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeTitle = this.handleChangeTitle.bind(this);
+    this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleDeleteSound = this.handleDeleteSound.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
@@ -78,12 +79,42 @@ class CollectionForm extends React.Component {
     e.currentTarget.value = '';
   }
 
-  handleChange(field) {
-    return (e) => {
-      this.setState({
-        [field]: e.currentTarget.value
-      });
-    };
+  handleChangeTitle(e) {
+    this.setState({
+      title: e.currentTarget.value,
+      currentForm: (
+        <CollectionFormCollectionSubForm
+          title={ e.currentTarget.value }
+          description={ this.state.description }
+          handleChangeTitle={ this.handleChangeTitle }
+          handleChangeDescription={ this.handleChangeDescription }
+          errors={ this.props.errors }
+          artworkUrl={ this.state.artworkUrl }
+          handleAddArtwork={ this.handleAddArtwork }
+          handleClickArtwork={ this.handleClickArtwork }
+          artworkUrl={ this.state.artworkUrl }
+          handleDeleteArtwork={ this.handleDeleteArtwork } />
+        )
+    });
+  }
+
+  handleChangeDescription(e) {
+    this.setState({
+      description: e.currentTarget.value,
+      currentForm: (
+        <CollectionFormCollectionSubForm
+          title={ this.state.title }
+          description={ e.currentTarget.value }
+          handleChangeTitle={ this.handleChangeTitle }
+          handleChangeDescription={ this.handleChangeDescription }
+          errors={ this.props.errors }
+          artworkUrl={ this.state.artworkUrl }
+          handleAddArtwork={ this.handleAddArtwork }
+          handleClickArtwork={ this.handleClickArtwork }
+          artworkUrl={ this.state.artworkUrl }
+          handleDeleteArtwork={ this.handleDeleteArtwork } />
+        )
+    });
   }
 
   handleChangeSound(idx) {
@@ -182,7 +213,17 @@ class CollectionForm extends React.Component {
   handleClickCollectionTab() {
     this.setState({
       currentForm: (
-        null
+        <CollectionFormCollectionSubForm
+          title={ this.state.title }
+          description={ this.state.description }
+          handleChangeTitle={ this.handleChangeTitle }
+          handleChangeDescription={ this.handleChangeDescription }
+          errors={ this.props.errors }
+          artworkUrl={ this.state.artworkUrl }
+          handleAddArtwork={ this.handleAddArtwork }
+          handleClickArtwork={ this.handleClickArtwork }
+          artworkUrl={ this.state.artworkUrl }
+          handleDeleteArtwork={ this.handleDeleteArtwork } />
       )
     });
   }
@@ -257,16 +298,6 @@ class CollectionForm extends React.Component {
             <button onClick={ this.handleUpdate }>handleUpdate</button>
           </section>
           <section className='collection-form-main-right'>
-            <CollectionFormCollectionSubForm
-              title={ this.state.title }
-              description={ this.state.description }
-              handleChange={ this.handleChange }
-              errors={ this.props.errors }
-              artworkUrl={ this.state.artworkUrl }
-              handleAddArtwork={ this.handleAddArtwork }
-              handleClickArtwork={ this.handleClickArtwork }
-              artworkUrl={ this.state.artworkUrl }
-              handleDeleteArtwork={ this.handleDeleteArtwork } />
             { this.state.currentForm }
           </section>
         </main>
