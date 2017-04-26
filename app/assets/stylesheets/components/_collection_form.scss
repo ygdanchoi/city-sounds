@@ -78,6 +78,22 @@
 
 .collection-form-sound-tab {
   border-top: 1px dotted #c5c5c5;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.collection-form-sound-tab-left {
+
+}
+
+.collection-form-sound-tab-right {
+  width: 373px;
+  background-color: red;
+}
+
+.collection-form-sound-tab-right-top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .collection-form-artwork-container {

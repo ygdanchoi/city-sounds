@@ -31,11 +31,21 @@ const SoundListItem = (props) => {
     return (
       <li className='collection-form-sound-list-item'>
         <div className='collection-form-sound-tab' onClick={ props.handleClickSoundTab(collectionFormSoundSubForm) }>
-          <p>{ props.idx + '. title: ' + (props.sound.title === '' ? 'Untitled Sound' : props.sound.title) }</p>
-          <p>{ props.idx + '. duration: ' + toHHMMSS(props.sound.duration) }</p>
-          <p>{ props.idx + '. audioUrl: ' + props.sound.audioUrl }</p>
-          <p>{ props.idx + '. audioFile: ' + (props.sound.audioFile ? props.sound.audioFile.name : null) }</p>
-          <a onClick={ props.handleDeleteSound }>X</a>
+          <div className='collection-form-sound-tab-left'>
+            <p>{ parseInt(props.idx) + 1 }</p>
+          </div>
+          <div className='collection-form-sound-tab-right'>
+            <div className='collection-form-sound-tab-right-top'>
+              <p>{ props.sound.title === '' ? 'Untitled Sound' : props.sound.title }</p>
+              <a onClick={ props.handleDeleteSound }>
+                <div>x</div>
+              </a>
+            </div>
+            <div className='collection-form-sound-tab-right-bottom'>
+              <p>{ props.sound.audioFile ? props.sound.audioFile.name : 'previously uploaded' }</p>
+              <p>downloadable, free</p>
+            </div>
+          </div>
         </div>
 
       </li>

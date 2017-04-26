@@ -167,6 +167,7 @@ class CollectionForm extends React.Component {
         sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1)),
         soundsToDelete: this.state.soundsToDelete.concat(sounds[idx])
       });
+      console.log(this.state);
       this.handleClickCollectionTab();
     };
   }
@@ -342,7 +343,7 @@ class CollectionForm extends React.Component {
                 </div>
               </div>
             </div>
-            <h3 className='collection-form-sounds-heading'>tracksounds</h3>
+            <h3 className='collection-form-sounds-heading'>sounds</h3>
             <div>
               <ul className='collection-form-sound-list'>
                 { sounds }
