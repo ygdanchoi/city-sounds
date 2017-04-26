@@ -274,11 +274,15 @@ class CollectionForm extends React.Component {
 
   render() {
     const id = this.props.collectionId;
-    let artwork;
+    let artworkThumb;
     let artworkForm;
     const artworkMissing = this.state.artworkUrl === '/avatars/original/missing.png';
     if (artworkMissing) {
-      artwork = <img style={ { width: '72px', height: '72px' } } />;
+      artworkThumb = (
+        <figure className='collection-form-artwork-thumb'>
+          <img />
+        </figure>
+      );
       artworkForm = (
         <div className='collection-form-artwork-missing'>
           <input id='artwork-input' type='file'
@@ -288,11 +292,15 @@ class CollectionForm extends React.Component {
         </div>
       );
     } else {
-      artwork = <img style={ { width: '72px', height: '72px' } } src={ this.state.artworkUrl } />;
+      artworkThumb = (
+        <figure className='collection-form-artwork-thumb'>
+          <img src={ this.state.artworkUrl } />
+        </figure>
+      );
       artworkForm = (
-        <div className='collection-form-avatar-container'>
-          <img style={ { width: '210px', height: '210px' } } src={ this.state.artworkUrl } />
-          <div className='collection-form-avatar-delete' >
+        <div className='collection-form-artwork-container'>
+          <img src={ this.state.artworkUrl } />
+          <div className='collection-form-artwork-delete' >
             <a href='' onClick={ this.handleDeleteArtwork }>X</a>
           </div>
         </div>
@@ -324,13 +332,17 @@ class CollectionForm extends React.Component {
         <main className='collection-form-main'>
           <section className='collection-form-main-left'>
             <div className='collection-form-collection-tab' onClick={ this.handleClickCollectionTab }>
-              { artwork }
-              <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
-              <p>by { this.props.currentUser.username }</p>
+              <div className='collection-form-collection-tab-inner'>
+                { artworkThumb }
+                <div className='collection-form-collection-tab-text'>
+                  <p className='collection-form-collection-tab-text-title'>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
+                  <p className='collection-form-collection-tab-text-user'>by <strong>{ this.props.currentUser.username }</strong></p>
+                </div>
+              </div>
             </div>
+            <h3 className='collection-form-sounds-heading'>tracksounds</h3>
             <div>
-              <p>sounds</p>
-              <ul>
+              <ul className='collection-form-sound-list'>
                 { sounds }
               </ul>
               <input id='sound-input' type='file'

@@ -12,13 +12,25 @@
 }
 
 .collection-form-main-left {
+  padding: 22px 0px 0px 20px;
   width: 466px;
   background-color: #f7f7f7;
-  border-right: 1px solid #d8d8d8;
 }
 
 .collection-form-main-right {
   width: 448px;
+}
+
+.collection-form-collection-tab {
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid white;
+}
+
+.collection-form-collection-tab-inner {
+  display: flex;
+  padding: 9px 0px 9px 11px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid #e7e7e7;
 }
 
 .collection-form-collection-tab:hover {
@@ -26,9 +38,53 @@
   background-color: #fcfcfc;
 }
 
+.collection-form-collection-tab-text {
+  padding-top: 1px;
+  padding-left: 9px;
+}
+
+.collection-form-collection-tab-text-title {
+  font-size: 15pt;
+}
+
+.collection-form-collection-tab-text-user {
+  font-size: 8pt;
+}
+
 .collection-form-sound-tab:hover {
   cursor: pointer;
   background-color: #fcfcfc;
+}
+
+.collection-form-artwork-thumb {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #cccccc;
+}
+
+.collection-form-sounds-heading {
+  text-transform: uppercase;
+  color: #808080;
+  font-size: 8pt;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.collection-form-sound-list {
+  list-style: none;
+}
+
+.collection-form-sound-tab {
+  border-top: 1px dotted #c5c5c5;
+}
+
+.collection-form-sound-tab:last-child {
+  border-bottom: 1px dotted #c5c5c5;
+}
+
+.collection-form-artwork-container {
+  width: 210px;
+  height: 210px;
 }
 
 .collection-form-artwork-missing {

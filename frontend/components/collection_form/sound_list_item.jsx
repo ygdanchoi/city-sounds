@@ -29,7 +29,7 @@ const SoundListItem = (props) => {
         handleChange={ props.handleChange } />
     );
     return (
-      <li>
+      <li className='collection-form-sound-list-item'>
         <div className='collection-form-sound-tab' onClick={ props.handleClickSoundTab(collectionFormSoundSubForm) }>
           <p>{ props.idx + '. title: ' + (props.sound.title === '' ? 'Untitled Sound' : props.sound.title) }</p>
           <p>{ props.idx + '. duration: ' + toHHMMSS(props.sound.duration) }</p>
