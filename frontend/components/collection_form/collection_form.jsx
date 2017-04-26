@@ -177,12 +177,7 @@ class CollectionForm extends React.Component {
   }
 
   render() {
-    let tempHeader;
-    if (this.props.collectionId) {
-      tempHeader = `edit collection ${this.props.collectionId}`;
-    } else {
-      tempHeader = 'add collection';
-    }
+    const id = this.props.collectionId;
     let artwork;
     let artworkForm;
     const artworkMissing = this.state.artworkUrl === '/avatars/original/missing.png';
@@ -228,29 +223,30 @@ class CollectionForm extends React.Component {
     }
 
     return (
-      <div>
-        <h1>{ tempHeader }</h1>
-        { artwork }
-        <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
-        <p>by { this.props.currentUser.username }</p>
-          <div>
-            <p>sounds</p>
-            <ul>
-              { sounds }
-            </ul>
-            <input id='sound-input' type='file'
-              onChange={ this.handleAddSound }
-              style={ { display: 'none' } } />
-            <a href='' onClick={ this.handleClickSound }>add sound</a>
-            { soundsErrors }
-          </div>
-        <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
-        { titleErrors }
-        { artworkForm }
-        <label htmlFor='collection-form-description-input'>about this collection</label>
-        <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
-        <button onClick={ this.handleCreate }>handleCreate</button>
-        <button onClick={ this.handleUpdate }>handleUpdate</button>
+      <div className='collection-form'>
+        <main className='collection-form-main'>
+          { artwork }
+          <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
+          <p>by { this.props.currentUser.username }</p>
+            <div>
+              <p>sounds</p>
+              <ul>
+                { sounds }
+              </ul>
+              <input id='sound-input' type='file'
+                onChange={ this.handleAddSound }
+                style={ { display: 'none' } } />
+              <a href='' onClick={ this.handleClickSound }>add sound</a>
+              { soundsErrors }
+            </div>
+          <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
+          { titleErrors }
+          { artworkForm }
+          <label htmlFor='collection-form-description-input'>about this collection</label>
+          <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
+          <button onClick={ this.handleCreate }>handleCreate</button>
+          <button onClick={ this.handleUpdate }>handleUpdate</button>
+        </main>
       </div>
     );
   }
