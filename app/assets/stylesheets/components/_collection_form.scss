@@ -206,6 +206,26 @@
   border: 1px solid #eeeeee;
   width: 210px;
   height: 210px;
+  position: relative;
+}
+
+.collection-form-artwork-delete {
+  background-color: white;
+  border: 1px solid #c0c0c0;
+  position: absolute;
+  bottom: 5px;
+  right: 4px;
+}
+
+.collection-form-artwork-delete a {
+  display: block;
+  position: relative;
+  top: 3px;
+  width: 21px;
+  height: 18px;
+  text-align: center;
+  font-size: 8pt;
+  font-weight: bold;
 }
 
 .collection-form-artwork-missing {

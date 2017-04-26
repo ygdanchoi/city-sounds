@@ -33,7 +33,7 @@ class CollectionFormCollectionSubForm extends React.Component {
     }
     return (
       <div>
-        <input className='sub-form-title-input' placeholder='collection name' type='text' value= { this.props.title } onChange={ this.props.handleChange('title') } />
+        <input className='sub-form-title-input' placeholder=' collection name' type='text' value= { this.props.title } onChange={ this.props.handleChange('title') } />
         { titleErrors }
         <div className='sub-form-divider' />
         { artworkForm }
