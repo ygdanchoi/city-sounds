@@ -19,6 +19,10 @@ const toHHMMSS = (seconds) => {
   }
 };
 
+const toMB = (bytes) => {
+  return`${ Math.ceil(parseInt(bytes) * 10 / 1048576) / 10} MB`;
+};
+
 const SoundListItem = (props) => {
   if (props.sound) {
     const collectionFormSoundSubForm = (
@@ -28,22 +32,23 @@ const SoundListItem = (props) => {
         idx={ props.idx }
         handleChange={ props.handleChange } />
     );
+    console.log(props);
     return (
       <li className='collection-form-sound-list-item'>
         <div className='collection-form-sound-tab' onClick={ props.handleClickSoundTab(collectionFormSoundSubForm) }>
           <div className='collection-form-sound-tab-left'>
-            <p>{ parseInt(props.idx) + 1 }</p>
+            <p className='collection-form-sound-tab-idx'>{ parseInt(props.idx) + 1 }</p>
           </div>
           <div className='collection-form-sound-tab-right'>
             <div className='collection-form-sound-tab-right-top'>
-              <p>{ props.sound.title === '' ? 'Untitled Sound' : props.sound.title }</p>
+              <p className='collection-form-sound-tab-title'>{ props.sound.title === '' ? 'Untitled Sound' : props.sound.title }</p>
               <a onClick={ props.handleDeleteSound }>
                 <div>x</div>
               </a>
             </div>
             <div className='collection-form-sound-tab-right-bottom'>
-              <p>{ props.sound.audioFile ? props.sound.audioFile.name : 'previously uploaded' }</p>
-              <p>downloadable, free</p>
+              <p className='collection-form-sound-tab-file'>{ props.sound.audioFile ? `${props.sound.audioFile.name}, ${toMB(props.sound.audioFile.size)}` : 'previously uploaded file' }</p>
+              <p className='collection-form-sound-tab-downloadable'>downloadable, free</p>
             </div>
           </div>
         </div>

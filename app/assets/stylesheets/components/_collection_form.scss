@@ -80,15 +80,40 @@
   border-top: 1px dotted #c5c5c5;
   display: flex;
   justify-content: flex-end;
+  padding-top: 11px;
 }
 
 .collection-form-sound-tab-left {
+}
 
+.collection-form-sound-tab-idx {
+  font-size: 11pt;
+  margin-right: 8px;
+  color: #999999;
 }
 
 .collection-form-sound-tab-right {
-  width: 373px;
-  background-color: red;
+  width: 374px;
+}
+
+.collection-form-sound-tab-title {
+  font-size: 11pt;
+}
+
+.collection-form-sound-tab-right-bottom {
+  margin-top: 2px;
+}
+
+.collection-form-sound-tab-file {
+  font-size: 8.5pt;
+  color: #999999;
+  margin-bottom: 4px;
+}
+
+.collection-form-sound-tab-downloadable {
+  font-size: 8.5pt;
+  color: #999999;
+  margin-bottom: 12px;
 }
 
 .collection-form-sound-tab-right-top {
