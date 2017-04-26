@@ -72,7 +72,14 @@ class CollectionForm extends React.Component {
         audioUrl: fileReader.result,
       };
       this.setState({
-        sounds: this.state.sounds.concat(sound)
+        sounds: this.state.sounds.concat(sound),
+        currentForm: (
+          <CollectionFormSoundSubForm
+            title={ '' }
+            duration={ 0 }
+            idx={ this.state.sounds.length }
+            handleChange={ this.handleChangeSound(this.state.sounds.length) } />
+        )
       });
     }).bind(this);
     if (file) {
