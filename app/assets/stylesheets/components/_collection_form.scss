@@ -65,21 +65,19 @@
 .collection-form-sounds-heading {
   text-transform: uppercase;
   color: #808080;
-  font-size: 8pt;
+  font-size: 8.5pt;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 17px;
+  margin-left: 10px;
 }
 
 .collection-form-sound-list {
   list-style: none;
+  margin-left: 11px;
 }
 
 .collection-form-sound-tab {
   border-top: 1px dotted #c5c5c5;
-}
-
-.collection-form-sound-tab:last-child {
-  border-bottom: 1px dotted #c5c5c5;
 }
 
 .collection-form-artwork-container {
