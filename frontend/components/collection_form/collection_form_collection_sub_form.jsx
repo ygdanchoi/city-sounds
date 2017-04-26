@@ -18,7 +18,7 @@ class CollectionFormCollectionSubForm extends React.Component {
           <input id='artwork-input' type='file'
             onChange={ this.props.handleAddArtwork }
             style={ { display: 'none' } } />
-          <a href='' onClick={ this.props.handleClickArtwork }>upload artwork</a>
+          <a href='' onClick={ this.props.handleClickArtwork }>Upload Album Art</a>
         </div>
       );
     } else {
