@@ -167,7 +167,6 @@ class CollectionForm extends React.Component {
         sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1)),
         soundsToDelete: this.state.soundsToDelete.concat(sounds[idx])
       });
-      console.log(this.state);
       this.handleClickCollectionTab();
     };
   }
@@ -252,6 +251,12 @@ class CollectionForm extends React.Component {
   }
 
   handleClickCollectionTab() {
+    const collectionTab = document.getElementById('collection-form-collection-tab');
+    collectionTab.classList.add('tab-clicked');
+    const soundTabs = document.getElementsByClassName('collection-form-sound-tab');
+    for (let i = 0; i < soundTabs.length; i++) {
+      soundTabs[i].classList.remove('tab-clicked');
+    }
     this.setState({
       currentForm: (
         <CollectionFormCollectionSubForm
@@ -268,7 +273,14 @@ class CollectionForm extends React.Component {
   }
 
   handleClickSoundTab(collectionFormSoundSubForm) {
-    return () => {
+    return (e) => {
+      const collectionTab = document.getElementById('collection-form-collection-tab');
+      collectionTab.classList.remove('tab-clicked');
+      const soundTabs = document.getElementsByClassName('collection-form-sound-tab');
+      for (let i = 0; i < soundTabs.length; i++) {
+        soundTabs[i].classList.remove('tab-clicked');
+      }
+      e.currentTarget.classList.add('tab-clicked');
       this.setState({
         currentForm: collectionFormSoundSubForm
       });
@@ -334,7 +346,7 @@ class CollectionForm extends React.Component {
       <div className='collection-form'>
         <main className='collection-form-main'>
           <section className='collection-form-main-left'>
-            <div className='collection-form-collection-tab' onClick={ this.handleClickCollectionTab }>
+            <div id='collection-form-collection-tab' className='collection-form-collection-tab' onClick={ this.handleClickCollectionTab }>
               <div className='collection-form-collection-tab-inner'>
                 { artworkThumb }
                 <div className='collection-form-collection-tab-text'>
@@ -353,7 +365,7 @@ class CollectionForm extends React.Component {
                 style={ { display: 'none' } } />
               <div className='collection-form-add-sound-container'>
                 <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
-                <p className='collection-form-add-sound-requirements'>291MB max per track, lossless .wav, .aif or .flac</p>
+                <p className='collection-form-add-sound-requirements'>50MB max per sound, .mp3, .mp4, .mpg, or mpeg</p>
               </div>
               { soundsErrors }
             </div>
