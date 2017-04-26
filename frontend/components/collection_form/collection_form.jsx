@@ -351,7 +351,7 @@ class CollectionForm extends React.Component {
               <input id='sound-input' type='file'
                 onChange={ this.handleAddSound }
                 style={ { display: 'none' } } />
-              <a href='' onClick={ this.handleClickSound }>add sound</a>
+              <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
               { soundsErrors }
             </div>
             <button onClick={ this.handleSubmit }>{ this.props.submitText }</button>
