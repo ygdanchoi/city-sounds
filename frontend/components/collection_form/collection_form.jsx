@@ -39,6 +39,8 @@ class CollectionForm extends React.Component {
             description: response.collection.description,
           });
         }
+      ).then(
+        () => this.handleClickCollectionTab()
       );
       this.props.fetchCollectionSounds(id).then(
         (response) => {
@@ -150,11 +152,13 @@ class CollectionForm extends React.Component {
   handleDeleteSound(idx) {
     return (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const sounds = this.state.sounds;
       this.setState({
         sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1)),
         soundsToDelete: this.state.soundsToDelete.concat(sounds[idx])
       });
+      this.handleClickCollectionTab();
     };
   }
 
