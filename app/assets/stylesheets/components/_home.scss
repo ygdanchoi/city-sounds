@@ -34,7 +34,35 @@
 }
 
 .home-header-main-bottom {
-  padding-top: 18px;
+  margin-top: 16px;
+  height: 24px;
+}
+
+.home-header-logo {
+  width: 156px;
+  height: 25px;
+}
+
+.home-nav-left, .home-nav-right {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.home-nav-slogan {
+  font-size: 12pt;
+  color: #408ea3;
+}
+
+.home-nav-greeting {
+  color: #777777;
+}
+
+.home-nav-divider {
+  width: 1px;
+  height: 20px;
+  background-color: #e5e5e5;
+  margin: 0 12px;
 }
 
 .home-header a {

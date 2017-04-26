@@ -29,27 +29,45 @@ class Home extends React.Component {
     let homeNavLeft;
     let homeNavRight;
     if (this.props.loggedIn) {
-      homeNavLeft = <p>Hi { this.props.currentUser.username } | <Link to={`/users/${this.props.currentUser.id}`}>your profile</Link></p>;
-      homeNavRight = <p><a onClick={ this.logout } href='/logout'>log out</a></p>;
+      homeNavLeft = (
+        <ul className='home-nav-left'>
+          <li><p className='home-nav-greeting'>Hi { this.props.currentUser.username }</p></li>
+          <div className='home-nav-divider' />
+          <li><Link to={`/users/${this.props.currentUser.id}`}><p>your profile</p></Link></li>
+        </ul>
+      );
+      homeNavRight = (
+        <ul className='home-nav-right'>
+          <li><p><a onClick={ this.logout } href='/logout'>log out</a></p></li>
+        </ul>
+      );
     } else {
-      homeNavLeft = <p>Share & play ambient city soundscapes.</p>;
-      homeNavRight = <p><Link to='/signup'>sign up</Link> | <Link to='/login'>log in</Link></p>;
+      homeNavLeft = (
+        <ul className='home-nav-left'>
+          <li><p className='home-nav-slogan'>Share & play ambient city soundscapes.</p></li>
+        </ul>
+      );
+      homeNavRight = (
+        <ul className='home-nav-right'>
+          <li><Link to='/signup'><p>sign up</p></Link></li>
+          <div className='home-nav-divider' />
+          <li><Link to='/login'><p>log in</p></Link></li>
+        </ul>
+      );
     }
 
     const homeHeader = (
       <header id='home-header' className='home-header'>
         <header className='home-header-main'>
           <header className='home-header-main-top'>
-            <h2>.:.:. citysounds</h2>
+            <figure className='home-header-logo'>
+              <h2><font color="#639aa9">.:.:.</font> citysounds</h2>
+            </figure>
             <p>Search... &#9906;</p>
           </header>
           <header className='home-header-main-bottom'>
-            <nav className='home-nav-left'>
-              { homeNavLeft }
-            </nav>
-            <nav className='home-nav-right'>
-              { homeNavRight }
-            </nav>
+            { homeNavLeft }
+            { homeNavRight }
           </header>
         </header>
       </header>

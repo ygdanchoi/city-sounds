@@ -59,7 +59,10 @@ class AuthForm extends React.Component {
   redirect(response) {
     const id = response.currentUser.id;
     hashHistory.push(`/users/${id}`);
-    // this.props.fetchUser(id);
+  }
+
+  redirectToRoot() {
+    hashHistory.push('/');
   }
 
   render() {
@@ -95,7 +98,11 @@ class AuthForm extends React.Component {
     return (
       <div>
         <header className='auth-form-header'>
-          <h2>.:.:. citysounds</h2>
+          <header className='auth-form-header-main'>
+            <figure className='auth-form-logo' onClick={ this.redirectToRoot }>
+              <h2><font color="#639aa9">.:.:.</font> citysounds</h2>
+            </figure>
+          </header>
         </header>
         <main className='auth-form-main'>
           <section className='auth-form-block'>

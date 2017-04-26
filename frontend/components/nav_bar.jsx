@@ -64,7 +64,7 @@ class NavBar extends React.Component {
           <li className='nav-bar-main-li nav-bar-main-li-selectable' onClick={ this.redirectToRoot }>
             <nav className='nav-bar-left'>
               <figure className='nav-bar-logo'>
-                <h3>.:.:.</h3>
+                <h3><font color="#639aa9">.:.:.</font></h3>
               </figure>
             </nav>
           </li>
