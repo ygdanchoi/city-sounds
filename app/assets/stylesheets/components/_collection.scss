@@ -34,6 +34,7 @@
 
 .collection-edit-delete {
   display: flex;
+  margin-bottom: 24px;
 }
 
 .collection-edit, .collection-delete {
@@ -48,6 +49,33 @@
 .collection-edit:hover, .collection-delete:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.collection-sound-player {
+  width: 376px;
+  height: 52px;
+  margin-bottom: 23px;
+  background-color: lightcoral;
+}
+
+.collection-info-sound-collection {
+  font-size: 10.5pt;
+  margin-bottom: 7px;
+}
+
+.collection-info-includes-unlimited-streaming {
+  margin-bottom: 5px;
+}
+
+.collection-info-donate-now {
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.collection-sounds-list {
+  margin-bottom: 24px;
+  list-style: none;
+  background-color: lightcoral;
 }
 
 .collection-artwork-section {

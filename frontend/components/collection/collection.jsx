@@ -83,10 +83,22 @@ class Collection extends React.Component {
               </Link>
             </h3>
             { editDelete }
-            <p>{ this.props.collection.description }</p>
-            <ol>
+            <div className='collection-sound-player'>
+              <p>sound player</p>
+            </div>
+            <h3 className='collection-info-sound-collection'>
+              Digital Sound Collection
+            </h3>
+            <p className='collection-info-includes-unlimited-streaming'>
+              Unlimited streaming via the free CitySounds app.
+            </p>
+            <p className='collection-info-donate-now'>
+              <a>Donate Now</a>
+            </p>
+            <ul className='collection-sounds-list'>
               { soundListItems }
-            </ol>
+            </ul>
+            <p>{ this.props.collection.description }</p>
           </section>
           <section className='collection-artwork-section'>
             <img className='collection-artwork' src={ this.props.collection.artworkUrl } />
