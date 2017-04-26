@@ -42,9 +42,9 @@ const SoundListItem = (props) => {
           <div className='collection-form-sound-tab-right'>
             <div className='collection-form-sound-tab-right-top'>
               <p className='collection-form-sound-tab-title'>{ props.sound.title === '' ? 'Untitled Sound' : props.sound.title }</p>
-              <a onClick={ props.handleDeleteSound }>
-                <div>x</div>
-              </a>
+              <div className='collection-form-sound-delete' onClick={ props.handleDeleteSound }>
+                <p>X</p>
+              </div>
             </div>
             <div className='collection-form-sound-tab-right-bottom'>
               <p className='collection-form-sound-tab-file'>{ props.sound.audioFile ? `${props.sound.audioFile.name}, ${toMB(props.sound.audioFile.size)}` : 'previously uploaded file' }</p>
