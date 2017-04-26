@@ -30,7 +30,6 @@ class CollectionForm extends React.Component {
   componentDidMount() {
     this.props.clearErrors();
     const id = this.props.collectionId;
-    this.handleClickCollectionTab();
     if (id) {
       this.props.fetchCollection(id).then(
         (response) => {
@@ -51,6 +50,10 @@ class CollectionForm extends React.Component {
         }
       );
     }
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.handleClickCollectionTab();
   }
 
   handleClickSound(e) {
