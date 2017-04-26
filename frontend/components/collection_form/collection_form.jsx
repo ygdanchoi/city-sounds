@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
 import SoundListItem from './sound_list_item';
+import CollectionFormCollectionSubForm from './collection_form_collection_sub_form';
 
 class CollectionForm extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class CollectionForm extends React.Component {
       soundsToDelete: [],
       title: '',
       description: '',
+      currentForm: null,
     };
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChangeSound = this.handleChangeSound.bind(this);
@@ -21,6 +23,7 @@ class CollectionForm extends React.Component {
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleClickCollectionTab = this.handleClickCollectionTab.bind(this);
   }
 
   componentDidMount() {
@@ -176,6 +179,14 @@ class CollectionForm extends React.Component {
     hashHistory.push(`collections/${id}`);
   }
 
+  handleClickCollectionTab() {
+    this.setState({
+      currentForm: (
+        null
+      )
+    });
+  }
+
   render() {
     const id = this.props.collectionId;
     let artwork;
@@ -226,9 +237,11 @@ class CollectionForm extends React.Component {
       <div className='collection-form'>
         <main className='collection-form-main'>
           <section className='collection-form-main-left'>
-            { artwork }
-            <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
-            <p>by { this.props.currentUser.username }</p>
+            <div className='collection-form-collection-tab' onClick={ this.handleClickCollectionTab }>
+              { artwork }
+              <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
+              <p>by { this.props.currentUser.username }</p>
+            </div>
             <div>
               <p>sounds</p>
               <ul>
@@ -244,11 +257,17 @@ class CollectionForm extends React.Component {
             <button onClick={ this.handleUpdate }>handleUpdate</button>
           </section>
           <section className='collection-form-main-right'>
-            <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
-            { titleErrors }
-            { artworkForm }
-            <label htmlFor='collection-form-description-input'>about this collection</label>
-            <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
+            <CollectionFormCollectionSubForm
+              title={ this.state.title }
+              description={ this.state.description }
+              handleChange={ this.handleChange }
+              errors={ this.props.errors }
+              artworkUrl={ this.state.artworkUrl }
+              handleAddArtwork={ this.handleAddArtwork }
+              handleClickArtwork={ this.handleClickArtwork }
+              artworkUrl={ this.state.artworkUrl }
+              handleDeleteArtwork={ this.handleDeleteArtwork } />
+            { this.state.currentForm }
           </section>
         </main>
       </div>
