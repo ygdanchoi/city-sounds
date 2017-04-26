@@ -23,9 +23,9 @@ class CollectionFormCollectionSubForm extends React.Component {
       );
     } else {
       artworkForm = (
-        <div className='collection-form-avatar-container'>
-          <img style={ { width: '210px', height: '210px' } } src={ this.props.artworkUrl } />
-          <div className='collection-form-avatar-delete' >
+        <div className='collection-form-artwork-container'>
+          <img src={ this.props.artworkUrl } />
+          <div className='collection-form-artwork-delete' >
             <a href='' onClick={ this.props.handleDeleteArtwork }>X</a>
           </div>
         </div>
@@ -33,9 +33,11 @@ class CollectionFormCollectionSubForm extends React.Component {
     }
     return (
       <div>
-        <input placeholder='collection name' type='text' value= { this.props.title } onChange={ this.props.handleChange('title') } />
-          { titleErrors }
-          { artworkForm }
+        <input className='sub-form-title-input' placeholder='collection name' type='text' value= { this.props.title } onChange={ this.props.handleChange('title') } />
+        { titleErrors }
+        <div className='sub-form-divider' />
+        { artworkForm }
+        <div className='sub-form-divider' />
         <label htmlFor='collection-form-description-input'>about this collection</label>
         <textarea id='collection-form-desciption-input' value= { this.props.description } onChange={ this.props.handleChange('description') } />
       </div>
