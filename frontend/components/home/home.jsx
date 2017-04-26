@@ -8,6 +8,17 @@ class Home extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
+  componentDidMount() {
+    window.onscroll = () => {
+      const homeHeader = document.getElementById('home-header');
+      if (document.body.scrollTop > 555 || document.documentElement.scrollTop > 555) {
+        homeHeader.classList.add('off-screen');
+      } else {
+        homeHeader.classList.remove('off-screen');
+      }
+    };
+  }
+
   logout(e) {
     e.preventDefault();
     this.props.logout();
@@ -26,18 +37,20 @@ class Home extends React.Component {
     }
 
     const homeHeader = (
-      <header className='home-header'>
-        <header className='home-header-top'>
-          <h2>.:.:. citysounds</h2>
-          <p>Search... &#9906;</p>
-        </header>
-        <header className='home-header-bottom'>
-          <nav className='home-nav-left'>
-            { homeNavLeft }
-          </nav>
-          <nav className='home-nav-right'>
-            { homeNavRight }
-          </nav>
+      <header id='home-header' className='home-header'>
+        <header className='home-header-main'>
+          <header className='home-header-main-top'>
+            <h2>.:.:. citysounds</h2>
+            <p>Search... &#9906;</p>
+          </header>
+          <header className='home-header-main-bottom'>
+            <nav className='home-nav-left'>
+              { homeNavLeft }
+            </nav>
+            <nav className='home-nav-right'>
+              { homeNavRight }
+            </nav>
+          </header>
         </header>
       </header>
     );
@@ -45,7 +58,10 @@ class Home extends React.Component {
     return (
       <div>
         { homeHeader }
-        <figure className='home-figure' />
+        <div className='home-header-placeholder'>
+        </div>
+        <figure className='home-figure'>
+        </figure>
         <ExploreContainer />
       </div>
     );

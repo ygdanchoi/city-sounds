@@ -13,14 +13,16 @@ class Explore extends React.Component {
 
   render() {
     return (
-      <main className='explore-main'>
-        <div className='explore-heading'>
-          <h3>Explore</h3>
-        </div>
-        <section>
-          <ExploreList collections={ this.props.collections } />
-        </section>
-      </main>
+      <div className='explore'>
+        <main className='explore-main'>
+          <div className='explore-heading'>
+            <h3>Explore</h3>
+          </div>
+          <section>
+            <ExploreList collections={ this.props.collections } />
+          </section>
+        </main>
+      </div>
     );
   }
 }

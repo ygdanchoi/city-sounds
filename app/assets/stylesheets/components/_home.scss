@@ -1,16 +1,40 @@
 .home-header {
+  background-color: rgba(255, 255, 255, 0.98);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  transition: top 0.25s ease-out;
+}
+
+.off-screen {
+  top: -105px;
+}
+
+.home-header-placeholder {
+  height: 105px;
+  background-color: white;
+}
+
+.home-header-main {
   font-size: 10.5pt;
   min-width: 785px;
   max-width: 1106px;
+  height: 105px;
   margin: 0 auto;
-  background-color: red;
 }
 
-.home-header-top, .home-header-bottom {
+.home-header-main-top, .home-header-main-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
+.home-header-main-top {
+  padding-top: 24px;
+}
+
+.home-header-main-bottom {
+  padding-top: 18px;
 }
 
 .home-header a {
@@ -20,15 +44,17 @@
 
 .home-figure {
   height: 450px;
-  background-color: darkgrey;
+  background-color: #222222;
+}
+
+.explore {
+  background-color: #eef2f3;
 }
 
 .explore-main {
-  background-color: #eef2f3;
   min-width: 785px;
   max-width: 1106px;
   margin: 0 auto;
-  background-color: red;
 }
 
 .explore-main-filter-bar {
