@@ -14,25 +14,9 @@ class Explore extends React.Component {
   render() {
     return (
       <main className='explore-main'>
-        <aside className='explore-main-filter-bar'>
-          <aside className='explore-main-filter-bar-heading'>
-            <h3>Explore</h3>
-          </aside>
-          <aside className='explore-main-filter-bar-filters'>
-            <p>filter by:</p>
-            <ul>
-              <li>length</li>
-              <li>upload date</li>
-            </ul>
-          </aside>
-        </aside>
-        <aside className='explore-main-tag-bar'>
-          <ul>
-            <li>all</li>
-            <li>beach</li>
-            <li>rain</li>
-          </ul>
-        </aside>
+        <div className='explore-heading'>
+          <h3>Explore</h3>
+        </div>
         <section>
           <ExploreList collections={ this.props.collections } />
         </section>

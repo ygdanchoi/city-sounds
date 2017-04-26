@@ -1,23 +1,21 @@
-.home-header, .home-nav {
-  margin: 18px;
+.home-header {
+  font-size: 10.5pt;
+  min-width: 785px;
+  max-width: 1106px;
+  margin: 0 auto;
+  background-color: red;
+}
+
+.home-header-top, .home-header-bottom {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-size: 11pt;
+
 }
 
-.home-header a, .home-nav a {
+.home-header a {
   color: black;
   font-weight: bold;
-}
-
-.home-nav-left {
-
-}
-
-.home-nav-right {
-
 }
 
 .home-figure {
@@ -25,37 +23,17 @@
   background-color: darkgrey;
 }
 
-.home-figure-photo {
-  width: 800px;
-  height: 450px;
-  background-color: grey;
-  margin: 0 auto;
-}
-
 .explore-main {
   background-color: #eef2f3;
+  min-width: 785px;
+  max-width: 1106px;
+  margin: 0 auto;
+  background-color: red;
 }
 
 .explore-main-filter-bar {
   display: flex;
   align-items: center;
-}
-
-.explore-main-filter-bar-filters {
-  display: flex;
-  align-items: center;
-}
-
-.explore-main-filter-bar-filters ul {
-  display: flex;
-  align-items: center;
-  list-style: none;
-}
-
-.explore-main-tag-bar ul {
-  display: flex;
-  align-items: center;
-  list-style: none;
 }
 
 .explore-list {
@@ -67,6 +45,16 @@
 .explore-list-item {
   width: 173px;
   margin: 18px 13px;
+}
+
+.explore-list-item a {
+  color: black;
+  display: block;
+  font-size: 10pt;
+}
+
+.explore-list-item a:hover {
+  cursor: pointer;
 }
 
 .explore-list-item-artwork {

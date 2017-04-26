@@ -14,16 +14,6 @@ class Home extends React.Component {
   }
 
   render() {
-    const homeHeader = (
-      <header className='home-header'>
-        <header className='home-header-left'>
-          <h2>.:.:. citysounds</h2>
-        </header>
-        <header className='home-header-right'>
-          <p>Search... &#9906;</p>
-        </header>
-      </header>
-    );
 
     let homeNavLeft;
     let homeNavRight;
@@ -35,20 +25,27 @@ class Home extends React.Component {
       homeNavRight = <p><Link to='/signup'>sign up</Link> | <Link to='/login'>log in</Link></p>;
     }
 
-    return (
-      <div>
-        { homeHeader }
-        <nav className='home-nav'>
+    const homeHeader = (
+      <header className='home-header'>
+        <header className='home-header-top'>
+          <h2>.:.:. citysounds</h2>
+          <p>Search... &#9906;</p>
+        </header>
+        <header className='home-header-bottom'>
           <nav className='home-nav-left'>
             { homeNavLeft }
           </nav>
           <nav className='home-nav-right'>
             { homeNavRight }
           </nav>
-        </nav>
-        <figure className='home-figure'>
-          <figure className='home-figure-photo' />
-        </figure>
+        </header>
+      </header>
+    );
+
+    return (
+      <div>
+        { homeHeader }
+        <figure className='home-figure' />
         <ExploreContainer />
       </div>
     );
