@@ -37,7 +37,7 @@ class Api::SoundsController < ApplicationController
   def destroy
     @sound = Sound.find(params[:id])
     @sound.destroy
-    render 'api/sounds/show'
+    render json: {}
   end
 
   private

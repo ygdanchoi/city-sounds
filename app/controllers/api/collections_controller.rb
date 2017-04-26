@@ -51,7 +51,7 @@ class Api::CollectionsController < ApplicationController
   def destroy
     @collection = Collection.find(params[:id])
     @collection.destroy
-    render 'api/collections/show'
+    render json: {}
   end
 
   private

@@ -52,7 +52,7 @@ export const updateCollection = (id, collection) => (dispatch) => {
 
 export const deleteCollection = (id) => (dispatch) => {
   return APIUtil.deleteCollection(id).then(
-    response => dispatch(receiveCollection(response)),
+    null,
     response => dispatch(receiveErrors(response.responseJSON))
   );
 };

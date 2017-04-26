@@ -37,6 +37,6 @@ export const fetchSound = (id) => (dispatch) => {
 
 export const deleteSound = (id) => (dispatch) => {
   return APIUtil.deleteSound(id).then(
-    response => dispatch(receiveSound(response))
+    null
   );
 };
