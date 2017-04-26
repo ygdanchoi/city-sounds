@@ -7,7 +7,9 @@ class Collection extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
+    this.redirectToEditCollection = this.redirectToEditCollection.bind(this);
   }
 
   componentDidMount() {
@@ -22,11 +24,20 @@ class Collection extends React.Component {
     }
   }
 
+  handleEdit(e) {
+    e.preventDefault();
+    this.redirectToEditCollection();
+  }
+
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteCollection(this.props.params.collectionId).then(
       () => this.redirectToCurrentUser()
     );
+  }
+
+  redirectToEditCollection() {
+    hashHistory.push(`/edit-collection?id=${this.props.collection.id}`);
   }
 
   redirectToCurrentUser() {
@@ -49,11 +60,13 @@ class Collection extends React.Component {
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {
       editDelete = (
-        <div>
-          <Link to={ `/edit-collection?id=${ this.props.collection.id }` }>
-            <p>Edit</p>
-          </Link>
-          <a onClick={ this.handleDelete }>Delete</a>
+        <div className='collection-edit-delete'>
+          <button onClick={ this.handleEdit } className='collection-edit'>
+            <a>Edit</a>
+          </button>
+          <button onClick={ this.handleDelete } className='collection-delete'>
+            <a>Delete</a>
+          </button>
         </div>
       );
     }
@@ -61,14 +74,22 @@ class Collection extends React.Component {
       <div className='collection-page'>
         <main className='collection-main'>
           <section className='collection-info-section'>
-            <p>{ this.props.collection.title }</p>
-            <p>by { this.props.collection.user.username }</p>
+            <h2 className='collection-info-title'>
+              { this.props.collection.title }
+            </h2>
+            <h3 className='collection-info-user'>
+              by <Link to={`/users/${this.props.collection.user.id}`}>
+                { this.props.collection.user.username }
+              </Link>
+            </h3>
             { editDelete }
             <p>{ this.props.collection.description }</p>
             <ol>
               { soundListItems }
             </ol>
-            <img src={ this.props.collection.artworkUrl } />
+          </section>
+          <section className='collection-artwork-section'>
+            <img className='collection-artwork' src={ this.props.collection.artworkUrl } />
           </section>
           <UserSidebarContainer userId={ this.props.collection.user.id } />
         </main>

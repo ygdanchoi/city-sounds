@@ -16,6 +16,35 @@
 }
 
 .collection-info-section {
-  padding: 35px 0px 45px 30px;
-  width: 100%;
+  padding: 35px 30px 45px 30px;
+  width: 376px;
+}
+
+.collection-info-title {
+  font-weight: normal;
+  font-size: 21pt;
+  margin-bottom: 5px;
+}
+
+.collection-info-user {
+  font-weight: normal;
+  font-size: 10.5pt;
+}
+
+.collection-edit-delete {
+  display: flex;
+}
+
+.collection-edit, .collection-delete {
+  background-color: #ffffe0;
+  border: 1px solid #c0c0c0;
+}
+
+.collection-edit:hover, .collection-delete:hover {
+  text-decoration: underline;
+}
+
+.collection-artwork-section {
+  padding: 35px 39px 45px 0px;
+  width: 350px;
 }
