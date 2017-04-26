@@ -225,9 +225,10 @@ class CollectionForm extends React.Component {
     return (
       <div className='collection-form'>
         <main className='collection-form-main'>
-          { artwork }
-          <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
-          <p>by { this.props.currentUser.username }</p>
+          <section className='collection-form-main-left'>
+            { artwork }
+            <p>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
+            <p>by { this.props.currentUser.username }</p>
             <div>
               <p>sounds</p>
               <ul>
@@ -239,13 +240,16 @@ class CollectionForm extends React.Component {
               <a href='' onClick={ this.handleClickSound }>add sound</a>
               { soundsErrors }
             </div>
-          <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
-          { titleErrors }
-          { artworkForm }
-          <label htmlFor='collection-form-description-input'>about this collection</label>
-          <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
-          <button onClick={ this.handleCreate }>handleCreate</button>
-          <button onClick={ this.handleUpdate }>handleUpdate</button>
+            <button onClick={ this.handleCreate }>handleCreate</button>
+            <button onClick={ this.handleUpdate }>handleUpdate</button>
+          </section>
+          <section className='collection-form-main-right'>
+            <input placeholder='collection name' type='text' value= { this.state.title } onChange={ this.handleChange('title') } />
+            { titleErrors }
+            { artworkForm }
+            <label htmlFor='collection-form-description-input'>about this collection</label>
+            <textarea id='collection-form-desciption-input' value= { this.state.description } onChange={ this.handleChange('description') } />
+          </section>
         </main>
       </div>
     );
