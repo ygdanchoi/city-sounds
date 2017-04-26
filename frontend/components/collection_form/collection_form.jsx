@@ -24,6 +24,7 @@ class CollectionForm extends React.Component {
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickCollectionTab = this.handleClickCollectionTab.bind(this);
     this.handleClickSoundTab = this.handleClickSoundTab.bind(this);
   }
@@ -94,7 +95,6 @@ class CollectionForm extends React.Component {
                 artworkUrl={ this.state.artworkUrl }
                 handleAddArtwork={ this.handleAddArtwork }
                 handleClickArtwork={ this.handleClickArtwork }
-                artworkUrl={ this.state.artworkUrl }
                 handleDeleteArtwork={ this.handleDeleteArtwork } />
             )
           });
@@ -110,7 +110,6 @@ class CollectionForm extends React.Component {
                 artworkUrl={ this.state.artworkUrl }
                 handleAddArtwork={ this.handleAddArtwork }
                 handleClickArtwork={ this.handleClickArtwork }
-                artworkUrl={ this.state.artworkUrl }
                 handleDeleteArtwork={ this.handleDeleteArtwork } />
             )
           });
@@ -174,7 +173,18 @@ class CollectionForm extends React.Component {
     fileReader.onloadend = (() => {
       this.setState({
         artworkFile: file,
-        artworkUrl: fileReader.result
+        artworkUrl: fileReader.result,
+        currentForm: (
+          <CollectionFormCollectionSubForm
+            title={ this.state.title }
+            description={ this.state.description }
+            handleChange={ this.handleChange }
+            errors={ this.props.errors }
+            artworkUrl={ fileReader.result }
+            handleAddArtwork={ this.handleAddArtwork }
+            handleClickArtwork={ this.handleClickArtwork }
+            handleDeleteArtwork={ this.handleDeleteArtwork } />
+        )
       });
     }).bind(this);
     if (file) {
@@ -187,6 +197,17 @@ class CollectionForm extends React.Component {
     this.setState({
       artworkFile: null,
       artworkUrl: '/avatars/original/missing.png',
+      currentForm: (
+        <CollectionFormCollectionSubForm
+          title={ this.state.title }
+          description={ this.state.description }
+          handleChange={ this.handleChange }
+          errors={ this.props.errors }
+          artworkUrl={ '/avatars/original/missing.png' }
+          handleAddArtwork={ this.handleAddArtwork }
+          handleClickArtwork={ this.handleClickArtwork }
+          handleDeleteArtwork={ this.handleDeleteArtwork } />
+      )
     });
   }
 
@@ -227,6 +248,30 @@ class CollectionForm extends React.Component {
     );
   }
 
+    handleSubmit(e) {
+    let id = null;
+    e.preventDefault();
+    let formData = new FormData();
+    if (this.props.submitText === 'Update') {
+      id = this.props.collectionId;
+      formData.append('collection[id]', id);
+    }
+    formData.append('collection[artwork]', this.state.artworkFile);
+    formData.append('collection[sounds]', JSON.stringify(this.state.sounds));
+    for (let i = 0; i < this.state.sounds.length; i++) {
+      formData.append(`collection[audio${i}]`, this.state.sounds[i].audioFile);
+    }
+    formData.append('collection[title]', this.state.title);
+    formData.append('collection[description]', this.state.description);
+    formData.append('collection[user_id]', this.props.currentUser.id);
+    this.state.soundsToDelete.forEach((sound) => {
+      this.props.deleteSound(sound.id);
+    });
+    this.props.submitCollection(id, formData).then(
+      (response) => this.redirectToCollection(response.collection.id)
+    );
+  }
+
   redirectToCollection(id) {
     hashHistory.push(`collections/${id}`);
   }
@@ -239,7 +284,6 @@ class CollectionForm extends React.Component {
           description={ this.state.description }
           handleChange={ this.handleChange }
           errors={ this.props.errors }
-          artworkUrl={ this.state.artworkUrl }
           handleAddArtwork={ this.handleAddArtwork }
           handleClickArtwork={ this.handleClickArtwork }
           artworkUrl={ this.state.artworkUrl }
@@ -323,8 +367,7 @@ class CollectionForm extends React.Component {
               <a href='' onClick={ this.handleClickSound }>add sound</a>
               { soundsErrors }
             </div>
-            <button onClick={ this.handleCreate }>handleCreate</button>
-            <button onClick={ this.handleUpdate }>handleUpdate</button>
+            <button onClick={ this.handleSubmit }>{ this.props.submitText }</button>
           </section>
           <section className='collection-form-main-right'>
             { this.state.currentForm }

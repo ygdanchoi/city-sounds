@@ -16,11 +16,22 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  let submitCollection;
+  let submitText;
+  if (ownProps.location.pathname === '/add-collection') {
+    submitCollection = (_, collection) => dispatch(createCollection(collection));
+    submitText = 'Publish'
+  } else if (ownProps.location.pathname === '/edit-collection') {
+    submitCollection = (id, collection) => dispatch(updateCollection(id, collection));
+    submitText = 'Update'
+  }
   return {
     fetchCollection: (id) => dispatch(fetchCollection(id)),
     fetchCollectionSounds: (collectionId) => dispatch(fetchCollectionSounds(collectionId)),
-    createCollection: (collection) => dispatch(createCollection(collection)),
+    createCollection: (_, collection) => dispatch(createCollection(collection)),
     updateCollection: (id, collection) => dispatch(updateCollection(id, collection)),
+    submitCollection: submitCollection,
+    submitText: submitText,
     clearErrors: () => dispatch(receiveErrors({})),
     deleteSound: (id) => dispatch(deleteSound(id)),
   };

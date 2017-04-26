@@ -13,6 +13,8 @@
 
 .collection-form-main-left {
   width: 466px;
+  background-color: #f7f7f7;
+  border-right: 1px solid #d8d8d8;
 }
 
 .collection-form-main-right {
@@ -21,12 +23,12 @@
 
 .collection-form-collection-tab:hover {
   cursor: pointer;
-  background-color: red;
+  background-color: #fcfcfc;
 }
 
 .collection-form-sound-tab:hover {
   cursor: pointer;
-  background-color: blue;
+  background-color: #fcfcfc;
 }
 
 .collection-form-artwork-missing {
