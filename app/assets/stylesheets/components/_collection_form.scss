@@ -74,6 +74,7 @@
 .collection-form-sound-list {
   list-style: none;
   margin-left: 11px;
+  margin-bottom: 13px;
 }
 
 .collection-form-sound-tab {
@@ -81,9 +82,6 @@
   display: flex;
   justify-content: flex-end;
   padding-top: 11px;
-}
-
-.collection-form-sound-tab-left {
 }
 
 .collection-form-sound-tab-idx {
@@ -121,8 +119,47 @@
   justify-content: space-between;
 }
 
+.collection-form-add-sound-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
 .collection-form-add-sound {
   font-size: 16.5pt;
+}
+
+.collection-form-add-sound-requirements {
+  font-size: 9pt;
+  margin-left: 43px;
+  padding-top: 5px;
+  color: #909090;
+}
+
+.collection-form-sounds {
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 18px;
+}
+
+.collection-form-submit-container {
+  border-top: 1px solid white;
+}
+
+.collection-form-submit {
+  margin-top: 20px;
+  margin-left: 10px;
+  color: white;
+  width: 110px;
+  height: 34px;
+  font-size: 10.5pt;
+  font-weight: bold;
+  background-color: #0ec200;
+  border: 1px solid #51924c;
+}
+
+.collection-form-submit:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .collection-form-artwork-container {

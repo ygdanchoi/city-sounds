@@ -344,17 +344,22 @@ class CollectionForm extends React.Component {
               </div>
             </div>
             <h3 className='collection-form-sounds-heading'>sounds</h3>
-            <div>
+            <div className='collection-form-sounds'>
               <ul className='collection-form-sound-list'>
                 { sounds }
               </ul>
               <input id='sound-input' type='file'
                 onChange={ this.handleAddSound }
                 style={ { display: 'none' } } />
-              <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
+              <div className='collection-form-add-sound-container'>
+                <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
+                <p className='collection-form-add-sound-requirements'>291MB max per track, lossless .wav, .aif or .flac</p>
+              </div>
               { soundsErrors }
             </div>
-            <button onClick={ this.handleSubmit }>{ this.props.submitText }</button>
+            <div className='collection-form-submit-container'>
+              <button className='collection-form-submit' onClick={ this.handleSubmit }>{ this.props.submitText }</button>
+            </div>
           </section>
           <section className='collection-form-main-right'>
             { this.state.currentForm }
