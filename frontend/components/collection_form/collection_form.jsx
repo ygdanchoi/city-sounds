@@ -22,8 +22,6 @@ class CollectionForm extends React.Component {
     this.handleDeleteSound = this.handleDeleteSound.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
-    this.handleCreate = this.handleCreate.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickCollectionTab = this.handleClickCollectionTab.bind(this);
     this.handleClickSoundTab = this.handleClickSoundTab.bind(this);
@@ -211,44 +209,7 @@ class CollectionForm extends React.Component {
     });
   }
 
-  handleCreate(e) {
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append('collection[artwork]', this.state.artworkFile);
-    formData.append('collection[sounds]', JSON.stringify(this.state.sounds));
-    for (let i = 0; i < this.state.sounds.length; i++) {
-      formData.append(`collection[audio${i}]`, this.state.sounds[i].audioFile);
-    }
-    formData.append('collection[title]', this.state.title);
-    formData.append('collection[description]', this.state.description);
-    formData.append('collection[user_id]', this.props.currentUser.id);
-    this.props.createCollection(formData).then(
-      (response) => this.redirectToCollection(response.collection.id)
-    );
-  }
-
-  handleUpdate(e) {
-    const id = this.props.collectionId;
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append('collection[id]', id);
-    formData.append('collection[artwork]', this.state.artworkFile);
-    formData.append('collection[sounds]', JSON.stringify(this.state.sounds));
-    for (let i = 0; i < this.state.sounds.length; i++) {
-      formData.append(`collection[audio${i}]`, this.state.sounds[i].audioFile);
-    }
-    formData.append('collection[title]', this.state.title);
-    formData.append('collection[description]', this.state.description);
-    formData.append('collection[user_id]', this.props.currentUser.id);
-    this.state.soundsToDelete.forEach((sound) => {
-      this.props.deleteSound(sound.id);
-    });
-    this.props.updateCollection(id, formData).then(
-      () => this.redirectToCollection(id)
-    );
-  }
-
-    handleSubmit(e) {
+  handleSubmit(e) {
     let id = null;
     e.preventDefault();
     let formData = new FormData();

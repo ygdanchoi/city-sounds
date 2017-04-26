@@ -28,8 +28,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchCollection: (id) => dispatch(fetchCollection(id)),
     fetchCollectionSounds: (collectionId) => dispatch(fetchCollectionSounds(collectionId)),
-    createCollection: (_, collection) => dispatch(createCollection(collection)),
-    updateCollection: (id, collection) => dispatch(updateCollection(id, collection)),
     submitCollection: submitCollection,
     submitText: submitText,
     clearErrors: () => dispatch(receiveErrors({})),
