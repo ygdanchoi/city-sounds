@@ -33,7 +33,9 @@
   padding-top: 56px;
   text-align: center;
   padding-bottom: 37px;
+  font-size: 13.5pt;
   font-weight: normal;
+  color: #333333;
 }
 
 .auth-form-section {
@@ -59,6 +61,7 @@
   width: 300px;
   height: 36px;
   border: 1px solid #cccccc;
+  font-size: 12pt;
 }
 
 .auth-form-submit input, .auth-form-guest button {
@@ -67,7 +70,6 @@
   margin-top: 22px;
   margin-left: 174px;
   cursor: pointer;
-  font-size: 18px;
   color: white;
   font-weight: bold;
 }
@@ -75,6 +77,8 @@
 .auth-form-bottom {
   margin-top: 72px;
   text-align: center;
+  color: #818285;
+  font-size: 9pt;
 }
 
 .auth-form-errors {

@@ -136,8 +136,6 @@ class AuthForm extends React.Component {
                     type='submit'
                     onClick={ this.handleGuest }>Login as guest</button>
                 </div>
-                <a href='' onClick={ this.handleAnyone('dan', 'password') }>[log in as dan]</a>
-                <a href='' onClick={ this.handleAnyone('Corsica_S', 'Corsica_S') }>[log in as Corsica_S]</a>
               </form>
             </section>
             <p className='auth-form-bottom'>{ bottomText }{ bottomLink }.</p>
@@ -149,3 +147,6 @@ class AuthForm extends React.Component {
 }
 
 export default AuthForm;
+
+// <a href='' onClick={ this.handleAnyone('dan', 'password') }>[log in as dan]</a>
+// <a href='' onClick={ this.handleAnyone('Corsica_S', 'Corsica_S') }>[log in as Corsica_S]</a>
