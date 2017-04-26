@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, hashHistory } from 'react-router';
 import SoundListItem from './sound_list_item';
 import CollectionFormCollectionSubForm from './collection_form_collection_sub_form';
+import CollectionFormSoundSubForm from './collection_form_sound_sub_form';
 
 class CollectionForm extends React.Component {
   constructor(props) {
@@ -119,13 +120,33 @@ class CollectionForm extends React.Component {
   }
 
   handleChangeSound(idx) {
-    return (field) => {
+    return (field, formProps) => {
       return (e) => {
         const sounds = this.state.sounds.slice();
         sounds[idx][field] = e.currentTarget.value;
-        this.setState({
-          sounds: sounds
-        });
+        if (field === 'title') {
+          this.setState({
+            sounds: sounds,
+            currentForm: (
+              <CollectionFormSoundSubForm
+                title={ e.currentTarget.value }
+                duration={ formProps.duration }
+                idx={ formProps.idx }
+                handleChange={ formProps.handleChange } />
+            )
+          });
+        } else if (field === 'duration') {
+          this.setState({
+            sounds: sounds,
+            currentForm: (
+              <CollectionFormSoundSubForm
+                title={ formProps.title }
+                duration={ e.currentTarget.value }
+                idx={ formProps.idx }
+                handleChange={ formProps.handleChange } />
+            )
+          });
+        }
       };
     };
   }
