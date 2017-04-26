@@ -36,7 +36,6 @@ const SoundListItem = (props) => {
           <p>{ props.idx + '. audioUrl: ' + props.sound.audioUrl }</p>
           <p>{ props.idx + '. audioFile: ' + (props.sound.audioFile ? props.sound.audioFile.name : null) }</p>
           <a onClick={ props.handleDeleteSound }>X</a>
-          { collectionFormSoundSubForm }
         </div>
 
       </li>
