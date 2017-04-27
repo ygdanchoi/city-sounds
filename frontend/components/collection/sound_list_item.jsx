@@ -22,10 +22,11 @@ const SoundListItem = (props) => {
   if (props.sound) {
     return (
       <li className='sound-list-item'>
-        <a href={ props.sound.audioUrl }>
-          <p className='sound-list-item-title'>{ props.sound.title }</p>
-        </a>
-        <p>{ toHHMMSS(props.sound.duration) }</p>
+        <p className='sound-list-item-title'>{ `${parseInt(props.idx) + 1}. ${props.sound.title}` }</p>
+        <audio controls>
+          <source src={ props.sound.audioUrl } type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </li>
     );
   } else {

@@ -84,7 +84,7 @@ class Collection extends React.Component {
             </h3>
             { editDelete }
             <div className='collection-sound-player'>
-              <p>sound player</p>
+              <p>collection-sound-player</p>
             </div>
             <h3 className='collection-info-sound-collection'>
               Digital Sound Collection

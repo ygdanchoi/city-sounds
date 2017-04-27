@@ -22,7 +22,7 @@ class Explore extends React.Component {
           </section>
           <aside className='explore-main-right'>
             <div className='explore-sound-player' >
-              <p>sound player</p>
+              <p>explore-sound-player</p>
             </div>
           </aside>
         </main>
