@@ -3,7 +3,7 @@ import ExploreListItem from './explore_list_item';
 
 const ExploreList = (props) => {
   const exploreListItems = Object.keys(props.collections).map(
-    id => <ExploreListItem key={ id } collection={ props.collections[id] } />
+    id => <ExploreListItem key={ id } collection={ props.collections[id] } setPlayingCollection={ props.setPlayingCollection } />
   );
   return (
     <ul className='explore-list'>

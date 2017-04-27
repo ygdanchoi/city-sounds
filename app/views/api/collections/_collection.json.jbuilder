@@ -2,6 +2,7 @@ json.id _collection.id
 json.user do
   json.id _collection.user.id
   json.username _collection.user.username
+  json.location _collection.user.location
   json.avatarUrl asset_path(_collection.user.avatar.url)
 end
 json.title _collection.title

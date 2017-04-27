@@ -68,7 +68,7 @@ class Home extends React.Component {
               <h2><font color="#639aa9">.:.:.</font> citysounds</h2>
             </figure>
             <div className='home-header-search'>
-              <p>Search... &#9906;</p>
+              <p></p>
             </div>
           </header>
           <header className='home-header-main-bottom'>
