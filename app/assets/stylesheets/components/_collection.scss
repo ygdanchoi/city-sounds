@@ -85,7 +85,17 @@
   display: flex;
 }
 
+.collection-sound-player-timeline {
+  width: 248px;
+	height: 8px;
+  background: white;
+}
 
+.collection-sound-player-playhead {
+  width: 24px;
+	height: 12px;
+  background: black;
+}
 
 .collection-info-sound-collection {
   font-size: 10.5pt;

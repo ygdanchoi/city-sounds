@@ -24,6 +24,10 @@ class CollectionSoundPlayer extends React.Component {
       this.setState({
         audioCurrentTime: document.getElementById('sound-audio').currentTime
       });
+      const playhead = document.getElementById('collection-playhead');
+      var playPercent = 100 * (this.state.audioCurrentTime / this.state.audioDuration);
+      playhead.style.marginLeft = playPercent + "%";
+
     }).bind(this), 1000);
   }
 
@@ -88,7 +92,7 @@ class CollectionSoundPlayer extends React.Component {
             <p>{ this.toHHMMSS(this.state.audioDuration) }</p>
           </div>
           <div className='collection-sound-player-timeline'>
-            <div className='collection-sound-player-timeline' />
+            <div id='collection-playhead' className='collection-sound-player-playhead' />
           </div>
         </div>
       </div>
