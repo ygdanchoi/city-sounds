@@ -16,8 +16,8 @@ class CollectionFormSoundSubForm extends React.Component {
       <div>
         <input className='sub-form-title-input' type='text' placeholder=' track name' value={ this.props.title } onChange={ this.props.handleChange('title', formProps) } />
         <div className='sub-form-divider' />
-        <label className='sub-form-field-label' htmlFor={`description-${this.props.idx}`}>description</label>
-        <textarea id={`description-${this.props.idx}`} className='sub-form-field' value={ this.props.description ? this.props.description : '' } onChange={ this.props.handleChange('description', formProps) } />
+        <label className='sub-form-field-label' htmlFor={`description-${this.props.idx}`}>about this sound:</label>
+        <textarea id={`description-${this.props.idx}`} className='sub-form-field' placeholder='(optional)' value={ this.props.description ? this.props.description : '' } onChange={ this.props.handleChange('description', formProps) } />
       </div>
     );
   }

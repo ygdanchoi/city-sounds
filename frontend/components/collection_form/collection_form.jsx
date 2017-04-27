@@ -365,7 +365,7 @@ class CollectionForm extends React.Component {
                 style={ { display: 'none' } } />
               <div className='collection-form-add-sound-container'>
                 <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
-                <p className='collection-form-add-sound-requirements'>50MB max per sound, .mp3, .mp4, .mpg, or mpeg</p>
+                <p className='collection-form-add-sound-requirements'>50MB max per sound, .mp3, .mp4, .mpg, or .mpeg</p>
               </div>
               { soundsErrors }
             </div>
