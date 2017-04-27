@@ -23,10 +23,7 @@ const SoundListItem = (props) => {
     return (
       <li className='sound-list-item'>
         <p className='sound-list-item-title'>{ `${parseInt(props.idx) + 1}. ${props.sound.title}` }</p>
-        <audio controls>
-          <source src={ props.sound.audioUrl } type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
+        <button onClick={ props.setCurrentSound(props.sound) }>play</button>
       </li>
     );
   } else {

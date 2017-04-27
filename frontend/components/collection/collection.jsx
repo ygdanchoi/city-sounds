@@ -10,17 +10,52 @@ class Collection extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
     this.redirectToEditCollection = this.redirectToEditCollection.bind(this);
+    this.state = {
+      currentSoundTitle: '',
+      currentSoundAudioPlayer: null
+    };
+    this.setCurrentSound = this.setCurrentSound.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchCollection(this.props.params.collectionId);
-    this.props.fetchCollectionSounds(this.props.params.collectionId);
+    this.props.fetchCollectionSounds(this.props.params.collectionId).then(
+      (response) => {
+        const currentSound = response.sounds[Object.keys(response.sounds)[0]];
+        if (currentSound) {
+          this.setState({
+            currentSoundTitle: currentSound.title,
+            currentSoundAudioPlayer: (
+              <audio key={ currentSound.id } controls>
+                <source src={ currentSound.audioUrl } type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            )
+          });
+        }
+      }
+    );
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.params.collectionId !== newProps.params.collectionId) {
       this.props.fetchCollection(newProps.params.collectionId);
-      this.props.fetchCollectionSounds(newProps.params.collectionId);
+      this.props.fetchCollectionSounds(newProps.params.collectionId).then(
+        (response) => {
+          const currentSound = response.sounds[Object.keys(response.sounds)[0]];
+          if (currentSound) {
+            this.setState({
+              currentSoundTitle: currentSound.title,
+              currentSoundAudioPlayer: (
+                <audio key={ currentSound.id } controls>
+                  <source src={ currentSound.audioUrl } type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              )
+            });
+          }
+        }
+      );
     }
   }
 
@@ -44,6 +79,20 @@ class Collection extends React.Component {
     hashHistory.push(`users/${this.props.currentUser.id}`);
   }
 
+  setCurrentSound(sound) {
+    return ((e) => {
+      this.setState({
+        currentSoundTitle: sound.title,
+        currentSoundAudioPlayer: (
+          <audio key={ sound.id } controls>
+            <source src={ sound.audioUrl } type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        )
+      });
+    }).bind(this);
+  }
+
   render() {
     if (this.props.collection === undefined) {
       return(
@@ -55,7 +104,7 @@ class Collection extends React.Component {
       );
     }
     const soundListItems = this.props.collection.soundIds.map(
-      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } />
+      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } setCurrentSound={ this.setCurrentSound } />
     );
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {
@@ -84,7 +133,8 @@ class Collection extends React.Component {
             </h3>
             { editDelete }
             <div className='collection-sound-player'>
-              <p>collection-sound-player</p>
+              <p>{ this.state.currentSoundTitle }</p>
+              { this.state.currentSoundAudioPlayer }
             </div>
             <h3 className='collection-info-sound-collection'>
               Digital Sound Collection
