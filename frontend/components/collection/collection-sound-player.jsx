@@ -11,6 +11,7 @@ class CollectionSoundPlayer extends React.Component {
 
   componentDidMount() {
     const soundAudio = document.getElementById('sound-audio');
+    const collectionPlayButton = document.getElementById('collection-play-button');
     soundAudio.addEventListener('ended', () => {
       collectionPlayButton.classList.remove('collection-playing');
       collectionPlayButton.classList.add('collection-paused');
@@ -95,9 +96,8 @@ class CollectionSoundPlayer extends React.Component {
         <button id='collection-play-button' className='collection-paused' onClick={ this.playAudio } ></button>
         <div className='collection-sound-player-right'>
           <div className='collection-sound-player-details'>
-            <p>{ this.props.sound.title }</p>
-            <p>{ this.toHHMMSS(this.state.audioCurrentTime) }</p>
-            <p>{ this.toHHMMSS(this.state.audioDuration) }</p>
+            <p className='collection-sound-player-title'>{ this.props.sound.title }</p>
+            <p className='collection-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>
           </div>
           <div id='collection-timeline' className='collection-sound-player-timeline'>
             <div id='collection-playhead' className='collection-sound-player-playhead' />
