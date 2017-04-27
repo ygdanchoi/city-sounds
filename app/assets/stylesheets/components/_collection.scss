@@ -90,19 +90,20 @@
 .collection-sound-player-timeline {
   width: 248px;
 	height: 8px;
-  background: white;
+  background: #f5f5f5;
   border: 1px solid #d9d9d9;
   border-radius: 1px;
 }
 
 .collection-sound-player-playhead {
-  width: 24px;
-	height: 12px;
+  width: 22px;
+	height: 10px;
   background: white;
   border: 1px solid #bebebe;
   border-radius: 1px;
   position: relative;
   left: -1px;
+  top: -2px;
 }
 
 .collection-info-sound-collection {
