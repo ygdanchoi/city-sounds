@@ -28,6 +28,13 @@ class CollectionSoundPlayer extends React.Component {
         audioCurrentTime: soundAudio.currentTime
       });
     }).bind(this), false);
+    const timeline = document.getElementById('collection-timeline');
+    timeline.addEventListener('click', ((e) => {
+      const left = timeline.getBoundingClientRect().left;
+      const width = timeline.getBoundingClientRect().width;
+      const clickFraction = (e.clientX - left) / width;
+      soundAudio.currentTime = soundAudio.duration * clickFraction;
+    }).bind(this), false);
   }
 
   componentWillReceiveProps(newProps) {
@@ -89,7 +96,7 @@ class CollectionSoundPlayer extends React.Component {
             <p>{ this.toHHMMSS(this.state.audioCurrentTime) }</p>
             <p>{ this.toHHMMSS(this.state.audioDuration) }</p>
           </div>
-          <div className='collection-sound-player-timeline'>
+          <div id='collection-timeline' className='collection-sound-player-timeline'>
             <div id='collection-playhead' className='collection-sound-player-playhead' />
           </div>
         </div>
