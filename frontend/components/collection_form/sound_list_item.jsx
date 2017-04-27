@@ -28,11 +28,10 @@ const SoundListItem = (props) => {
     const collectionFormSoundSubForm = (
       <CollectionFormSoundSubForm
         title={ props.sound.title }
-        duration={ props.sound.duration }
+        description={ props.sound.description }
         idx={ props.idx }
         handleChange={ props.handleChange } />
     );
-    console.log(props);
     return (
       <li className='collection-form-sound-list-item'>
         <div className='collection-form-sound-tab' onClick={ props.handleClickSoundTab(collectionFormSoundSubForm) }>

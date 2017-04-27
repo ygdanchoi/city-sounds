@@ -69,7 +69,7 @@ class CollectionForm extends React.Component {
     fileReader.onloadend = (() => {
       const sound = {
         title: '',
-        duration: 0,
+        description: 0,
         audioFile: file,
         audioUrl: fileReader.result,
       };
@@ -78,7 +78,7 @@ class CollectionForm extends React.Component {
         currentForm: (
           <CollectionFormSoundSubForm
             title={ '' }
-            duration={ 0 }
+            description={ 0 }
             idx={ this.state.sounds.length }
             handleChange={ this.handleChangeSound(this.state.sounds.length) } />
         )
@@ -137,18 +137,18 @@ class CollectionForm extends React.Component {
             currentForm: (
               <CollectionFormSoundSubForm
                 title={ e.currentTarget.value }
-                duration={ formProps.duration }
+                description={ formProps.description }
                 idx={ formProps.idx }
                 handleChange={ formProps.handleChange } />
             )
           });
-        } else if (field === 'duration') {
+        } else if (field === 'description') {
           this.setState({
             sounds: sounds,
             currentForm: (
               <CollectionFormSoundSubForm
                 title={ formProps.title }
-                duration={ e.currentTarget.value }
+                description={ e.currentTarget.value }
                 idx={ formProps.idx }
                 handleChange={ formProps.handleChange } />
             )

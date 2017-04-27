@@ -71,12 +71,12 @@ class Api::CollectionsController < ApplicationController
         Sound.find(sound['id']).update!(
           id: sound['id'],
           title: sound['title'],
-          duration: sound['duration'].to_i,
+          description: sound['description'],
         )
       else
         Sound.create!(
           title: sound['title'],
-          duration: sound['duration'].to_i,
+          description: sound['description'],
           audio: params[:collection]["audio#{idx}"],
           collection_id: @collection.id
         )
