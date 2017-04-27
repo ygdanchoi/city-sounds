@@ -11,25 +11,32 @@ class CollectionSoundPlayer extends React.Component {
 
   componentDidMount() {
     const soundAudio = document.getElementById('sound-audio');
-    const collectionPlayButton = document.getElementById('collection-play-button');
-    soundAudio.addEventListener('ended', () => {
+    this.audioEndedListener = soundAudio.addEventListener('ended', () => {
       collectionPlayButton.classList.remove('collection-playing');
       collectionPlayButton.classList.add('collection-paused');
     });
-    soundAudio.addEventListener('loadeddata', (() => {
+    this.audioDurationListener = soundAudio.addEventListener('loadeddata', (() => {
       this.setState({
         audioDuration: soundAudio.duration
       });
     }).bind(this));
     this.audioCurrentTimeListener = setInterval((() => {
       this.setState({
-        audioCurrentTime: soundAudio.currentTime
+        audioCurrentTime: document.getElementById('sound-audio').currentTime
       });
     }).bind(this), 1000);
   }
 
+  componentWillReceiveProps(newProps) {
+    const soundAudio = document.getElementById('sound-audio');
+    soundAudio.currentTime = 0;
+    this.setState({
+      audioCurrentTime: 0
+    });
+  }
+
   componentWillUnmount() {
-    window.clearInterval(this.audioCurrentTimeListener);    
+    window.clearInterval(this.audioCurrentTimeListener);
   }
 
   toHHMMSS(seconds) {
@@ -57,6 +64,7 @@ class CollectionSoundPlayer extends React.Component {
       collectionPlayButton.classList.remove('collection-paused');
       collectionPlayButton.classList.add('collection-playing');
     } else {
+      soundAudio.pause();
       collectionPlayButton.classList.remove('collection-playing');
       collectionPlayButton.classList.add('collection-paused');
     }
@@ -64,19 +72,24 @@ class CollectionSoundPlayer extends React.Component {
 
   render() {
     const soundAudio = (
-      <audio id='sound-audio' key={ this.props.sound.id } >
+      <audio id='sound-audio' >
         <source src={ this.props.sound.audioUrl } type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     );
     return (
-      <div id='collection-sound-player' className='collection-sound-player'>
+      <div key={ this.props.sound.id }  id='collection-sound-player' className='collection-sound-player'>
         { soundAudio }
-        <button id='collection-play-button' className='collection-paused' onClick={ this.playAudio }></button>
-        <div>
-          <p>{ this.props.sound.title }</p>
-          <p>{ this.toHHMMSS(this.state.audioCurrentTime) }</p>
-          <p>{ this.toHHMMSS(this.state.audioDuration) }</p>
+        <button id='collection-play-button' className='collection-paused' onClick={ this.playAudio } ></button>
+        <div className='collection-sound-player-right'>
+          <div className='collection-sound-player-details'>
+            <p>{ this.props.sound.title }</p>
+            <p>{ this.toHHMMSS(this.state.audioCurrentTime) }</p>
+            <p>{ this.toHHMMSS(this.state.audioDuration) }</p>
+          </div>
+          <div className='collection-sound-player-timeline'>
+            <div className='collection-sound-player-timeline' />
+          </div>
         </div>
       </div>
     );
