@@ -12,11 +12,13 @@ class Collection extends React.Component {
     this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
     this.redirectToEditCollection = this.redirectToEditCollection.bind(this);
     this.state = {
+      playedYet: false,
       playing: false,
       playingSound: null,
     };
     this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingSound = this.setPlayingSound.bind(this);
+    this.setPlayedYet = this.setPlayedYet.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +27,9 @@ class Collection extends React.Component {
       (response) => {
         const playingSound = response.sounds[Object.keys(response.sounds)[0]];
         if (playingSound) {
-          this.setState({ playingSound: playingSound });
+          this.setState({
+            playingSound: playingSound
+          });
         }
       }
     );
@@ -38,7 +42,10 @@ class Collection extends React.Component {
         (response) => {
           const playingSound = response.sounds[Object.keys(response.sounds)[0]];
           if (playingSound) {
-            this.setState({ playingSound: playingSound });
+            this.setState({
+              playedYet: false,
+              playingSound: playingSound
+            });
           }
         }
       );
@@ -91,6 +98,12 @@ class Collection extends React.Component {
     }).bind(this);
   }
 
+  setPlayedYet() {
+    this.setState({
+      playedYet: true
+    });
+  }
+
   render() {
     if (this.props.collection === undefined) {
       return(
@@ -131,7 +144,7 @@ class Collection extends React.Component {
             </h3>
             { editDelete }
             <div className='collection-sound-player-container'>
-              <CollectionSoundPlayer sound={ this.state.playingSound } playing={ this.state.playing } playPauseAudio={ this.playPauseAudio } playingSound={ this.state.playingSound } />
+              <CollectionSoundPlayer sound={ this.state.playingSound } playing={ this.state.playing } playPauseAudio={ this.playPauseAudio } playingSound={ this.state.playingSound } playedYet={ this.state.playedYet } setPlayedYet={ this.setPlayedYet } />
             </div>
             <h3 className='collection-info-sound-collection'>
               Digital Sound Collection

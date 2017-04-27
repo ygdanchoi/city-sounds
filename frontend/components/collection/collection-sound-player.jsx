@@ -24,12 +24,22 @@ class CollectionSoundPlayer extends React.Component {
       } else {
         this.audioPlayer.audioEl.pause();
       }
-      if (this.props.playingSound !== newProps.playingSound) {
-        console.log(newProps.playingSound)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.audioPlayer) {
+      if (this.props.playingSound !== prevProps.playingSound) {
         this.audioPlayer.audioEl.currentTime = 0;
+        if (this.props.playedYet) {
+          this.audioPlayer.audioEl.play();
+        } else {
+          this.props.setPlayedYet();
+        }
       }
     }
   }
+
 
   componentWillUnmount() {
   }
