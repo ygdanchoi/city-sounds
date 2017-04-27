@@ -21,11 +21,32 @@ class CollectionSoundPlayer extends React.Component {
         audioDuration: soundAudio.duration
       });
     }).bind(this));
-    setInterval((() => {
+    this.audioCurrentTimeListener = setInterval((() => {
       this.setState({
         audioCurrentTime: soundAudio.currentTime
       });
     }).bind(this), 1000);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.audioCurrentTimeListener);    
+  }
+
+  toHHMMSS(seconds) {
+    let hh = Math.floor(seconds / 3600);
+    let mm = Math.floor(seconds / 60) % 60;
+    let ss = Math.floor(seconds % 60);
+    if (ss < 10) {
+      ss = "0" + ss;
+    }
+    if (hh === 0) {
+      return `${mm}:${ss}`;
+    } else {
+      if (mm < 10) {
+        mm = "0" + mm;
+      }
+      return `${hh.toString()}:${mm.toString()}:${ss.toString()}`;
+    }
   }
 
   playAudio() {
@@ -54,8 +75,8 @@ class CollectionSoundPlayer extends React.Component {
         <button id='collection-play-button' className='collection-paused' onClick={ this.playAudio }></button>
         <div>
           <p>{ this.props.sound.title }</p>
-          <p>{ this.state.audioCurrentTime }</p>
-          <p>{ this.state.audioDuration }</p>
+          <p>{ this.toHHMMSS(this.state.audioCurrentTime) }</p>
+          <p>{ this.toHHMMSS(this.state.audioDuration) }</p>
         </div>
       </div>
     );
