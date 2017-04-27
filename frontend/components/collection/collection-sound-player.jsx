@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 
 class CollectionSoundPlayer extends React.Component {
   constructor(props) {
@@ -7,38 +8,18 @@ class CollectionSoundPlayer extends React.Component {
       audioCurrentTime: 0,
       audioDuration: 0
     };
+    this.handleAudioEnded = this.handleAudioEnded.bind(this);
+    this.handleCanPlay = this.handleCanPlay.bind(this);
+    this.handleListen = this.handleListen.bind(this);
+    this.handleClickTimeline = this.handleClickTimeline.bind(this);
   }
 
   componentDidMount() {
     const soundAudio = document.getElementById('sound-audio');
     const collectionPlayButton = document.getElementById('collection-play-button');
-    soundAudio.addEventListener('ended', () => {
-      collectionPlayButton.classList.remove('collection-playing');
-      collectionPlayButton.classList.add('collection-paused');
-    });
-    soundAudio.addEventListener('loadeddata', (() => {
-      this.setState({
-        audioDuration: soundAudio.duration
-      });
-    }).bind(this));
-    soundAudio.addEventListener('timeupdate', (() => {
-      const timeline = document.getElementById('collection-timeline');
-      const playhead = document.getElementById('collection-playhead');
-      const timelineWidth = timeline.getBoundingClientRect().width;
-      const playheadWidth = playhead.getBoundingClientRect().width;
-      let playFraction = soundAudio.currentTime / this.state.audioDuration;
-      playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
-      this.setState({
-        audioCurrentTime: soundAudio.currentTime
-      });
-    }).bind(this), false);
-    const timeline = document.getElementById('collection-timeline');
-    timeline.addEventListener('click', ((e) => {
-      const left = timeline.getBoundingClientRect().left;
-      const width = timeline.getBoundingClientRect().width;
-      const clickFraction = (e.clientX - left) / width;
-      soundAudio.currentTime = soundAudio.duration * clickFraction;
-    }).bind(this), false);
+    soundAudio.pause();
+    collectionPlayButton.classList.remove('collection-playing');
+    collectionPlayButton.classList.add('collection-paused');
   }
 
   componentWillReceiveProps(newProps) {
@@ -69,31 +50,57 @@ class CollectionSoundPlayer extends React.Component {
     }
   }
 
-  playAudio() {
-    const soundAudio = document.getElementById('sound-audio');
+  handleAudioEnded() {
     const collectionPlayButton = document.getElementById('collection-play-button');
-    if (soundAudio.paused) {
-      soundAudio.play();
-      collectionPlayButton.classList.remove('collection-paused');
-      collectionPlayButton.classList.add('collection-playing');
-    } else {
-      soundAudio.pause();
-      collectionPlayButton.classList.remove('collection-playing');
-      collectionPlayButton.classList.add('collection-paused');
-    }
+    collectionPlayButton.classList.remove('collection-playing');
+    collectionPlayButton.classList.add('collection-paused');
+  }
+
+  handleCanPlay() {
+    const soundAudio = document.getElementById('sound-audio');
+    this.setState({
+      audioDuration: soundAudio.duration
+    });
+  }
+
+  handleListen() {
+    const soundAudio = document.getElementById('sound-audio');
+    const timeline = document.getElementById('collection-timeline');
+    const playhead = document.getElementById('collection-playhead');
+    const timelineWidth = timeline.getBoundingClientRect().width;
+    const playheadWidth = playhead.getBoundingClientRect().width;
+    const playFraction = soundAudio.currentTime / this.state.audioDuration;
+    playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
+    this.setState({
+      audioCurrentTime: soundAudio.currentTime
+    });
+  }
+
+  handleClickTimeline(e) {
+    const soundAudio = document.getElementById('sound-audio');
+    const timeline = document.getElementById('collection-timeline');
+    const left = timeline.getBoundingClientRect().left;
+    const width = timeline.getBoundingClientRect().width;
+    const clickFraction = (e.clientX - left) / width;
+    soundAudio.currentTime = soundAudio.duration * clickFraction;
   }
 
   render() {
     const soundAudio = (
-      <audio id='sound-audio' >
-        <source src={ this.props.sound.audioUrl } type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <ReactAudioPlayer
+        id='sound-audio'
+        src={ this.props.sound.audioUrl }
+        onEnded={ this.handleAudioEnded }
+        onCanPlay={ this.handleCanPlay }
+        listenInterval={ 100 }
+        onListen={ this.handleListen }
+        autoPlay
+      />
     );
     return (
       <div key={ this.props.sound.id }  id='collection-sound-player' className='collection-sound-player'>
         { soundAudio }
-        <button id='collection-play-button' className='collection-paused' onClick={ this.playAudio } ></button>
+        <button id='collection-play-button' className='collection-playing' onClick={ this.props.playPauseAudio } ></button>
         <div className='collection-sound-player-right'>
           <div className='collection-sound-player-details'>
             <p className='collection-sound-player-title'>{ this.props.sound.title }</p>

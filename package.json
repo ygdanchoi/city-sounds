@@ -34,6 +34,7 @@
     "babel-preset-react": "^6.1.18",
     "lodash": "^4.15.0",
     "react": "^0.14.2",
+    "react-audio-player": "^0.4.0",
     "react-dom": "^0.14.2",
     "react-redux": "^4.4.5",
     "react-router": "3.0.5",
