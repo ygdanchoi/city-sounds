@@ -21,7 +21,9 @@ class Explore extends React.Component {
             <ExploreList collections={ this.props.collections } />
           </section>
           <aside className='explore-main-right'>
-            <div className='explore-sound-player' />
+            <div className='explore-sound-player' >
+              <p>sound player</p>
+            </div>
           </aside>
         </main>
       </div>
