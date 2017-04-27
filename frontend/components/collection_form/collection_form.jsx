@@ -39,7 +39,7 @@ class CollectionForm extends React.Component {
             description: response.collection.description,
           });
         }
-      )
+      );
       this.props.fetchCollectionSounds(id).then(
         (response) => {
           this.setState({
@@ -90,40 +90,40 @@ class CollectionForm extends React.Component {
     e.currentTarget.value = '';
   }
 
-    handleChange(field) {
-      return (e) => {
-        if (field === 'title') {
+  handleChange(field) {
+    return (e) => {
+      if (field === 'title') {
+        this.setState({
+          title: e.currentTarget.value,
+          currentForm: (
+            <CollectionFormCollectionSubForm
+              title={ e.currentTarget.value }
+              description={ this.state.description }
+              handleChange={ this.handleChange }
+              errors={ this.props.errors }
+              artworkUrl={ this.state.artworkUrl }
+              handleAddArtwork={ this.handleAddArtwork }
+              handleClickArtwork={ this.handleClickArtwork }
+              handleDeleteArtwork={ this.handleDeleteArtwork } />
+          )
+        });
+      } else if (field === 'description') {
           this.setState({
-            title: e.currentTarget.value,
-            currentForm: (
-              <CollectionFormCollectionSubForm
-                title={ e.currentTarget.value }
-                description={ this.state.description }
-                handleChange={ this.handleChange }
-                errors={ this.props.errors }
-                artworkUrl={ this.state.artworkUrl }
-                handleAddArtwork={ this.handleAddArtwork }
-                handleClickArtwork={ this.handleClickArtwork }
-                handleDeleteArtwork={ this.handleDeleteArtwork } />
-            )
-          });
-        } else if (field === 'description') {
-            this.setState({
-            description: e.currentTarget.value,
-            currentForm: (
-              <CollectionFormCollectionSubForm
-                title={ this.state.title }
-                description={ e.currentTarget.value }
-                handleChange={ this.handleChange }
-                errors={ this.props.errors }
-                artworkUrl={ this.state.artworkUrl }
-                handleAddArtwork={ this.handleAddArtwork }
-                handleClickArtwork={ this.handleClickArtwork }
-                handleDeleteArtwork={ this.handleDeleteArtwork } />
-            )
-          });
-        }
+          description: e.currentTarget.value,
+          currentForm: (
+            <CollectionFormCollectionSubForm
+              title={ this.state.title }
+              description={ e.currentTarget.value }
+              handleChange={ this.handleChange }
+              errors={ this.props.errors }
+              artworkUrl={ this.state.artworkUrl }
+              handleAddArtwork={ this.handleAddArtwork }
+              handleClickArtwork={ this.handleClickArtwork }
+              handleDeleteArtwork={ this.handleDeleteArtwork } />
+          )
+        });
       }
+    };
   }
 
   handleChangeSound(idx) {
@@ -284,7 +284,7 @@ class CollectionForm extends React.Component {
       this.setState({
         currentForm: collectionFormSoundSubForm
       });
-    }
+    };
   }
 
   render() {
