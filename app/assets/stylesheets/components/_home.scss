@@ -92,6 +92,16 @@
   background-color: #eef2f3;
 }
 
+.explore-filters-top {
+  height: 40px;
+  background-color: #42a0bd;
+}
+
+.explore-filters-bottom {
+  height: 40px;
+  background-color: #4390a8;
+}
+
 .explore-heading {
   background-color: #eef2f3;
 }
@@ -104,18 +114,32 @@
 
 .explore-heading h3 {
   font-size: 13.5pt;
-  padding: 23px 13px;
+  padding: 75px 13px 23px 13px;
 }
 
 .explore-main {
   min-width: 785px;
   max-width: 1106px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .explore-main-filter-bar {
-  display: flex;
   align-items: center;
+}
+
+.explore-main-left {
+  width: 741px;
+}
+
+.explore-main-right {
+  width: 345px;
+  background-color: lightcoral;
+}
+
+.explore-sound-player {
+  background-color: violet;
 }
 
 .explore-list {
@@ -125,14 +149,13 @@
 }
 
 .explore-list-item {
-  width: 173px;
-  margin: 18px 13px;
+  width: 172px;
+  margin: 20px 0px 0px 13px ;
 }
 
 .explore-list-item a {
   color: black;
   display: block;
-  font-size: 10pt;
 }
 
 .explore-list-item a:hover {
@@ -143,4 +166,15 @@
   width: 173px;
   height: 173px;
   background-color: grey;
+}
+
+.explore-list-item-title {
+  padding-top: 11px;
+  font-weight: bold;
+  font-size: 9pt;
+}
+
+.explore-list-item-user {
+  padding-top: 4px;
+  font-size: 9pt;
 }

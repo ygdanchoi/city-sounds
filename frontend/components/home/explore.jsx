@@ -14,10 +14,15 @@ class Explore extends React.Component {
   render() {
     return (
       <div className='explore'>
+        <div className='explore-filters-top' />
+        <div className='explore-filters-bottom' />
         <main className='explore-main'>
-          <section>
+          <section className='explore-main-left'>
             <ExploreList collections={ this.props.collections } />
           </section>
+          <aside className='explore-main-right'>
+            <div className='explore-sound-player' />
+          </aside>
         </main>
       </div>
     );

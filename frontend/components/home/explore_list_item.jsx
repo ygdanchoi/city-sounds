@@ -8,10 +8,10 @@ const ExploreListItem = (props) => {
         <figure className='explore-list-item-artwork'>
           <img src={ props.collection.artworkUrl } />
         </figure>
-        <p>{ props.collection.title }</p>
+        <p className='explore-list-item-title'>{ props.collection.title }</p>
       </Link>
       <Link to={`/users/${props.collection.user.id}`}>
-        <p>{ props.collection.user.username }</p>
+        <p className='explore-list-item-user'>{ props.collection.user.username }</p>
       </Link>
     </li>
   );
