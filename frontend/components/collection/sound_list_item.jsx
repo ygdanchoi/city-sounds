@@ -23,7 +23,7 @@ const SoundListItem = (props) => {
     return (
       <li className='sound-list-item'>
         <p className='sound-list-item-title'>{ `${parseInt(props.idx) + 1}. ${props.sound.title}` }</p>
-        <button onClick={ props.setCurrentSound(props.sound) }>play</button>
+        <button onClick={ props.setPlayingSound(props.sound) }>play</button>
       </li>
     );
   } else {

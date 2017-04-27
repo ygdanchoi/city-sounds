@@ -11,23 +11,23 @@ class Collection extends React.Component {
     this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
     this.redirectToEditCollection = this.redirectToEditCollection.bind(this);
     this.state = {
-      currentSoundTitle: '',
-      currentSoundAudioPlayer: null
+      playingSoundTitle: '',
+      playingSoundAudioPlayer: null
     };
-    this.setCurrentSound = this.setCurrentSound.bind(this);
+    this.setPlayingSound = this.setPlayingSound.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchCollection(this.props.params.collectionId);
     this.props.fetchCollectionSounds(this.props.params.collectionId).then(
       (response) => {
-        const currentSound = response.sounds[Object.keys(response.sounds)[0]];
-        if (currentSound) {
+        const playingSound = response.sounds[Object.keys(response.sounds)[0]];
+        if (playingSound) {
           this.setState({
-            currentSoundTitle: currentSound.title,
-            currentSoundAudioPlayer: (
-              <audio key={ currentSound.id } controls>
-                <source src={ currentSound.audioUrl } type="audio/mpeg" />
+            playingSoundTitle: playingSound.title,
+            playingSoundAudioPlayer: (
+              <audio key={ playingSound.id } controls>
+                <source src={ playingSound.audioUrl } type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             )
@@ -42,13 +42,13 @@ class Collection extends React.Component {
       this.props.fetchCollection(newProps.params.collectionId);
       this.props.fetchCollectionSounds(newProps.params.collectionId).then(
         (response) => {
-          const currentSound = response.sounds[Object.keys(response.sounds)[0]];
-          if (currentSound) {
+          const playingSound = response.sounds[Object.keys(response.sounds)[0]];
+          if (playingSound) {
             this.setState({
-              currentSoundTitle: currentSound.title,
-              currentSoundAudioPlayer: (
-                <audio key={ currentSound.id } controls>
-                  <source src={ currentSound.audioUrl } type="audio/mpeg" />
+              playingSoundTitle: playingSound.title,
+              playingSoundAudioPlayer: (
+                <audio key={ playingSound.id } controls>
+                  <source src={ playingSound.audioUrl } type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
               )
@@ -79,11 +79,11 @@ class Collection extends React.Component {
     hashHistory.push(`users/${this.props.currentUser.id}`);
   }
 
-  setCurrentSound(sound) {
+  setPlayingSound(sound) {
     return ((e) => {
       this.setState({
-        currentSoundTitle: sound.title,
-        currentSoundAudioPlayer: (
+        playingSoundTitle: sound.title,
+        playingSoundAudioPlayer: (
           <audio key={ sound.id } controls>
             <source src={ sound.audioUrl } type="audio/mpeg" />
             Your browser does not support the audio element.
@@ -104,7 +104,7 @@ class Collection extends React.Component {
       );
     }
     const soundListItems = this.props.collection.soundIds.map(
-      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } setCurrentSound={ this.setCurrentSound } />
+      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } setPlayingSound={ this.setPlayingSound } />
     );
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {
@@ -133,8 +133,8 @@ class Collection extends React.Component {
             </h3>
             { editDelete }
             <div className='collection-sound-player'>
-              <p>{ this.state.currentSoundTitle }</p>
-              { this.state.currentSoundAudioPlayer }
+              <p>{ this.state.playingSoundTitle }</p>
+              { this.state.playingSoundAudioPlayer }
             </div>
             <h3 className='collection-info-sound-collection'>
               Digital Sound Collection
