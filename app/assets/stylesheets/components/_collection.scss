@@ -60,7 +60,21 @@
 
 .collection-sound-player {
   width: 376px;
-  background-color: lightcoral;
+  display: flex;
+}
+
+#collection-play-button {
+  width: 56px;
+  height: 52px;
+  border: 1px solid #d9d9d9;
+}
+
+.collection-paused {
+  background-color: red;
+}
+
+.collection-playing {
+  background-color: green;
 }
 
 .collection-info-sound-collection {
