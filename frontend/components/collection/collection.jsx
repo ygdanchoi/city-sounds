@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, hashHistory } from 'react-router';
 import SoundListItem from './sound_list_item';
 import UserSidebarContainer from '../user_sidebar/user_sidebar_container';
+import CollectionSoundPlayer from './collection-sound-player';
 
 class Collection extends React.Component {
   constructor(props) {
@@ -25,12 +26,7 @@ class Collection extends React.Component {
         if (playingSound) {
           this.setState({
             playingSoundTitle: playingSound.title,
-            playingSoundAudioPlayer: (
-              <audio key={ playingSound.id } controls>
-                <source src={ playingSound.audioUrl } type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            )
+            playingSoundAudioPlayer: <CollectionSoundPlayer sound={ playingSound } />
           });
         }
       }
@@ -46,12 +42,7 @@ class Collection extends React.Component {
           if (playingSound) {
             this.setState({
               playingSoundTitle: playingSound.title,
-              playingSoundAudioPlayer: (
-                <audio key={ playingSound.id } controls>
-                  <source src={ playingSound.audioUrl } type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              )
+              playingSoundAudioPlayer: <CollectionSoundPlayer sound={ playingSound } />
             });
           }
         }
@@ -83,12 +74,7 @@ class Collection extends React.Component {
     return ((e) => {
       this.setState({
         playingSoundTitle: sound.title,
-        playingSoundAudioPlayer: (
-          <audio key={ sound.id } controls>
-            <source src={ sound.audioUrl } type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        )
+        playingSoundAudioPlayer: <CollectionSoundPlayer sound={ sound } />
       });
     }).bind(this);
   }
@@ -132,7 +118,7 @@ class Collection extends React.Component {
               </Link>
             </h3>
             { editDelete }
-            <div className='collection-sound-player'>
+            <div className='collection-sound-player-container'>
               <p>{ this.state.playingSoundTitle }</p>
               { this.state.playingSoundAudioPlayer }
             </div>

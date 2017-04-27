@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ExploreList from './explore_list';
+import ExploreSoundPlayer from './explore_sound_player';
 
 class Explore extends React.Component {
   constructor(props) {
@@ -35,12 +36,7 @@ class Explore extends React.Component {
             const playingSound = response.sounds[Object.keys(response.sounds)[0]];
             this.setState({
               playingSoundTitle: playingSound.title,
-              playingSoundAudioPlayer: (
-                <audio key={ playingSound.id } controls>
-                  <source src={ playingSound.audioUrl } type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              )
+              playingSoundAudioPlayer: <ExploreSoundPlayer sound={ playingSound } />
             });
           }).bind(this)
         );
@@ -63,12 +59,7 @@ class Explore extends React.Component {
           const playingSound = response.sounds[Object.keys(response.sounds)[0]];
           this.setState({
             playingSoundTitle: playingSound.title,
-            playingSoundAudioPlayer: (
-              <audio key={ playingSound.id } controls>
-                <source src={ playingSound.audioUrl } type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            )
+            playingSoundAudioPlayer: <ExploreSoundPlayer sound={ playingSound } />
           });
         }).bind(this)
       );
@@ -85,7 +76,7 @@ class Explore extends React.Component {
             <ExploreList collections={ this.props.collections } setPlayingCollection={ this.setPlayingCollection } />
           </section>
           <aside className='explore-main-right'>
-            <div className='explore-sound-player' >
+            <div className='explore-sound-player-container' >
               <img src={ this.state.playingCollectionArtworkUrl } />
               <p>{ this.state.playingSoundTitle }</p>
               { this.state.playingSoundAudioPlayer }

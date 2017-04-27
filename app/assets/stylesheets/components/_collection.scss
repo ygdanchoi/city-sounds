@@ -51,10 +51,15 @@
   cursor: pointer;
 }
 
-.collection-sound-player {
+.collection-sound-player-container {
   width: 376px;
   height: 52px;
   margin-bottom: 23px;
+  background-color: lightcoral;
+}
+
+.collection-sound-player {
+  width: 376px;
   background-color: lightcoral;
 }
 
