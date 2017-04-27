@@ -21,9 +21,12 @@ class CollectionSoundPlayer extends React.Component {
       });
     }).bind(this));
     soundAudio.addEventListener('timeupdate', (() => {
+      const timeline = document.getElementById('collection-timeline');
       const playhead = document.getElementById('collection-playhead');
-      let playPercent = 100 * (soundAudio.currentTime / this.state.audioDuration);
-      playhead.style.marginLeft = playPercent + "%";
+      const timelineWidth = timeline.getBoundingClientRect().width;
+      const playheadWidth = playhead.getBoundingClientRect().width;
+      let playFraction = soundAudio.currentTime / this.state.audioDuration;
+      playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
       this.setState({
         audioCurrentTime: soundAudio.currentTime
       });

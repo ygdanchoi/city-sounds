@@ -55,7 +55,6 @@
   width: 376px;
   height: 52px;
   margin-bottom: 23px;
-  background-color: lightcoral;
 }
 
 .collection-sound-player {
@@ -67,14 +66,17 @@
   width: 56px;
   height: 52px;
   border: 1px solid #d9d9d9;
+  background-color: white;
+  background-position: center;
+  border-radius: 2px;
+  margin-right: 11px;
 }
 
 .collection-paused {
-  background-color: red;
+  background: url(image_path('play.png')) no-repeat;
 }
-
 .collection-playing {
-  background-color: green;
+  background: url(image_path('pause.png')) no-repeat;
 }
 
 .collection-sound-player-right {
@@ -89,12 +91,18 @@
   width: 248px;
 	height: 8px;
   background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 1px;
 }
 
 .collection-sound-player-playhead {
   width: 24px;
 	height: 12px;
-  background: black;
+  background: white;
+  border: 1px solid #bebebe;
+  border-radius: 1px;
+  position: relative;
+  left: -1px;
 }
 
 .collection-info-sound-collection {
