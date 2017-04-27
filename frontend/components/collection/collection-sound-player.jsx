@@ -11,24 +11,23 @@ class CollectionSoundPlayer extends React.Component {
 
   componentDidMount() {
     const soundAudio = document.getElementById('sound-audio');
-    this.audioEndedListener = soundAudio.addEventListener('ended', () => {
+    soundAudio.addEventListener('ended', () => {
       collectionPlayButton.classList.remove('collection-playing');
       collectionPlayButton.classList.add('collection-paused');
     });
-    this.audioDurationListener = soundAudio.addEventListener('loadeddata', (() => {
+    soundAudio.addEventListener('loadeddata', (() => {
       this.setState({
         audioDuration: soundAudio.duration
       });
     }).bind(this));
-    this.audioCurrentTimeListener = setInterval((() => {
-      this.setState({
-        audioCurrentTime: document.getElementById('sound-audio').currentTime
-      });
+    soundAudio.addEventListener('timeupdate', (() => {
       const playhead = document.getElementById('collection-playhead');
-      var playPercent = 100 * (this.state.audioCurrentTime / this.state.audioDuration);
+      let playPercent = 100 * (soundAudio.currentTime / this.state.audioDuration);
       playhead.style.marginLeft = playPercent + "%";
-
-    }).bind(this), 1000);
+      this.setState({
+        audioCurrentTime: soundAudio.currentTime
+      });
+    }).bind(this), false);
   }
 
   componentWillReceiveProps(newProps) {
@@ -40,7 +39,6 @@ class CollectionSoundPlayer extends React.Component {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.audioCurrentTimeListener);
   }
 
   toHHMMSS(seconds) {
