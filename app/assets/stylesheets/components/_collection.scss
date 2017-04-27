@@ -132,7 +132,34 @@
 .collection-sounds-list {
   margin-bottom: 24px;
   list-style: none;
-  background-color: lightcoral;
+}
+
+.sound-list-item {
+  display: flex;
+  margin-bottom: 9px;
+  align-items: center;
+}
+
+#sound-list-item-play-button {
+  width: 19px;
+  height: 18px;
+  border: 1px solid #d9d9d9;
+  background-color: white;
+  background-position: center;
+  border-radius: 2px;
+}
+
+.sound-list-item-paused {
+  background: url(image_path('play-small.png')) no-repeat;
+}
+.sound-list-item-playing {
+  background: url(image_path('pause-small.png')) no-repeat;
+}
+
+.sound-list-item-idx {
+  width: 18px;
+  text-align: right;
+  margin-right: 5px;
 }
 
 .collection-artwork-section {
