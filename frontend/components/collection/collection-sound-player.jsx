@@ -29,6 +29,11 @@ class CollectionSoundPlayer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.audioPlayer) {
+      if (this.props.playing) {
+        this.audioPlayer.audioEl.play();
+      } else {
+        this.audioPlayer.audioEl.pause();
+      }
       if (this.props.playingSound !== prevProps.playingSound) {
         this.audioPlayer.audioEl.currentTime = 0;
         if (this.props.playedYet) {
@@ -62,7 +67,7 @@ class CollectionSoundPlayer extends React.Component {
   }
 
   handleAudioEnded() {
-    this.props.playPauseAudio('pause');
+    this.props.playPauseAudio('pause')();
   }
 
   handleCanPlay() {
@@ -72,23 +77,25 @@ class CollectionSoundPlayer extends React.Component {
   }
 
   handleListen() {
-    const timeline = document.getElementById('collection-timeline');
-    const playhead = document.getElementById('collection-playhead');
-    const timelineWidth = timeline.getBoundingClientRect().width;
-    const playheadWidth = playhead.getBoundingClientRect().width;
+    const timelineWidth = this.timeline.getBoundingClientRect().width;
+    const playheadWidth = this.playhead.getBoundingClientRect().width;
     const playFraction = this.audioPlayer.audioEl.currentTime / this.state.audioDuration;
-    playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
+    this.playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
     this.setState({
       audioCurrentTime: this.audioPlayer.audioEl.currentTime
     });
   }
 
   handleClickTimeline(e) {
-    const timeline = document.getElementById('collection-timeline');
-    const left = timeline.getBoundingClientRect().left;
-    const width = timeline.getBoundingClientRect().width;
-    const clickFraction = (e.clientX - left) / width;
-    this.audioPlayer.audioEl.currentTime = this.state.duration * clickFraction;
+    const timelineLeft = this.timeline.getBoundingClientRect().left;
+    const timelineWidth = this.timeline.getBoundingClientRect().width;
+    const playheadWidth = this.playhead.getBoundingClientRect().width;
+    const clickFraction = (e.clientX - timelineLeft) / timelineWidth;
+    this.audioPlayer.audioEl.currentTime = this.state.audioDuration * clickFraction;
+    this.playhead.style.marginLeft = (timelineWidth - playheadWidth) * clickFraction + "px";
+    this.setState({
+      audioCurrentTime: this.state.audioDuration * clickFraction
+    });
   }
 
   render() {
@@ -112,11 +119,11 @@ class CollectionSoundPlayer extends React.Component {
     let collectionPlayButton;
     if (this.props.playing) {
       collectionPlayButton = (
-        <button id='collection-play-button' className='collection-playing' onClick={ this.props.playPauseAudio('pause', audioPlayer) } />
+        <button id='collection-play-button' className='collection-playing' onClick={ this.props.playPauseAudio('pause') } ref={c => this.collectionPlayButton = c } />
       );
     } else {
       collectionPlayButton = (
-        <button id='collection-play-button' className='collection-paused' onClick={ this.props.playPauseAudio('play', audioPlayer) } />
+        <button id='collection-play-button' className='collection-paused' onClick={ this.props.playPauseAudio('play') } ref={c => this.collectionPlayButton = c } />
       );
     }
     return (
@@ -128,8 +135,8 @@ class CollectionSoundPlayer extends React.Component {
             <p className='collection-sound-player-title'>{ this.props.sound.title }</p>
             <p className='collection-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>
           </div>
-          <div id='collection-timeline' className='collection-sound-player-timeline' >
-            <div id='collection-playhead' className='collection-sound-player-playhead' />
+          <div id='collection-timeline' className='collection-sound-player-timeline' onClick={ this.handleClickTimeline } ref={c => this.timeline = c } >
+            <div id='collection-playhead' className='collection-sound-player-playhead' ref={c => this.playhead = c } />
           </div>
         </div>
       </div>
