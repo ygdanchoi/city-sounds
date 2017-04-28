@@ -118,13 +118,12 @@ class Explore extends React.Component {
               <figure className='explore-sound-player-artwork'>
                 <img src={ this.state.playingCollectionArtworkUrl } />
               </figure>
-              <p>{ this.state.playingSoundTitle }</p>
               <div className='collection-sound-player-container'>
                 <ExploreSoundPlayer sound={ this.state.playingSound } playing={ this.state.playing } playPauseAudio={ this.playPauseAudio } playingSound={ this.state.playingSound } playedYet={ this.state.playedYet } setPlayedYet={ this.setPlayedYet } />
               </div>
-              <p>from the collection <Link to={`/collections/${this.state.playingCollectionId}`}>{ this.state.playingCollectionTitle }</Link></p>
-              <p>by <Link to={`/users/${this.state.playingUserId}`}>{ this.state.playingUserUsername }</Link></p>
-              <p>{ this.state.playingUserLocation }</p>
+              <p className='explore-sound-player-collection'>from the collection <Link to={`/collections/${this.state.playingCollectionId}`}>{ this.state.playingCollectionTitle }</Link></p>
+              <p className='explore-sound-player-user'>by <Link to={`/users/${this.state.playingUserId}`}>{ this.state.playingUserUsername }</Link></p>
+              <p className='explore-sound-player-location'>{ this.state.playingUserLocation }</p>
             </div>
           </aside>
         </main>

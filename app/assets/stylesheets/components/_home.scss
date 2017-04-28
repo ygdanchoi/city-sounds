@@ -132,7 +132,6 @@
 .explore-main-left {
   width: 744px;
   padding-right: 20px;
-  background-color: red;
 }
 
 .explore-main-right {
@@ -141,7 +140,7 @@
 }
 
 .explore-sound-player-container {
-  background-color: lightcoral;
+  background-color: white;
   padding-top: 20px;
   padding-left: 10px;
 }
@@ -151,8 +150,59 @@
   height: 335px;
 }
 
+#explore-play-button {
+  width: 62px;
+  height: 61px;
+  border-top: 1px solid white;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  background-color: white;
+  background-position: center;
+  margin-right: 11px;
+}
+
+.explore-sound-player-details {
+  display: flex;
+  margin-top: 14px;
+  margin-bottom: 12px;
+  font-size: 9pt;
+  justify-content: space-between;
+}
+
+.explore-sound-player-title {
+  margin-right: 10px;
+  font-size: 9pt;
+}
+
+.explore-sound-player-time {
+  color: #888888;
+  font-size: 9pt;
+}
+
 .explore-sound-player {
   width: 345px;
+}
+
+.explore-sound-player-collection,
+.explore-sound-player-user,
+.explore-sound-player-location  {
+  font-size: 9pt;
+  line-height: 18px;
+}
+
+.explore-sound-player-collection {
+  padding-top: 6px;
+}
+
+.explore-sound-player-user {
+  padding-top: 12px;
+}
+
+.explore-sound-player-collection a,
+.explore-sound-player-user a,
+.explore-sound-player-location a {
+  color: black;
 }
 
 .explore-list {

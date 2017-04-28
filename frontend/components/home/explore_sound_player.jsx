@@ -118,11 +118,11 @@ class ExploreSoundPlayer extends React.Component {
     let collectionPlayButton;
     if (this.props.playing) {
       collectionPlayButton = (
-        <button id='collection-play-button' className='collection-playing' onClick={ this.props.playPauseAudio('pause') } ref={c => this.collectionPlayButton = c } />
+        <button id='explore-play-button' className='collection-playing' onClick={ this.props.playPauseAudio('pause') } ref={c => this.collectionPlayButton = c } />
       );
     } else {
       collectionPlayButton = (
-        <button id='collection-play-button' className='collection-paused' onClick={ this.props.playPauseAudio('play') } ref={c => this.collectionPlayButton = c } />
+        <button id='explore-play-button' className='collection-paused' onClick={ this.props.playPauseAudio('play') } ref={c => this.collectionPlayButton = c } />
       );
     }
     return (
@@ -130,9 +130,9 @@ class ExploreSoundPlayer extends React.Component {
         { audioPlayer }
         { collectionPlayButton }
         <div className='collection-sound-player-right'>
-          <div className='collection-sound-player-details'>
-            <p className='collection-sound-player-title'>{ this.props.sound.title }</p>
-            <p className='collection-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>
+          <div className='explore-sound-player-details'>
+            <p className='explore-sound-player-title'>{ this.props.sound.title }</p>
+            <p className='explore-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>
           </div>
           <div id='collection-timeline' className='collection-sound-player-timeline' onClick={ this.handleClickTimeline } ref={c => this.timeline = c } >
             <div id='collection-playhead' className='collection-sound-player-playhead' ref={c => this.playhead = c } />
