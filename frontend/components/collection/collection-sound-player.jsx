@@ -92,6 +92,7 @@ class CollectionSoundPlayer extends React.Component {
     const playheadWidth = this.playhead.getBoundingClientRect().width;
     const clickFraction = (e.clientX - timelineLeft) / timelineWidth;
     this.audioPlayer.audioEl.currentTime = this.state.audioDuration * clickFraction;
+    this.playhead.style.marginLeft = (timelineWidth - playheadWidth) * clickFraction + "px";
     this.setState({
       audioCurrentTime: this.state.audioDuration * clickFraction
     });

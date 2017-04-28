@@ -291,7 +291,6 @@ class CollectionForm extends React.Component {
     const id = this.props.collectionId;
     let artworkThumb;
     let artworkForm;
-    console.log(this.state.artworkUrl)
     const artworkMissing = this.state.artworkUrl === '/avatars/original/missing.png';
     if (artworkMissing) {
       artworkThumb = (
