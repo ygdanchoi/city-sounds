@@ -6,6 +6,7 @@ import AuthFormContainer from './auth_form/auth_form_container';
 import UserContainer from './user/user_container';
 import CollectionContainer from './collection/collection_container';
 import CollectionFormContainer from './collection_form/collection_form_container';
+import SearchResultsContainer from './search_results/search_results_container';
 
 const Root = (props) => {
   const _redirectIfLoggedIn = (nextState, replace) => {
@@ -30,6 +31,8 @@ const Root = (props) => {
             component={ CollectionFormContainer } />
           <Route path='edit-collection'
             component={ CollectionFormContainer } />
+          <Route path='search'
+            component={ SearchResultsContainer } />
         </Route>
       </Router>
     </Provider>

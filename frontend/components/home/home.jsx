@@ -40,8 +40,8 @@ class Home extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    hashHistory.push(`/search?${this.state.searchQuery}`)
+    e.preventDefault();
+    hashHistory.push(`/search?${this.state.searchQuery}`);
   }
 
   render() {
@@ -85,7 +85,7 @@ class Home extends React.Component {
             </figure>
             <div className='home-header-search'>
               <form onSubmit={ this.handleSubmit }>
-                <input type='text' value={ this.state.searchQuery } onChange={ this.handleChange } />
+                <input type='text' value={ this.state.searchQuery } placeholder='Search for collection or sound' onChange={ this.handleChange } />
               </form>
             </div>
           </header>
