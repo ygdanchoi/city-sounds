@@ -214,6 +214,7 @@
 .explore-list-item {
   width: 172px;
   margin: 20px 0px 0px 14px;
+  position: relative;
 }
 
 .explore-list-item a {
@@ -231,6 +232,25 @@
   background-color: grey;
   margin: 0 auto;
   display: block;
+}
+
+#explore-list-item-play-button {
+  width: 57px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
+  background-position: center;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 48px;
+  left: 5px;
+}
+
+.explore-list-item-paused {
+  background: url(image_path('play-white.png')) no-repeat;
+}
+.explore-list-item-playing {
+  background: url(image_path('pause-white.png')) no-repeat;
 }
 
 .explore-list-item-title {

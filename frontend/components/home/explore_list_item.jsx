@@ -8,18 +8,18 @@ const ExploreListItem = (props) => {
     if (props.playingCollectionId && props.collection.id === props.playingCollectionId) {
       if (props.playing) {
         soundListItemPlayButton = (
-          <button id='sound-list-item-play-button' className='sound-list-item-playing' />
+          <button id='explore-list-item-play-button' className='explore-list-item-playing' />
         );
         handleClick = props.setPlayingCollection(props.collection, 'pause');
       } else {
         soundListItemPlayButton = (
-          <button id='sound-list-item-play-button' className='sound-list-item-paused' />
+          <button id='explore-list-item-play-button' className='explore-list-item-paused' />
         );
         handleClick = props.setPlayingCollection(props.collection, 'play');
       }
     } else {
       soundListItemPlayButton = (
-        <button id='sound-list-item-play-button' className='sound-list-item-paused' />
+        <button id='explore-list-item-play-button' className='explore-list-item-paused' />
       );
       handleClick = props.setPlayingCollection(props.collection, 'play');
     }
