@@ -49,16 +49,17 @@ class SearchResults extends React.Component {
       );
     }
     return (
-      <div>
-        <form onSubmit={ this.handleSubmit }>
-          <input type='text' value={ this.state.searchQuery } onChange={ this.handleChange } />
-          <input type='submit' value='Search' />
-        </form>
-        search results!
-        <ul>
-          { collections }
-          { sounds }
-        </ul>
+      <div className='search-results'>
+        <main className='search-results-main'>
+          <form className='search-results-form' onSubmit={ this.handleSubmit }>
+            <input className='search-results-input' type='text' value={ this.state.searchQuery } onChange={ this.handleChange } />
+            <input className='search-results-submit' type='submit' value='Search' />
+          </form>
+          <ul className='search-results-list'>
+            { collections }
+            { sounds }
+          </ul>
+        </main>
       </div>
     );
   }
