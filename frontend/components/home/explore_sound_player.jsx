@@ -130,7 +130,7 @@ class ExploreSoundPlayer extends React.Component {
       <div key={ this.props.sound.id }  id='collection-sound-player' className='collection-sound-player'>
         { audioPlayer }
         { collectionPlayButton }
-        <div className='collection-sound-player-right'>
+        <div className='explore-sound-player-right'>
           <div className='explore-sound-player-details'>
             <p className='explore-sound-player-title'>{ this.props.sound.title }</p>
             <p className='explore-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>

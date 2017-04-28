@@ -23,14 +23,14 @@ const SearchResultsItem = (props) => {
     return (
       <li className='search-results-item'>
         <div className='search-results-item-main'>
-          <Link to={`sounds/${props.sound.id}`}>
+          <Link to={`collections/${props.sound.collectionId}`}>
             <figure className='search-results-item-artwork'>
               <img src={ props.sound.artworkUrl } />
             </figure>
           </Link>
           <div className='search-results-item-details'>
             <p className='search-results-item-category'>SOUND</p>
-            <Link to={`sounds/${props.sound.id}`} className='search-results-item-title'>{ props.sound.title }</Link>
+            <Link to={`collections/${props.sound.collectionId}`} className='search-results-item-title'>{ props.sound.title }</Link>
             <p className='search-results-item-user'>by { props.sound.user.username }</p>
           </div>
         </div>
