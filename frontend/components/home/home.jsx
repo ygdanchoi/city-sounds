@@ -85,7 +85,8 @@ class Home extends React.Component {
             </figure>
             <div className='home-header-search'>
               <form onSubmit={ this.handleSubmit }>
-                <input type='text' value={ this.state.searchQuery } placeholder='Search for collection or sound' onChange={ this.handleChange } />
+                <input className='home-header-search-input' type='text' value={ this.state.searchQuery } placeholder='Search for collection or sound' onChange={ this.handleChange } />
+                <input id='home-header-search-icon' type='submit' value='' />
               </form>
             </div>
           </header>

@@ -33,6 +33,15 @@
   padding-top: 24px;
 }
 
+.home-header-search-input {
+  width: 230px;
+  height: 25px;
+  border: 1px solid #bebebe;
+  border-radius: 3px;
+  font-size: 9.5pt;
+  padding: 1px 8px 0px 8px;
+}
+
 .home-header-main-bottom {
   margin-top: 16px;
   height: 24px;
@@ -46,6 +55,26 @@
 
 .home-header-search {
   padding-right: 13px;
+}
+
+.home-header-search form {
+  position: relative;
+}
+
+#home-header-search-icon {
+  height: 30px;
+  width: 30px;
+  border: 0px solid transparent;
+  background-color: transparent;
+  background-position: center;
+  background: url(image_path('search.png')) no-repeat;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+}
+
+.explore-list-item-paused {
 }
 
 .home-nav-left, .home-nav-right {
