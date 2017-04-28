@@ -1,3 +1,6 @@
+class NoSoundsError < StandardError
+end
+
 class Api::CollectionsController < ApplicationController
   def index
     if params[:user_id]
@@ -29,6 +32,8 @@ class Api::CollectionsController < ApplicationController
       end
     rescue ActiveRecord::RecordInvalid => exception
       render json: { sounds: exception.message[19..-1].split(', ') }, status: 422
+    rescue NoSoundsError => exception
+      render json: { sounds: ['Must have at least one sound.'] }, status: 422
     end
   end
 
@@ -45,6 +50,8 @@ class Api::CollectionsController < ApplicationController
       end
     rescue ActiveRecord::RecordInvalid => exception
       render json: { sounds: exception.message[19..-1].split(', ') }, status: 422
+    rescue NoSoundsError => exception
+      render json: { sounds: ['Must have at least one sound.'] }, status: 422
     end
   end
 
@@ -66,6 +73,7 @@ class Api::CollectionsController < ApplicationController
 
   def parse_and_save_sounds
     sounds = JSON.parse(params[:collection][:sounds])
+    raise NoSoundsError if sounds.length == 0
     sounds.each_with_index do |sound, idx|
       if sound['id']
         Sound.find(sound['id']).update!(
