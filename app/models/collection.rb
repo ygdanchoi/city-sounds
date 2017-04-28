@@ -4,6 +4,6 @@ class Collection < ApplicationRecord
   has_many :sounds, dependent: :destroy, inverse_of: :collection
   belongs_to :user
 
-  has_attached_file :artwork
+  has_attached_file :artwork, default_url: 'artwork-missing.png'
   validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\z/
 end

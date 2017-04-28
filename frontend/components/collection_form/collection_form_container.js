@@ -20,10 +20,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   let submitText;
   if (ownProps.location.pathname === '/add-collection') {
     submitCollection = (_, collection) => dispatch(createCollection(collection));
-    submitText = 'Publish'
+    submitText = 'Publish';
   } else if (ownProps.location.pathname === '/edit-collection') {
     submitCollection = (id, collection) => dispatch(updateCollection(id, collection));
-    submitText = 'Update'
+    submitText = 'Update';
   }
   return {
     fetchCollection: (id) => dispatch(fetchCollection(id)),
