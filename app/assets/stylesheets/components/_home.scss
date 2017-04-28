@@ -18,7 +18,7 @@
 .home-header-main {
   font-size: 10.5pt;
   min-width: 785px;
-  max-width: 1106px;
+  max-width: 1132px;
   height: 105px;
   margin: 0 auto;
 }
@@ -108,7 +108,7 @@
 
 .explore-heading-main {
   min-width: 785px;
-  max-width: 1106px;
+  max-width: 1132px;
   margin: 0 auto;
 }
 
@@ -119,7 +119,7 @@
 
 .explore-main {
   min-width: 785px;
-  max-width: 1106px;
+  max-width: 1132px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -130,15 +130,20 @@
 }
 
 .explore-main-left {
-  width: 741px;
+  width: 744px;
+  padding-right: 20px;
+  background-color: red;
 }
 
 .explore-main-right {
-  width: 345px;
+  width: 355px;
+  padding-right: 13px;
 }
 
 .explore-sound-player-container {
   background-color: lightcoral;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
 .explore-sound-player-artwork {
@@ -158,7 +163,7 @@
 
 .explore-list-item {
   width: 172px;
-  margin: 20px 0px 0px 13px ;
+  margin: 20px 0px 0px 14px;
 }
 
 .explore-list-item a {
@@ -174,6 +179,8 @@
   width: 173px;
   height: 173px;
   background-color: grey;
+  margin: 0 auto;
+  display: block;
 }
 
 .explore-list-item-title {
