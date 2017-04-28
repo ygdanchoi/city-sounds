@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 
 class CollectionSoundPlayer extends React.Component {
   constructor(props) {
@@ -7,47 +8,43 @@ class CollectionSoundPlayer extends React.Component {
       audioCurrentTime: 0,
       audioDuration: 0
     };
+    this.handleAudioEnded = this.handleAudioEnded.bind(this);
+    this.handleCanPlay = this.handleCanPlay.bind(this);
+    this.handleListen = this.handleListen.bind(this);
+    this.handleClickTimeline = this.handleClickTimeline.bind(this);
   }
 
   componentDidMount() {
-    const soundAudio = document.getElementById('sound-audio');
-    const collectionPlayButton = document.getElementById('collection-play-button');
-    soundAudio.addEventListener('ended', () => {
-      collectionPlayButton.classList.remove('collection-playing');
-      collectionPlayButton.classList.add('collection-paused');
-    });
-    soundAudio.addEventListener('loadeddata', (() => {
-      this.setState({
-        audioDuration: soundAudio.duration
-      });
-    }).bind(this));
-    soundAudio.addEventListener('timeupdate', (() => {
-      const timeline = document.getElementById('collection-timeline');
-      const playhead = document.getElementById('collection-playhead');
-      const timelineWidth = timeline.getBoundingClientRect().width;
-      const playheadWidth = playhead.getBoundingClientRect().width;
-      let playFraction = soundAudio.currentTime / this.state.audioDuration;
-      playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
-      this.setState({
-        audioCurrentTime: soundAudio.currentTime
-      });
-    }).bind(this), false);
-    const timeline = document.getElementById('collection-timeline');
-    timeline.addEventListener('click', ((e) => {
-      const left = timeline.getBoundingClientRect().left;
-      const width = timeline.getBoundingClientRect().width;
-      const clickFraction = (e.clientX - left) / width;
-      soundAudio.currentTime = soundAudio.duration * clickFraction;
-    }).bind(this), false);
   }
 
   componentWillReceiveProps(newProps) {
-    const soundAudio = document.getElementById('sound-audio');
-    soundAudio.currentTime = 0;
-    this.setState({
-      audioCurrentTime: 0
-    });
+    if (this.audioPlayer) {
+      if (newProps.playing) {
+        this.audioPlayer.audioEl.play();
+      } else {
+        this.audioPlayer.audioEl.pause();
+      }
+    }
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.audioPlayer) {
+      if (this.props.playing) {
+        this.audioPlayer.audioEl.play();
+      } else {
+        this.audioPlayer.audioEl.pause();
+      }
+      if (this.props.playingSound !== prevProps.playingSound) {
+        this.audioPlayer.audioEl.currentTime = 0;
+        if (this.props.playedYet) {
+          this.audioPlayer.audioEl.play();
+        } else {
+          this.props.setPlayedYet();
+        }
+      }
+    }
+  }
+
 
   componentWillUnmount() {
   }
@@ -69,38 +66,77 @@ class CollectionSoundPlayer extends React.Component {
     }
   }
 
-  playAudio() {
-    const soundAudio = document.getElementById('sound-audio');
-    const collectionPlayButton = document.getElementById('collection-play-button');
-    if (soundAudio.paused) {
-      soundAudio.play();
-      collectionPlayButton.classList.remove('collection-paused');
-      collectionPlayButton.classList.add('collection-playing');
-    } else {
-      soundAudio.pause();
-      collectionPlayButton.classList.remove('collection-playing');
-      collectionPlayButton.classList.add('collection-paused');
-    }
+  handleAudioEnded() {
+    this.props.playPauseAudio('pause')();
+  }
+
+  handleCanPlay() {
+    this.setState({
+      audioDuration: this.audioPlayer.audioEl.duration
+    });
+  }
+
+  handleListen() {
+    const timelineWidth = this.timeline.getBoundingClientRect().width;
+    const playheadWidth = this.playhead.getBoundingClientRect().width;
+    const playFraction = this.audioPlayer.audioEl.currentTime / this.state.audioDuration;
+    this.playhead.style.marginLeft = (timelineWidth - playheadWidth) * playFraction + "px";
+    this.setState({
+      audioCurrentTime: this.audioPlayer.audioEl.currentTime
+    });
+  }
+
+  handleClickTimeline(e) {
+    const timelineLeft = this.timeline.getBoundingClientRect().left;
+    const timelineWidth = this.timeline.getBoundingClientRect().width;
+    const playheadWidth = this.playhead.getBoundingClientRect().width;
+    const clickFraction = (e.clientX - timelineLeft) / timelineWidth;
+    this.audioPlayer.audioEl.currentTime = this.state.audioDuration * clickFraction;
+    this.playhead.style.marginLeft = (timelineWidth - playheadWidth) * clickFraction + "px";
+    this.setState({
+      audioCurrentTime: this.state.audioDuration * clickFraction
+    });
   }
 
   render() {
-    const soundAudio = (
-      <audio id='sound-audio' >
-        <source src={ this.props.sound.audioUrl } type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+    if (this.props.sound === null) {
+      return (
+        <div id='collection-sound-player' className='collection-sound-player' />
+      );
+    }
+    const audioPlayer = (
+      <ReactAudioPlayer
+        key={ this.props.sound.id }
+        id='audio-player'
+        src={ this.props.sound.audioUrl }
+        onEnded={ this.handleAudioEnded }
+        onCanPlay={ this.handleCanPlay }
+        listenInterval={ 100 }
+        onListen={ this.handleListen }
+        ref={c => this.audioPlayer = c }
+      />
     );
+    let collectionPlayButton;
+    if (this.props.playing) {
+      collectionPlayButton = (
+        <button id='collection-play-button' className='collection-playing' onClick={ this.props.playPauseAudio('pause') } ref={c => this.collectionPlayButton = c } />
+      );
+    } else {
+      collectionPlayButton = (
+        <button id='collection-play-button' className='collection-paused' onClick={ this.props.playPauseAudio('play') } ref={c => this.collectionPlayButton = c } />
+      );
+    }
     return (
       <div key={ this.props.sound.id }  id='collection-sound-player' className='collection-sound-player'>
-        { soundAudio }
-        <button id='collection-play-button' className='collection-paused' onClick={ this.playAudio } ></button>
+        { audioPlayer }
+        { collectionPlayButton }
         <div className='collection-sound-player-right'>
           <div className='collection-sound-player-details'>
             <p className='collection-sound-player-title'>{ this.props.sound.title }</p>
             <p className='collection-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>
           </div>
-          <div id='collection-timeline' className='collection-sound-player-timeline'>
-            <div id='collection-playhead' className='collection-sound-player-playhead' />
+          <div id='collection-timeline' className='collection-sound-player-timeline' onClick={ this.handleClickTimeline } ref={c => this.timeline = c } >
+            <div id='collection-playhead' className='collection-sound-player-playhead' ref={c => this.playhead = c } />
           </div>
         </div>
       </div>

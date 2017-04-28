@@ -12,10 +12,13 @@ class Collection extends React.Component {
     this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
     this.redirectToEditCollection = this.redirectToEditCollection.bind(this);
     this.state = {
-      playingSoundTitle: '',
-      playingSoundAudioPlayer: null
+      playedYet: false,
+      playing: false,
+      playingSound: null,
     };
+    this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingSound = this.setPlayingSound.bind(this);
+    this.setPlayedYet = this.setPlayedYet.bind(this);
   }
 
   componentDidMount() {
@@ -25,8 +28,7 @@ class Collection extends React.Component {
         const playingSound = response.sounds[Object.keys(response.sounds)[0]];
         if (playingSound) {
           this.setState({
-            playingSoundTitle: playingSound.title,
-            playingSoundAudioPlayer: <CollectionSoundPlayer sound={ playingSound } />
+            playingSound: playingSound
           });
         }
       }
@@ -41,8 +43,8 @@ class Collection extends React.Component {
           const playingSound = response.sounds[Object.keys(response.sounds)[0]];
           if (playingSound) {
             this.setState({
-              playingSoundTitle: playingSound.title,
-              playingSoundAudioPlayer: <CollectionSoundPlayer sound={ playingSound } />
+              playedYet: false,
+              playingSound: playingSound
             });
           }
         }
@@ -70,13 +72,36 @@ class Collection extends React.Component {
     hashHistory.push(`users/${this.props.currentUser.id}`);
   }
 
-  setPlayingSound(sound) {
-    return ((e) => {
-      this.setState({
-        playingSoundTitle: sound.title,
-        playingSoundAudioPlayer: <CollectionSoundPlayer sound={ sound } />
-      });
+  playPauseAudio(action) {
+    return (() => {
+      if (action === 'pause') {
+        this.setState({ playing: false });
+      } else if (action === 'play') {
+        this.setState({ playing: true });
+      }
     }).bind(this);
+  }
+
+  setPlayingSound(sound, action) {
+    return (() => {
+      if (action === 'pause') {
+        this.setState({
+          playing: false,
+          playingSound: sound
+        });
+      } else if (action === 'play') {
+        this.setState({
+          playing: true,
+          playingSound: sound
+        });
+      }
+    }).bind(this);
+  }
+
+  setPlayedYet() {
+    this.setState({
+      playedYet: true
+    });
   }
 
   render() {
@@ -90,7 +115,7 @@ class Collection extends React.Component {
       );
     }
     const soundListItems = this.props.collection.soundIds.map(
-      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } setPlayingSound={ this.setPlayingSound } />
+      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } setPlayingSound={ this.setPlayingSound } playing={ this.state.playing } playingSound={ this.state.playingSound } />
     );
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {
@@ -119,7 +144,7 @@ class Collection extends React.Component {
             </h3>
             { editDelete }
             <div className='collection-sound-player-container'>
-              { this.state.playingSoundAudioPlayer }
+              <CollectionSoundPlayer sound={ this.state.playingSound } playing={ this.state.playing } playPauseAudio={ this.playPauseAudio } playingSound={ this.state.playingSound } playedYet={ this.state.playedYet } setPlayedYet={ this.setPlayedYet } />
             </div>
             <h3 className='collection-info-sound-collection'>
               Digital Sound Collection
