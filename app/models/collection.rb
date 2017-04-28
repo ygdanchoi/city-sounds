@@ -1,4 +1,7 @@
 class Collection < ApplicationRecord
+  include PgSearch
+  pg_search_scope :search, :against => [:title, :description]
+
   validates :title, :user, presence: true
 
   has_many :sounds, dependent: :destroy, inverse_of: :collection

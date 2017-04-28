@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import ExploreContainer from './explore_container';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.state = {
+      searchQuery: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +31,17 @@ class Home extends React.Component {
   logout(e) {
     e.preventDefault();
     this.props.logout();
+  }
+
+  handleChange(e) {
+    this.setState({
+      searchQuery: e.currentTarget.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    hashHistory.push(`/search?${this.state.searchQuery}`)
   }
 
   render() {
@@ -68,7 +84,9 @@ class Home extends React.Component {
               <h2><font color="#639aa9">.:.:.</font> citysounds</h2>
             </figure>
             <div className='home-header-search'>
-              <p></p>
+              <form onSubmit={ this.handleSubmit }>
+                <input type='text' value={ this.state.searchQuery } onChange={ this.handleChange } />
+              </form>
             </div>
           </header>
           <header className='home-header-main-bottom'>

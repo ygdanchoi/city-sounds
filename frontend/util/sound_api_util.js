@@ -6,6 +6,14 @@ export const fetchAllSounds = () => {
   });
 };
 
+export const searchSounds = (query) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/search-sounds?query=${query}`,
+    error: err => console.log(err),
+  });
+};
+
 export const fetchCollectionSounds = (collectionId) => {
   return $.ajax({
     method: 'GET',

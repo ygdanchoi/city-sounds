@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
     resources :sounds, only: [:index, :show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]
+    get 'search-collections', to: 'collections#search'
+    get 'search-sounds', to: 'sounds#search'
   end
 end

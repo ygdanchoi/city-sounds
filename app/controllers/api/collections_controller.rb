@@ -10,6 +10,11 @@ class Api::CollectionsController < ApplicationController
     end
   end
 
+  def search
+    @collections = Collection.search(params[:query])
+    render 'api/collections/index'
+  end
+
   def show
     @collection = Collection.find(params[:id])
     if @collection

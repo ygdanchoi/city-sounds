@@ -7,6 +7,11 @@ class Api::SoundsController < ApplicationController
     end
   end
 
+  def search
+    @sounds = Sound.search(params[:query])
+    render 'api/sounds/index'
+  end
+
   def show
     @sound = Sound.find(params[:id])
     if @sound

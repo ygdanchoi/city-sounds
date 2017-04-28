@@ -6,6 +6,14 @@ export const fetchAllCollections = () => {
   });
 };
 
+export const searchCollections = (query) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/search-collections?query=${query}`,
+    error: err => console.log(err),
+  });
+};
+
 export const fetchUserCollections = (userId) => {
   return $.ajax({
     method: 'GET',

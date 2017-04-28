@@ -24,6 +24,12 @@ export const fetchAllCollections = () => (dispatch) => {
   );
 };
 
+export const searchCollections = (query) => (dispatch) => {
+  return APIUtil.searchCollections(query).then(
+    response => dispatch(receiveCollections(response))
+  );
+};
+
 export const fetchUserCollections = (userId) => (dispatch) => {
   return APIUtil.fetchUserCollections(userId).then(
     response => dispatch(receiveCollections(response))
