@@ -15,8 +15,9 @@ class Home extends React.Component {
 
   componentDidMount() {
     window.onscroll = () => {
+      console.log(this.exploreHeading.getBoundingClientRect().top)
       const homeHeader = document.getElementById('home-header');
-      if (document.body.scrollTop > 555 || document.documentElement.scrollTop > 555) {
+      if (105 > this.exploreHeading.getBoundingClientRect().top || 105 > this.exploreHeading.getBoundingClientRect().top) {
         homeHeader.classList.add('off-screen');
       } else {
         homeHeader.classList.remove('off-screen');
@@ -103,9 +104,12 @@ class Home extends React.Component {
         { homeHeader }
         <div className='home-header-placeholder'>
         </div>
-        <figure className='home-figure'>
-        </figure>
-        <div className='explore-heading'>
+        <div className='home-figure-container'>
+          <figure className='home-figure'>
+          </figure>
+          <img src={ window.images.splash } className='home-splash' />
+        </div>
+        <div className='explore-heading' ref={c => this.exploreHeading = c }>
           <div className='explore-heading-main'>
             <h3>Discover</h3>
           </div>

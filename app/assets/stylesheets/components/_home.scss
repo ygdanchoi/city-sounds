@@ -112,9 +112,24 @@
   font-weight: bold;
 }
 
+.home-figure-container {
+  // width: 100%;
+  // background-color: #222222;
+  background-color: #eef2f3;
+}
+
 .home-figure {
-  height: 450px;
-  background-color: #222222;
+  // min-height: 450px;
+  // max-width: 1132px;
+  // margin: 0 auto;
+}
+
+.home-splash {
+  width: 100%;
+  height: auto;
+  // position: fixed;
+  // z-index: -1;
+  // display: none;
 }
 
 .explore {
