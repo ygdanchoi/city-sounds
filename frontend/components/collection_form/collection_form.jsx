@@ -21,6 +21,7 @@ class CollectionForm extends React.Component {
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChangeSound = this.handleChangeSound.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClickSound = this.handleClickSound.bind(this);
     this.handleDeleteSound = this.handleDeleteSound.bind(this);
     this.handleAddArtwork = this.handleAddArtwork.bind(this);
     this.handleDeleteArtwork = this.handleDeleteArtwork.bind(this);
@@ -55,16 +56,15 @@ class CollectionForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // this.handleClickCollectionTab();
     this.setState({
+      currentFormIdx: -1,
       submitted: false,
     });
   }
 
   handleClickSound(e) {
     e.preventDefault();
-    const soundInput = document.getElementById('sound-input');
-    soundInput.click();
+    this.soundInput.click();
   }
 
   handleAddSound(e) {
@@ -141,12 +141,6 @@ class CollectionForm extends React.Component {
       const collectionTab = document.getElementById('collection-form-collection-tab');
       collectionTab.classList.add('tab-clicked');
     };
-  }
-
-  handleClickArtwork(e) {
-    e.preventDefault();
-    const artworkInput = document.getElementById('artwork-input');
-    artworkInput.click();
   }
 
   handleAddArtwork(e) {
@@ -233,34 +227,17 @@ class CollectionForm extends React.Component {
   render() {
     const id = this.props.collectionId;
     let artworkThumb;
-    let artworkForm;
     const artworkMissing = this.state.artworkUrl === '/avatars/original/missing.png';
     if (artworkMissing) {
       artworkThumb = (
         <figure className='collection-form-artwork-thumb'>
         </figure>
       );
-      artworkForm = (
-        <div className='collection-form-artwork-missing'>
-          <input id='artwork-input' type='file'
-            onChange={ this.handleAddArtwork }
-            style={ { display: 'none' } } />
-          <a href='' onClick={ this.handleClickArtwork }>upload artwork</a>
-        </div>
-      );
     } else {
       artworkThumb = (
         <figure className='collection-form-artwork-thumb'>
           <img src={ this.state.artworkUrl } />
         </figure>
-      );
-      artworkForm = (
-        <div className='collection-form-artwork-container'>
-          <img src={ this.state.artworkUrl } />
-          <div className='collection-form-artwork-delete' >
-            <a href='' onClick={ this.handleDeleteArtwork }>X</a>
-          </div>
-        </div>
       );
     }
     const sounds = this.state.sounds.map(
@@ -284,7 +261,6 @@ class CollectionForm extends React.Component {
           handleChange={ this.handleChange }
           errors={ this.props.errors }
           handleAddArtwork={ this.handleAddArtwork }
-          handleClickArtwork={ this.handleClickArtwork }
           artworkUrl={ this.state.artworkUrl }
           handleDeleteArtwork={ this.handleDeleteArtwork } />
       );
@@ -310,7 +286,7 @@ class CollectionForm extends React.Component {
     let submitButton;
     if (this.state.submitted) {
       submitButton = (
-        <button className='collection-form-submitted'>...</button>
+        <button className='collection-form-submitted'>{ this.props.submitText }</button>
       );
     } else {
       submitButton = (
@@ -338,7 +314,8 @@ class CollectionForm extends React.Component {
               </ul>
               <input id='sound-input' type='file'
                 onChange={ this.handleAddSound }
-                style={ { display: 'none' } } />
+                style={ { display: 'none' } }
+                ref={c => this.soundInput = c } />
               <div className='collection-form-add-sound-container'>
                 <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
                 <p className='collection-form-add-sound-requirements'>10MB max per sound, .mp3, .mp4, .mpg, or .mpeg</p>

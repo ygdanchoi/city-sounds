@@ -3,6 +3,12 @@ import React from 'react';
 class CollectionFormCollectionSubForm extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClickArtwork = this.handleClickArtwork.bind(this);
+  }
+
+  handleClickArtwork(e) {
+    e.preventDefault();
+    this.artworkInput.click();
   }
 
   render() {
@@ -17,8 +23,9 @@ class CollectionFormCollectionSubForm extends React.Component {
         <div className='collection-form-artwork-missing'>
           <input id='artwork-input' type='file'
             onChange={ this.props.handleAddArtwork }
-            style={ { display: 'none' } } />
-          <a href='' onClick={ this.props.handleClickArtwork }>Upload Album Art</a>
+            style={ { display: 'none' } }
+            ref={c => this.artworkInput = c } />
+          <a href='' onClick={ this.handleClickArtwork }>Upload Album Art</a>
         </div>
       );
     } else {
