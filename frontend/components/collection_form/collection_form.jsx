@@ -76,8 +76,12 @@ class CollectionForm extends React.Component {
       };
       this.setState({
         sounds: this.state.sounds.concat(sound),
-        currentFormIdx: this.state.sounds.length,
       });
+      const collectionTab = document.getElementById('collection-form-collection-tab');
+      collectionTab.classList.remove('tab-clicked');
+      const soundTabs = document.getElementsByClassName('collection-form-sound-tab');
+      soundTabs[soundTabs.length - 1].classList.add('tab-clicked');
+      // this.handleClickSoundTab(this.state.sounds.length);
     }).bind(this);
     if (file) {
       fileReader.readAsDataURL(file);
