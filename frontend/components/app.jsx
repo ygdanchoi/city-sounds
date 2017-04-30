@@ -4,15 +4,15 @@ import NavBarContainer from './nav_bar_container';
 import { receiveNavBarState } from '../actions/nav_bar_state_actions';
 
 const closeNavBarDropdown = (e) => {
-  const navBarCurrentUser = document.getElementById('nav-bar-current-user');
-  const navBarCaret = document.getElementById('nav-bar-caret');
+  // const navBarCurrentUser = document.getElementById('nav-bar-current-user');
+  // const navBarCaret = document.getElementById('nav-bar-caret');
   if (store.getState().navBarState.pressing) {
     store.dispatch(receiveNavBarState({
       pressing: false,
     }));
   } else {
-    navBarCurrentUser.classList.remove('pressed');
-    navBarCaret.src = window.images.caret;
+    // navBarCurrentUser.classList.remove('pressed');
+    // navBarCaret.src = window.images.caret;
     store.dispatch(receiveNavBarState({
       pressed: false,
     }));

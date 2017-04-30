@@ -9,18 +9,12 @@ class NavBar extends React.Component {
   }
 
   toggleDropdown() {
-    const navBarCurrentUser = document.getElementById('nav-bar-current-user');
-    const navBarCaret = document.getElementById('nav-bar-caret');
     if (!this.props.navBarState.pressed) {
-      navBarCurrentUser.classList.add('pressed');
-      navBarCaret.src = window.images.caretSelected;
       this.props.receiveNavBarState({
         pressed: true,
         pressing: true,
       });
     } else {
-      navBarCurrentUser.classList.remove('pressed');
-      navBarCaret.src = window.images.caret;
       this.props.receiveNavBarState({
         pressed: false,
         pressing: false,
@@ -61,6 +55,33 @@ class NavBar extends React.Component {
     } else {
       avatar = <img src={ this.props.currentUser.avatarUrl } />;
     }
+    const currentUserButtonInner = (caretSrc) => (
+      <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
+        <figure className='current-user-avatar'>
+          { avatar }
+        </figure>
+        <p className='current-user-username'>{ this.props.currentUser.username }</p>
+        <img id='nav-bar-caret' className='current-user-caret' src={ caretSrc } />
+        <NavBarDropdown
+          currentUser={ this.props.currentUser }
+          logout={ this.props.logout }
+          navBarState={ this.props.navBarState } />
+      </nav>
+    );
+    let currentUserBar;
+    if (this.props.navBarState.pressed) {
+      currentUserBar = (
+        <li id='nav-bar-current-user' className='nav-bar-main-li nav-bar-main-li-selectable pressed'>
+          { currentUserButtonInner(window.images.caretSelected) }
+        </li>
+      );
+    } else {
+      currentUserBar = (
+        <li id='nav-bar-current-user' className='nav-bar-main-li nav-bar-main-li-selectable'>
+          { currentUserButtonInner(window.images.caret) }
+        </li>
+      );
+    }
     return (
       <header className='nav-bar'>
         <ul className='nav-bar-main-ul'>
@@ -84,19 +105,7 @@ class NavBar extends React.Component {
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
             <nav className='nav-bar-empty' />
           </li>
-          <li id='nav-bar-current-user' className='nav-bar-main-li nav-bar-main-li-selectable'>
-            <nav className='nav-bar-center' onClick={ this.toggleDropdown }>
-              <figure className='current-user-avatar'>
-                { avatar }
-              </figure>
-              <p className='current-user-username'>{ this.props.currentUser.username }</p>
-              <img id='nav-bar-caret' className='current-user-caret' src={ window.images.caret } />
-              <NavBarDropdown
-                currentUser={ this.props.currentUser }
-                logout={ this.props.logout }
-                navBarState={ this.props.navBarState } />
-            </nav>
-          </li>
+          { currentUserBar }
         </ul>
         <ul className='nav-bar-main-ul'>
           <li className='nav-bar-main-li nav-bar-main-li-empty'>
