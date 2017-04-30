@@ -9,12 +9,9 @@ class NavBar extends React.Component {
   }
 
   toggleDropdown() {
-    const navBarDropdown = document.getElementById('nav-bar-dropdown');
     const navBarCurrentUser = document.getElementById('nav-bar-current-user');
     const navBarCaret = document.getElementById('nav-bar-caret');
     if (!this.props.navBarState.pressed) {
-      navBarDropdown.classList.remove('hidden');
-      navBarDropdown.classList.add('opened');
       navBarCurrentUser.classList.add('pressed');
       navBarCaret.src = window.images.caretSelected;
       this.props.receiveNavBarState({
@@ -22,8 +19,6 @@ class NavBar extends React.Component {
         pressing: true,
       });
     } else {
-      navBarDropdown.classList.add('hidden');
-      navBarDropdown.classList.remove('opened');
       navBarCurrentUser.classList.remove('pressed');
       navBarCaret.src = window.images.caret;
       this.props.receiveNavBarState({
@@ -98,7 +93,8 @@ class NavBar extends React.Component {
               <img id='nav-bar-caret' className='current-user-caret' src={ window.images.caret } />
               <NavBarDropdown
                 currentUser={ this.props.currentUser }
-                logout={ this.props.logout } />
+                logout={ this.props.logout }
+                navBarState={ this.props.navBarState } />
             </nav>
           </li>
         </ul>
