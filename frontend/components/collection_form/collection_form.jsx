@@ -55,7 +55,7 @@ class CollectionForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.handleClickCollectionTab();
+    // this.handleClickCollectionTab();
     this.setState({
       submitted: false,
     });
@@ -80,6 +80,7 @@ class CollectionForm extends React.Component {
       };
       this.setState({
         sounds: this.state.sounds.concat(sound),
+        currentFormIdx: this.state.sounds.length,
       });
       const collectionTab = document.getElementById('collection-form-collection-tab');
       collectionTab.classList.remove('tab-clicked');
