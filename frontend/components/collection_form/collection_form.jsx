@@ -138,6 +138,8 @@ class CollectionForm extends React.Component {
         soundsToDelete: this.state.soundsToDelete.concat(sounds[idx]),
         currentFormIdx: -1,
       });
+      const collectionTab = document.getElementById('collection-form-collection-tab');
+      collectionTab.classList.add('tab-clicked');
     };
   }
 
