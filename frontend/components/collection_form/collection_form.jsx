@@ -82,11 +82,6 @@ class CollectionForm extends React.Component {
         sounds: this.state.sounds.concat(sound),
         currentFormIdx: this.state.sounds.length,
       });
-      const collectionTab = document.getElementById('collection-form-collection-tab');
-      collectionTab.classList.remove('tab-clicked');
-      const soundTabs = document.getElementsByClassName('collection-form-sound-tab');
-      soundTabs[soundTabs.length - 1].classList.add('tab-clicked');
-      // this.handleClickSoundTab(this.state.sounds.length);
     }).bind(this);
     if (file) {
       fileReader.readAsDataURL(file);
@@ -138,8 +133,6 @@ class CollectionForm extends React.Component {
         soundsToDelete: this.state.soundsToDelete.concat(sounds[idx]),
         currentFormIdx: -1,
       });
-      const collectionTab = document.getElementById('collection-form-collection-tab');
-      collectionTab.classList.add('tab-clicked');
     };
   }
 
@@ -198,12 +191,6 @@ class CollectionForm extends React.Component {
   }
 
   handleClickCollectionTab() {
-    const collectionTab = document.getElementById('collection-form-collection-tab');
-    collectionTab.classList.add('tab-clicked');
-    const soundTabs = document.getElementsByClassName('collection-form-sound-tab');
-    for (let i = 0; i < soundTabs.length; i++) {
-      soundTabs[i].classList.remove('tab-clicked');
-    }
     this.setState({
       currentFormIdx: -1
     });
@@ -211,13 +198,6 @@ class CollectionForm extends React.Component {
 
   handleClickSoundTab(idx) {
     return (e) => {
-      const collectionTab = document.getElementById('collection-form-collection-tab');
-      collectionTab.classList.remove('tab-clicked');
-      const soundTabs = document.getElementsByClassName('collection-form-sound-tab');
-      for (let i = 0; i < soundTabs.length; i++) {
-        soundTabs[i].classList.remove('tab-clicked');
-      }
-      e.currentTarget.classList.add('tab-clicked');
       this.setState({
         currentFormIdx: idx
       });
@@ -240,12 +220,41 @@ class CollectionForm extends React.Component {
         </figure>
       );
     }
+
+    let collectionFormCollectionTab;
+    if (this.state.currentFormIdx === -1) {
+      collectionFormCollectionTab = (
+        <div id='collection-form-collection-tab' className='collection-form-collection-tab tab-clicked' onClick={ this.handleClickCollectionTab }>
+          <div className='collection-form-collection-tab-inner'>
+            { artworkThumb }
+            <div className='collection-form-collection-tab-text'>
+              <p className='collection-form-collection-tab-text-title'>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
+              <p className='collection-form-collection-tab-text-user'>by <strong>{ this.props.currentUser.username }</strong></p>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      collectionFormCollectionTab = (
+        <div id='collection-form-collection-tab' className='collection-form-collection-tab' onClick={ this.handleClickCollectionTab }>
+          <div className='collection-form-collection-tab-inner'>
+            { artworkThumb }
+            <div className='collection-form-collection-tab-text'>
+              <p className='collection-form-collection-tab-text-title'>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
+              <p className='collection-form-collection-tab-text-user'>by <strong>{ this.props.currentUser.username }</strong></p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     const sounds = this.state.sounds.map(
       (sound, idx) => (
         <SoundListItem
           key={ idx }
           sound={ sound }
           idx={ idx }
+          currentFormIdx = {this.state.currentFormIdx }
           handleChange={ this.handleChangeSound(idx) }
           handleDeleteSound={ this.handleDeleteSound(idx) }
           handleClickSoundTab={ this.handleClickSoundTab } />
@@ -298,15 +307,7 @@ class CollectionForm extends React.Component {
       <div className='collection-form'>
         <main className='collection-form-main'>
           <section className='collection-form-main-left'>
-            <div id='collection-form-collection-tab' className='collection-form-collection-tab' onClick={ this.handleClickCollectionTab }>
-              <div className='collection-form-collection-tab-inner'>
-                { artworkThumb }
-                <div className='collection-form-collection-tab-text'>
-                  <p className='collection-form-collection-tab-text-title'>{ this.state.title === '' ? 'Untitled Collection' : this.state.title }</p>
-                  <p className='collection-form-collection-tab-text-user'>by <strong>{ this.props.currentUser.username }</strong></p>
-                </div>
-              </div>
-            </div>
+            { collectionFormCollectionTab }
             <h3 className='collection-form-sounds-heading'>sounds</h3>
             <div className='collection-form-sounds'>
               <ul className='collection-form-sound-list'>
