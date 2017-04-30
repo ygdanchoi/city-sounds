@@ -5,6 +5,7 @@ import UsersReducer from './users_reducer';
 import SoundsReducer from './sounds_reducer';
 import CollectionsReducer from './collections_reducer';
 import ErrorsReducer from './errors_reducer';
+import NavBarStateReducer from './nav_bar_state_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -12,6 +13,7 @@ const RootReducer = combineReducers({
   sounds: SoundsReducer,
   collections: CollectionsReducer,
   errors: ErrorsReducer,
+  navBarState: NavBarStateReducer,
 });
 
 export default RootReducer;

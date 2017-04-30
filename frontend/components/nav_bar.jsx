@@ -12,16 +12,24 @@ class NavBar extends React.Component {
     const navBarDropdown = document.getElementById('nav-bar-dropdown');
     const navBarCurrentUser = document.getElementById('nav-bar-current-user');
     const navBarCaret = document.getElementById('nav-bar-caret');
-    if (navBarDropdown.classList.contains('hidden')) {
+    if (!this.props.navBarState.pressed) {
       navBarDropdown.classList.remove('hidden');
       navBarDropdown.classList.add('opened');
       navBarCurrentUser.classList.add('pressed');
       navBarCaret.src = window.images.caretSelected;
+      this.props.receiveNavBarState({
+        pressed: true,
+        pressing: true,
+      });
     } else {
       navBarDropdown.classList.add('hidden');
       navBarDropdown.classList.remove('opened');
       navBarCurrentUser.classList.remove('pressed');
       navBarCaret.src = window.images.caret;
+      this.props.receiveNavBarState({
+        pressed: false,
+        pressing: false,
+      });
     }
   }
 
