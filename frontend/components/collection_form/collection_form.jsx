@@ -16,6 +16,7 @@ class CollectionForm extends React.Component {
       description: '',
       currentForm: null,
       currentFormIdx: -1,
+      submitted: false,
     };
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChangeSound = this.handleChangeSound.bind(this);
@@ -55,6 +56,9 @@ class CollectionForm extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.handleClickCollectionTab();
+    this.setState({
+      submitted: false,
+    });
   }
 
   handleClickSound(e) {
@@ -187,6 +191,9 @@ class CollectionForm extends React.Component {
     this.props.submitCollection(id, formData).then(
       (response) => this.redirectToCollection(response.collection.id)
     );
+    this.setState({
+      submitted: true
+    });
   }
 
   redirectToCollection(id) {
@@ -297,6 +304,17 @@ class CollectionForm extends React.Component {
       soundsErrors = this.props.errors.sounds.join(', ');
     }
 
+    let submitButton;
+    if (this.state.submitted) {
+      submitButton = (
+        <button className='collection-form-submitted'>...</button>
+      );
+    } else {
+      submitButton = (
+        <button className='collection-form-submit' onClick={ this.handleSubmit }>{ this.props.submitText }</button>
+      );
+    }
+
     return (
       <div className='collection-form'>
         <main className='collection-form-main'>
@@ -325,7 +343,7 @@ class CollectionForm extends React.Component {
               { soundsErrors }
             </div>
             <div className='collection-form-submit-container'>
-              <button className='collection-form-submit' onClick={ this.handleSubmit }>{ this.props.submitText }</button>
+              { submitButton }
             </div>
           </section>
           <section className='collection-form-main-right'>
