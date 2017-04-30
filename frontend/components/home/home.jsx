@@ -15,7 +15,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     window.onscroll = () => {
-      const homeHeader = document.getElementById('home-header');
+      const homeHeader = this.homeHeader;
       if (105 > this.exploreHeading.getBoundingClientRect().top || 105 > this.exploreHeading.getBoundingClientRect().top) {
         homeHeader.classList.add('off-screen');
       } else {
@@ -77,7 +77,7 @@ class Home extends React.Component {
     }
 
     const homeHeader = (
-      <header id='home-header' className='home-header'>
+      <header id='home-header' className='home-header' ref={c => this.homeHeader = c }>
         <header className='home-header-main'>
           <header className='home-header-main-top'>
             <figure className='home-header-logo'>
