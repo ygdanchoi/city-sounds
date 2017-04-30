@@ -15,6 +15,7 @@ class CollectionForm extends React.Component {
       title: '',
       description: '',
       currentForm: null,
+      currentFormIdx: -1,
     };
     this.handleAddSound = this.handleAddSound.bind(this);
     this.handleChangeSound = this.handleChangeSound.bind(this);
@@ -75,13 +76,7 @@ class CollectionForm extends React.Component {
       };
       this.setState({
         sounds: this.state.sounds.concat(sound),
-        currentForm: (
-          <CollectionFormSoundSubForm
-            title={ '' }
-            description={ 0 }
-            idx={ this.state.sounds.length }
-            handleChange={ this.handleChangeSound(this.state.sounds.length) } />
-        )
+        currentFormIdx: this.state.sounds.length,
       });
     }).bind(this);
     if (file) {
@@ -94,33 +89,11 @@ class CollectionForm extends React.Component {
     return (e) => {
       if (field === 'title') {
         this.setState({
-          title: e.currentTarget.value,
-          currentForm: (
-            <CollectionFormCollectionSubForm
-              title={ e.currentTarget.value }
-              description={ this.state.description }
-              handleChange={ this.handleChange }
-              errors={ this.props.errors }
-              artworkUrl={ this.state.artworkUrl }
-              handleAddArtwork={ this.handleAddArtwork }
-              handleClickArtwork={ this.handleClickArtwork }
-              handleDeleteArtwork={ this.handleDeleteArtwork } />
-          )
+          title: e.currentTarget.value
         });
       } else if (field === 'description') {
-          this.setState({
-          description: e.currentTarget.value,
-          currentForm: (
-            <CollectionFormCollectionSubForm
-              title={ this.state.title }
-              description={ e.currentTarget.value }
-              handleChange={ this.handleChange }
-              errors={ this.props.errors }
-              artworkUrl={ this.state.artworkUrl }
-              handleAddArtwork={ this.handleAddArtwork }
-              handleClickArtwork={ this.handleClickArtwork }
-              handleDeleteArtwork={ this.handleDeleteArtwork } />
-          )
+        this.setState({
+          description: e.currentTarget.value
         });
       }
     };
@@ -134,24 +107,12 @@ class CollectionForm extends React.Component {
         if (field === 'title') {
           this.setState({
             sounds: sounds,
-            currentForm: (
-              <CollectionFormSoundSubForm
-                title={ e.currentTarget.value }
-                description={ formProps.description }
-                idx={ formProps.idx }
-                handleChange={ formProps.handleChange } />
-            )
+            currentFormIdx: idx,
           });
         } else if (field === 'description') {
           this.setState({
             sounds: sounds,
-            currentForm: (
-              <CollectionFormSoundSubForm
-                title={ formProps.title }
-                description={ e.currentTarget.value }
-                idx={ formProps.idx }
-                handleChange={ formProps.handleChange } />
-            )
+            currentFormIdx: idx,
           });
         }
       };
@@ -165,9 +126,9 @@ class CollectionForm extends React.Component {
       const sounds = this.state.sounds;
       this.setState({
         sounds: sounds.slice(0, idx).concat(sounds.slice(idx + 1)),
-        soundsToDelete: this.state.soundsToDelete.concat(sounds[idx])
+        soundsToDelete: this.state.soundsToDelete.concat(sounds[idx]),
+        currentFormIdx: -1,
       });
-      this.handleClickCollectionTab();
     };
   }
 
@@ -185,17 +146,6 @@ class CollectionForm extends React.Component {
       this.setState({
         artworkFile: file,
         artworkUrl: fileReader.result,
-        currentForm: (
-          <CollectionFormCollectionSubForm
-            title={ this.state.title }
-            description={ this.state.description }
-            handleChange={ this.handleChange }
-            errors={ this.props.errors }
-            artworkUrl={ fileReader.result }
-            handleAddArtwork={ this.handleAddArtwork }
-            handleClickArtwork={ this.handleClickArtwork }
-            handleDeleteArtwork={ this.handleDeleteArtwork } />
-        )
       });
     }).bind(this);
     if (file) {
@@ -208,17 +158,6 @@ class CollectionForm extends React.Component {
     this.setState({
       artworkFile: null,
       artworkUrl: '/avatars/original/missing.png',
-      currentForm: (
-        <CollectionFormCollectionSubForm
-          title={ this.state.title }
-          description={ this.state.description }
-          handleChange={ this.handleChange }
-          errors={ this.props.errors }
-          artworkUrl={ '/avatars/original/missing.png' }
-          handleAddArtwork={ this.handleAddArtwork }
-          handleClickArtwork={ this.handleClickArtwork }
-          handleDeleteArtwork={ this.handleDeleteArtwork } />
-      )
     });
   }
 
@@ -258,21 +197,11 @@ class CollectionForm extends React.Component {
       soundTabs[i].classList.remove('tab-clicked');
     }
     this.setState({
-      currentForm: (
-        <CollectionFormCollectionSubForm
-          title={ this.state.title }
-          description={ this.state.description }
-          handleChange={ this.handleChange }
-          errors={ this.props.errors }
-          handleAddArtwork={ this.handleAddArtwork }
-          handleClickArtwork={ this.handleClickArtwork }
-          artworkUrl={ this.state.artworkUrl }
-          handleDeleteArtwork={ this.handleDeleteArtwork } />
-      )
+      currentFormIdx: -1
     });
   }
 
-  handleClickSoundTab(collectionFormSoundSubForm) {
+  handleClickSoundTab(idx) {
     return (e) => {
       const collectionTab = document.getElementById('collection-form-collection-tab');
       collectionTab.classList.remove('tab-clicked');
@@ -282,7 +211,7 @@ class CollectionForm extends React.Component {
       }
       e.currentTarget.classList.add('tab-clicked');
       this.setState({
-        currentForm: collectionFormSoundSubForm
+        currentFormIdx: idx
       });
     };
   }
@@ -332,6 +261,29 @@ class CollectionForm extends React.Component {
       )
     );
 
+    let currentForm;
+    if (this.state.currentFormIdx === -1) {
+      currentForm = (
+        <CollectionFormCollectionSubForm
+          title={ this.state.title }
+          description={ this.state.description }
+          handleChange={ this.handleChange }
+          errors={ this.props.errors }
+          handleAddArtwork={ this.handleAddArtwork }
+          handleClickArtwork={ this.handleClickArtwork }
+          artworkUrl={ this.state.artworkUrl }
+          handleDeleteArtwork={ this.handleDeleteArtwork } />
+      );
+    } else {
+      currentForm = (
+        <CollectionFormSoundSubForm
+          title={ this.state.sounds[this.state.currentFormIdx].title }
+          description={ this.state.sounds[this.state.currentFormIdx].description }
+          idx={ this.state.currentFormIdx }
+          handleChange={ this.handleChangeSound(this.state.currentFormIdx) } />
+      );
+    }
+
     let titleErrors = [];
     let soundsErrors = [];
     if (this.props.errors.title) {
@@ -364,7 +316,7 @@ class CollectionForm extends React.Component {
                 style={ { display: 'none' } } />
               <div className='collection-form-add-sound-container'>
                 <a className='collection-form-add-sound' href='' onClick={ this.handleClickSound }>add sound</a>
-                <p className='collection-form-add-sound-requirements'>50MB max per sound, .mp3, .mp4, .mpg, or .mpeg</p>
+                <p className='collection-form-add-sound-requirements'>10MB max per sound, .mp3, .mp4, .mpg, or .mpeg</p>
               </div>
               { soundsErrors }
             </div>
@@ -373,7 +325,7 @@ class CollectionForm extends React.Component {
             </div>
           </section>
           <section className='collection-form-main-right'>
-            { this.state.currentForm }
+            { currentForm }
           </section>
         </main>
       </div>

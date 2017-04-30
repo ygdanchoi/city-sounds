@@ -25,16 +25,9 @@ const toMB = (bytes) => {
 
 const SoundListItem = (props) => {
   if (props.sound) {
-    const collectionFormSoundSubForm = (
-      <CollectionFormSoundSubForm
-        title={ props.sound.title }
-        description={ props.sound.description }
-        idx={ props.idx }
-        handleChange={ props.handleChange } />
-    );
     return (
       <li className='collection-form-sound-list-item'>
-        <div className='collection-form-sound-tab' onClick={ props.handleClickSoundTab(collectionFormSoundSubForm) }>
+        <div className='collection-form-sound-tab' onClick={ props.handleClickSoundTab(props.idx) }>
           <div className='collection-form-sound-tab-left'>
             <p className='collection-form-sound-tab-idx'>{ parseInt(props.idx) + 1 }</p>
           </div>
