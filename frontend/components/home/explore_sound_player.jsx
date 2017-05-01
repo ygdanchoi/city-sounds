@@ -116,6 +116,12 @@ class ExploreSoundPlayer extends React.Component {
         ref={c => this.audioPlayer = c }
       />
     );
+    let titleTruncated;
+    if (this.props.sound.title.length < 30) {
+      titleTruncated = this.props.sound.title;
+    } else {
+      titleTruncated = this.props.sound.title.slice(0, 27) + '...';
+    }
     let collectionPlayButton;
     if (this.props.playing) {
       collectionPlayButton = (
@@ -132,7 +138,7 @@ class ExploreSoundPlayer extends React.Component {
         { collectionPlayButton }
         <div className='explore-sound-player-right'>
           <div className='explore-sound-player-details'>
-            <p className='explore-sound-player-title'>{ this.props.sound.title }</p>
+            <p className='explore-sound-player-title'>{ titleTruncated }</p>
             <p className='explore-sound-player-time'>{ `${this.toHHMMSS(this.state.audioCurrentTime)} / ${this.toHHMMSS(this.state.audioDuration)}` }</p>
           </div>
           <div id='collection-timeline' className='collection-sound-player-timeline' onClick={ this.handleClickTimeline } ref={c => this.timeline = c } >
