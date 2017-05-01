@@ -258,6 +258,22 @@
   padding-top: 12px;
 }
 
+.explore-sound-player-hear-more  {
+  margin-top: 15px;
+  font-size: 10pt;
+  font-weight: bold;
+  width: 336px;
+  background-color: white;
+  border: 1px solid #b2b2b2;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.explore-sound-player-hear-more:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .explore-sound-player-collection a,
 .explore-sound-player-user a,
 .explore-sound-player-location a {

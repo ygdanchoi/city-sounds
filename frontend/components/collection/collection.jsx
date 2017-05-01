@@ -153,7 +153,7 @@ class Collection extends React.Component {
               Unlimited streaming via the free CitySounds app.
             </p>
             <p className='collection-info-donate-now'>
-              <a>Donate Now</a>
+              <a></a>
             </p>
             <ul className='collection-sounds-list'>
               { soundListItems }

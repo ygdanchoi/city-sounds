@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import ExploreList from './explore_list';
 import ExploreSoundPlayer from './explore_sound_player';
 
@@ -104,6 +104,13 @@ class Explore extends React.Component {
     });
   }
 
+  redirectToCollection(id) {
+    return (e) => {
+      e.preventDefault();
+      hashHistory.push(`collections/${id}`);
+    };
+  }
+
   render() {
     return (
       <div className='explore'>
@@ -124,6 +131,7 @@ class Explore extends React.Component {
               <p className='explore-sound-player-collection'>from the collection <Link to={`/collections/${this.state.playingCollectionId}`}>{ this.state.playingCollectionTitle }</Link></p>
               <p className='explore-sound-player-user'>by <Link to={`/users/${this.state.playingUserId}`}>{ this.state.playingUserUsername }</Link></p>
               <p className='explore-sound-player-location'>{ this.state.playingUserLocation }</p>
+              <button className='explore-sound-player-hear-more' onClick={ this.redirectToCollection(this.state.playingCollectionId) }>hear more from this collection</button>
             </div>
           </aside>
         </main>
