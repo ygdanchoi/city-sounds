@@ -96,6 +96,9 @@ class ExploreSoundPlayer extends React.Component {
     this.setState({
       audioCurrentTime: this.state.audioDuration * clickFraction
     });
+    // stupid workaround
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 1000);
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 1000);
   }
 
   render() {
