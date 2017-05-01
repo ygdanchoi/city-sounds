@@ -3,6 +3,7 @@ import React from 'react';
 class UserSidebarAvatar extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClickFile = this.handleClickFile.bind(this);
   }
 
   handleClickFile(e) {
