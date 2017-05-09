@@ -3,7 +3,6 @@ import merge from 'lodash/merge';
 
 const _defaultState = {
   pressed: false,
-  pressing: false,
 };
 
 const NavBarStateReducer = (state = _defaultState, action) => {

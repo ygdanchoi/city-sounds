@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import App from './app';
+import AppContainer from './app_container';
 import AuthFormContainer from './auth_form/auth_form_container';
 import UserContainer from './user/user_container';
 import CollectionContainer from './collection/collection_container';
@@ -18,7 +18,7 @@ const Root = (props) => {
   return (
     <Provider store={ props.store }>
       <Router history={ hashHistory }>
-        <Route path='/' component={ App }>
+        <Route path='/' component={ AppContainer }>
           <Route path='login'
             component={ AuthFormContainer } onEnter={ _redirectIfLoggedIn } />
           <Route path='signup'

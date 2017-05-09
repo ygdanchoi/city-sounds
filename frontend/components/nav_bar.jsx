@@ -8,18 +8,17 @@ class NavBar extends React.Component {
     this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
-  toggleDropdown() {
+  toggleDropdown(e) {
     if (!this.props.navBarState.pressed) {
       this.props.receiveNavBarState({
         pressed: true,
-        pressing: true,
       });
     } else {
       this.props.receiveNavBarState({
         pressed: false,
-        pressing: false,
       });
     }
+    e.stopPropagation();
   }
 
   redirectToRoot() {
