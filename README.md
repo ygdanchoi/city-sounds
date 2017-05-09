@@ -71,11 +71,28 @@ Each `ExploreListItem` in the homepage contains links to the collection author's
 
 ![user_profile_static](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_static.jpg)
 
-Users who are logged in see a personalized navigation bar and--if on their own profile page--links to edit their `avatar` image, `location`, and `bio`.
+Users who are logged in see a personalized navigation bar and--if on their own profile page--sidebar links to edit their `avatar` image, `location`, and `bio`.
 
 ![user_profile_dynamic](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_dynamic.jpg)
 
-These links open up modular forms
+The `UserSidebarContainer` on the right is further divided into three dynamic sub-components:
+1. `UserSidebarAvatar`
+2. `UserSidebarLocation`
+3. `UserSidebarBio`
+
+The `UserSidebarContainer` state keeps track of which, if any, of the `avatar`/`location`/`bio` fields are being edited (code snippet below) and passes that information to the corresponding sub-component.
+```js
+this.state = {
+  avatarFile: null,
+  avatarUrl: this.props.user.avatarUrl,
+  location: this.props.user.location,
+  bio: this.props.user.bio,
+  editingLocation: false,
+  editingBio: false
+};
+```
+
+When a link is clicked within a sub-component, the static `<image>` or `<p>` element is replaced with appropriate `<input>` elements and, if applicable, `<button>` elements to save/cancel.
 
 To the right is a dynamic sidebar containing the user's avatar image, username, location, and bio. Excluding the username, these fields can be changed individually with instant feedback. In order to accomplish this, the sidebar keeps track of whether each field is being edited, what the new field value should be (in case of save), and what the value was previously (in case of cancel). The input field & save/cancel buttons are only shown after the edit field link has been clicked.
 
