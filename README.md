@@ -67,9 +67,13 @@ To enable the user to switch seamlessly between `SoundCollections`, I put the au
 
 ### The User Profile Page
 
-Each `ExploreListItem` in the homepage contains links to the collection author's profile page. Both visitors who aren't logged in and users browsing someone else's profile will see a simple static view.
+Each `ExploreListItem` in the homepage contains links to the collection author's profile page. Both visitors who aren't logged in and users browsing someone else's profile will see a simple static profile page.
 
 ![user_profile_static](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_static.jpg)
+
+Users who are logged in see a personalized navigation bar and--if on their own profile page--links to edit their `avatar` image, `location`, and `bio`.
+
+![user_profile_dynamic](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_dynamic.jpg)
 
 To the left of the user profile page is a list of the user's uploaded Sound Collections. This consists of a simple AJAX request based on the userId in the URL.
 
