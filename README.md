@@ -48,10 +48,23 @@ In addition, `audio` files are stored on Amazon S3 via `paperclip`.
 
 ### Exploring Collections
 
-Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this, an `ExploreSoundPlayer` component is rendered. By default, the first `SoundCollection` is loaded into the `ExploreSoundPlayer` state;
+Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this, an `ExploreSoundPlayer` component is rendered. By default, the first `SoundCollection` is loaded into the `ExploreSoundPlayer` state.
 
+![explore](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/explore.jpg)
 
+In order to enable the `ExploreSoundPlayer` to switch between `SoundCollections`, I put the state
 Next to the list of Sound Collection tiles, an audio player component utilizing ReactAudioPlayer is rendered. This keeps track of whether a sound is playing, which particular sound is playing, and what the time position of the playing sound is. The main play/pause button, timeline/playhead, and individual Sound Collection play/pause buttons are able to set this state accordingly, as well as to change their appearance based on it.
+
+![explore_sound_collection](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/explore_sound_collection.jpg)
+
+```js
+<ExploreSoundPlayer
+    sound={ this.state.playingSound }
+    playing={ this.state.playing }
+    playPauseAudio={ this.playPauseAudio }
+    playedYet={ this.state.playedYet }
+    setPlayedYet={ this.setPlayedYet } />
+```
 
 ### User Sidebar & Profile Page
 

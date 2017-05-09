@@ -34,7 +34,7 @@ class ExploreSoundPlayer extends React.Component {
       } else {
         this.audioPlayer.audioEl.pause();
       }
-      if (this.props.playingSound !== prevProps.playingSound) {
+      if (this.props.sound !== prevProps.sound) {
         this.audioPlayer.audioEl.currentTime = 0;
         if (this.props.playedYet) {
           this.audioPlayer.audioEl.play();
