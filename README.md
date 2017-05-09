@@ -108,8 +108,69 @@ The sound collection page renders a `CollectionSoundPlayer` functionally identic
 
 ### Adding/Editing Sound Collections
 
-The Sound Collection add/edit form has a tab for the collection, plus additional tabs for each Sound file. The form stores an array of all uploaded sounds and keeps track of the current index of this array to determine which tab is open. If this index is -1, then the collection tab is open. Upon submission, one massive formData is sent to the backend containing both collection and sound data. On the backend, all database manipulations are grouped into one transaction, with the collection save/update preceding the sound save/updates.
+The `CollectionFormContainer` renders a multi-tabbed component consisting of a primary `CollectionFormCollectionSubForm` sub-component, plus additional `CollectionFormSoundSubForm` sub-components for each sound file uploaded. The `CollectionForm` state (code snippet below) centralizes the information necessary to switch between tabs.
 
-### Search
+```js
+this.state = {
+  artworkFile: null,
+  artworkUrl: '/avatars/original/missing.png',
+  sounds: [],
+  soundsToDelete: [],
+  title: '',
+  description: '',
+  currentForm: null,
+  currentFormIdx: -1,
+  submitted: false,
+};
+```
+If the `currentFormIdx` is -1, the `CollectionFormCollectionSubForm` is rendered.
 
-Sound Collections and Sounds are searched by title and description using the pg-search gem on the backend.
+![collection_form_collection_sub_form](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/collection_form_collection_sub_form.jpg)
+
+If the `currentFormIdx` is 0 or greater, a `CollectionFormSoundSubForm` is rendered using `sounds[currentFormIdx]`, which is an array of `SoundListItems`.
+
+![collection_form_sound_sub_form](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/collection_form_sound_sub_form.jpg)
+
+Submitting the form sends a single AJAX `POST`/`PATCH` request, pooling the `collection` and `sound` data together. In order to enforce database integrity, the backend groups the `collection` and `sound` actions into a single `ActiveRecord::Base.transaction` (code snippet below) in order to enforce database integrity.
+
+```js
+def create
+  @collection = Collection.new(collection_params)
+  begin
+    ActiveRecord::Base.transaction do
+      if @collection.save
+        parse_and_save_sounds
+        render 'api/collections/show'
+      else
+        render json: @collection.errors, status: 422
+      end
+    end
+  rescue ActiveRecord::RecordInvalid => exception
+    render json: { sounds: exception.message[19..-1].split(', ') }, status: 422
+  rescue NoSoundsError => exception
+    render json: { sounds: ['Must have at least one sound.'] }, status: 422
+  end
+end
+
+def update
+  @collection = Collection.find(params[:id])
+  begin
+    ActiveRecord::Base.transaction do
+      if @collection.update(collection_params)
+        parse_and_save_sounds
+        render 'api/collections/show'
+      else
+        render json: @collection.errors, status: 422
+      end
+    end
+  rescue ActiveRecord::RecordInvalid => exception
+    render json: { sounds: exception.message[19..-1].split(', ') }, status: 422
+  rescue NoSoundsError => exception
+    render json: { sounds: ['Must have at least one sound.'] }, status: 422
+  end
+end
+```
+
+### Searching Sound Collections
+
+Collections and Sounds are searched by `title` and `description` using the `pg-search` gem.
