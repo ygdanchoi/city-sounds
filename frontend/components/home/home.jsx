@@ -110,7 +110,7 @@ class Home extends React.Component {
         </div>
         <div className='explore-heading' ref={c => this.exploreHeading = c }>
           <div className='explore-heading-main'>
-            <h3>Discover</h3>
+            <h3>Explore</h3>
           </div>
         </div>
         <ExploreContainer />

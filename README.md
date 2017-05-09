@@ -2,17 +2,53 @@
 
 [CitySounds live][heroku]
 
-[heroku]: http://city-sounds.herokuapp.com
+[heroku]: http://www.citysoundsapp.com/#/
 
-CitySounds is a twist on the music sales platform Bandcamp, but focusing on ambient city sounds to be played while studying or relaxing. It's a full-stack web application utilizing Ruby on Rails/PostgreSQL on the backend and React.js/Redux on the frontend.
+CitySounds is a full-stack web application for sharing and playing ambient city soundscapes. Based on Bandcamp, it utilizes Ruby on Rails with PostgreSQL on the backend and React.js with Redux on the frontend.
 
-## Features & Implementation
+## Database
 
-### Discovering Sound Collections ("Albums")
+CitySounds allows visitors to browse through other users' collections and listen to sounds. Users who are logged in can also create, edit, and delete sound collections. In order to achieve this, I used three primary `ActiveRecord` models:
+1. `User`
+2. `SoundCollection` (analogous to an Album)
+3. `Sound` (analogous to a Track)
 
-Upon entering the site, the first thing to be fetched from the backend is a list of Sound Collection ("Album") tile objects. At the database level, a Sound Collection is stored in a SQL table containing columns for id, title, user_id (foreign key), and description (optional). Artwork image file storage is handled by the Paperclip gem integrated with Amazon Simple Storage Service (Amazon S3).
+### User
 
-Similarly, the Sounds ("Tracks") table has columns for id, title, collection_id (foreign key), and description (optional); audio file storage is handled by Paperclip/S3.
+At the PostgreSQL database level, a `User` is stored in a table with the following columns:
+- `id`
+- `username`
+- `bio` (optional)
+- `location` (optional)
+- Authentication information
+
+In addition, `avatar` images are handled by the `paperclip` gem and stored on Amazon Simple Storage Service (S3).
+
+### Sound Collection
+
+The SQL table for `SoundCollection` has the following columns:
+- `id`
+- `title`
+- `user_id` (foreign key)
+- `description` (optional)
+
+In addition, `avatar` images are stored on Amazon S3 via `paperclip`.
+
+### Sound
+
+The SQL table for `Sound` has the following columns:
+- `id`
+- `title`
+- `collection_id` (foreign key)
+- `description` (optional)
+
+In addition, `audio` files are stored on Amazon S3 via `paperclip`.
+
+## Features
+
+### Exploring Collections
+
+Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as tiles in the 'Explore' section. Next to this, an `ExploreSoundPlayer` React component is rendered.
 
 Next to the list of Sound Collection tiles, an audio player component utilizing ReactAudioPlayer is rendered. This keeps track of whether a sound is playing, which particular sound is playing, and what the time position of the playing sound is. The main play/pause button, timeline/playhead, and individual Sound Collection play/pause buttons are able to set this state accordingly, as well as to change their appearance based on it.
 
