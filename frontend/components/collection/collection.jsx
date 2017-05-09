@@ -109,7 +109,7 @@ class Collection extends React.Component {
       return(
         <div className='collection-page'>
           <main className='collection-main'>
-            <p>loading...</p>
+            <p></p>
           </main>
         </div>
       );

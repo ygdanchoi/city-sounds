@@ -25,7 +25,7 @@ class User extends React.Component {
       return(
         <div className='user-page'>
           <main className='user-main'>
-            <p>loading...</p>
+            <p></p>
           </main>
         </div>
       );

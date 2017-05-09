@@ -67,7 +67,7 @@ To enable the user to switch seamlessly between `SoundCollections`, I put the au
 
 ### The User Profile Page
 
-Each `ExploreListItem` in the homepage contains links to the collection author's profile page. Both visitors who aren't logged in and users browsing someone else's profile will see a simple static profile page.
+Each `ExploreListItem` in the homepage contains links to the collection author's profile page. Both visitors who aren't logged in and users browsing someone else's profile see a simple static profile page.
 
 ![user_profile_static](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_static.jpg)
 
@@ -75,7 +75,7 @@ Users who are logged in see a personalized navigation bar and--if on their own p
 
 ![user_profile_dynamic](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_dynamic.jpg)
 
-To the left of the user profile page is a list of the user's uploaded Sound Collections. This consists of a simple AJAX request based on the userId in the URL.
+These links open up modular forms
 
 To the right is a dynamic sidebar containing the user's avatar image, username, location, and bio. Excluding the username, these fields can be changed individually with instant feedback. In order to accomplish this, the sidebar keeps track of whether each field is being edited, what the new field value should be (in case of save), and what the value was previously (in case of cancel). The input field & save/cancel buttons are only shown after the edit field link has been clicked.
 
