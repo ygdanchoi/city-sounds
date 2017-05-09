@@ -71,7 +71,7 @@ Each `ExploreListItem` in the homepage contains links to the collection author's
 
 ![user_profile_static](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_static.jpg)
 
-Users who are logged in see a personalized navigation bar and--if on their own profile page--sidebar links to edit their `avatar` image, `location`, and `bio`.
+Users who are logged in see a personalized `NavBarContainer` and—if on their own profile page—sidebar links to edit their `avatar` image, `location`, and `bio`.
 
 ![user_profile_dynamic](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_dynamic.jpg)
 
@@ -94,11 +94,13 @@ this.state = {
 
 When a link is clicked within a sub-component, the static `<image>` or `<p>` element is replaced with appropriate `<input>` elements and, if applicable, `<button>` elements to save/cancel.
 
-To the right is a dynamic sidebar containing the user's avatar image, username, location, and bio. Excluding the username, these fields can be changed individually with instant feedback. In order to accomplish this, the sidebar keeps track of whether each field is being edited, what the new field value should be (in case of save), and what the value was previously (in case of cancel). The input field & save/cancel buttons are only shown after the edit field link has been clicked.
+![user_sidebar](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_sidebar.jpg)
 
-### Sound Collection Page
+Uploading an `avatar` image or saving a new `location`/`bio` immediately dispatches a `thunk` action that sends an AJAX `PATCH` request to the backend, receives the new `user` and `currentUser`, and updates the Redux state—thus forcing the `UserSidebarContainer` and `NavBarContainer` to re-render with the new user information.
 
-The Sound Collection page has an audio player nearly identical to the one on the home page, in terms of functionality. The main difference is that the current collection’s sounds replace the homepage's sound collection tiles.
+### The Collection Page
+
+The collection page renders a `CollectionSoundPlayer` functionally identical to the `ExploreSoundPlayer` on the home page, except that `SoundListItems` replace the homepage's `ExploreListItems`.
 
 The Sound Collection add/edit form has a tab for the collection, plus additional tabs for each Sound file. The form stores an array of all uploaded sounds and keeps track of the current index of this array to determine which tab is open. If this index is -1, then the collection tab is open. Upon submission, one massive formData is sent to the backend containing both collection and sound data. On the backend, all database manipulations are grouped into one transaction, with the collection save/update preceding the sound save/updates.
 
