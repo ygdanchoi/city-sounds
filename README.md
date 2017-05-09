@@ -48,14 +48,11 @@ In addition, `audio` files are stored on Amazon S3 via `paperclip`.
 
 ### Exploring Collections
 
-Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this, an `ExploreSoundPlayer` component is rendered. By default, the first `SoundCollection` is loaded into the `ExploreSoundPlayer` state.
+Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this is the `ExploreSoundPlayer` component, which utilizes `ReactAudioPlayer` to allow my custom-styled HTML elements to control audio playback. By default, the first `Sound` of the first `SoundCollection` is loaded into the `ExploreSoundPlayer` state.
 
 ![explore](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/explore.jpg)
 
-In order to enable the `ExploreSoundPlayer` to switch between `SoundCollections`, I put the state
-Next to the list of Sound Collection tiles, an audio player component utilizing ReactAudioPlayer is rendered. This keeps track of whether a sound is playing, which particular sound is playing, and what the time position of the playing sound is. The main play/pause button, timeline/playhead, and individual Sound Collection play/pause buttons are able to set this state accordingly, as well as to change their appearance based on it.
-
-![explore_sound_collection](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/explore_sound_collection.jpg)
+To enable the user to switch seamlessly between `SoundCollections`, I put the audio playback state into the `Explore` component and connected it not only to the `ExploreSoundPlayer` (code snippet below), but also to the `ExploreList`, so that each `ExploreListItem` could conditionally style its play/pause button.
 
 ```js
 <ExploreSoundPlayer
@@ -66,7 +63,13 @@ Next to the list of Sound Collection tiles, an audio player component utilizing 
     setPlayedYet={ this.setPlayedYet } />
 ```
 
-### User Sidebar & Profile Page
+![explore_sound_player](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/explore_sound_player.jpg)
+
+### The User Profile Page
+
+Each `ExploreListItem` in the homepage contains links to the collection author's profile page. Both visitors who aren't logged in and users browsing someone else's profile will see a simple static view.
+
+![user_profile_static](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_static.jpg)
 
 To the left of the user profile page is a list of the user's uploaded Sound Collections. This consists of a simple AJAX request based on the userId in the URL.
 
