@@ -174,3 +174,21 @@ end
 ### Searching Sound Collections
 
 Collections and Sounds are searched by `title` and `description` using the `pg-search` gem.
+
+![search](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/search.jpg)
+
+## Future Directions
+
+CitySounds is still a work in progress! Here are some of the next steps.
+
+### Likes/Playlists
+
+Bandcamp allows fans to add albums/tracks to their wishlist, which can later be revisited. A similar "liked sounds" and "playlist" functionality on CitySounds would make it much more appealing to users.
+
+### Tags
+
+On Bandcamp's homepage, featured albums can be filtered by genres such as rock, alternative, hip-hop/rap, etc. A similar tagging & filtering system would translate over very naturally to CitySounds; some possible tags might include `cafe`, `rain`, `china`, etc.
+
+### Efficiency & Speed
+
+As CitySounds grows, fetching all `collection` objects for the homepage will become increasingly slow. Returning a small number of `collection` objects per query would be a natural first step in scaling up. In addition, several of the AJAX calls to the backend can reasonably be consolidated together.
