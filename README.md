@@ -9,13 +9,13 @@ CitySounds is a full-stack web application for sharing and playing ambient city 
 ## Database
 
 CitySounds allows visitors to browse through other users' collections and listen to sounds. Users who are logged in can also create, edit, and delete sound collections. In order to achieve this, I used three primary `ActiveRecord` models:
-1. `User`
-2. `SoundCollection` (analogous to an Album)
-3. `Sound` (analogous to a Track)
+1. `user`
+2. `collection` (analogous to an `album`)
+3. `sound` (analogous to a `track`)
 
 ### User
 
-At the PostgreSQL database level, a `User` is stored in a table with the following columns:
+At the PostgreSQL database level, a `user` is stored in a `users` table with the following columns:
 - `id`
 - `username`
 - `bio` (optional)
@@ -26,7 +26,7 @@ In addition, `avatar` images are handled by the `paperclip` gem and stored on Am
 
 ### Sound Collection
 
-The SQL table for `SoundCollection` has the following columns:
+The `collections` SQL table has the following columns:
 - `id`
 - `title`
 - `user_id` (foreign key)
@@ -36,7 +36,7 @@ In addition, `avatar` images are stored on Amazon S3 via `paperclip`.
 
 ### Sound
 
-The SQL table for `Sound` has the following columns:
+The `sounds` SQL table has the following columns:
 - `id`
 - `title`
 - `collection_id` (foreign key)
@@ -48,7 +48,7 @@ In addition, `audio` files are stored on Amazon S3 via `paperclip`.
 
 ### Exploring Collections
 
-Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this is the `ExploreSoundPlayer` component, which utilizes `ReactAudioPlayer` to allow my custom-styled HTML elements to control audio playback. By default, the first `Sound` of the first `SoundCollection` is loaded into the `ExploreSoundPlayer` state.
+Upon entering the homepage, an AJAX request is made to fetch all `collection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this is the `ExploreSoundPlayer` component, which utilizes `ReactAudioPlayer` to allow my custom-styled HTML elements to control audio playback. By default, the first `sound` of the first `collection` is loaded into the `ExploreSoundPlayer` state.
 
 ![explore](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/explore.jpg)
 
@@ -75,6 +75,8 @@ Users who are logged in see a personalized `NavBarContainer` and—if on their o
 
 ![user_profile_dynamic](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/user_profile_dynamic.jpg)
 
+### Editing User Information
+
 The `UserSidebarContainer` on the right is further divided into three dynamic sub-components:
 1. `UserSidebarAvatar`
 2. `UserSidebarLocation`
@@ -100,7 +102,11 @@ Uploading an `avatar` image or saving a new `location`/`bio` immediately dispatc
 
 ### The Collection Page
 
-The collection page renders a `CollectionSoundPlayer` functionally identical to the `ExploreSoundPlayer` on the home page, except that `SoundListItems` replace the homepage's `ExploreListItems`.
+The sound collection page renders a `CollectionSoundPlayer` functionally identical to the `ExploreSoundPlayer` on the home page, except that there are `SoundListItems` for each `sound` in the `collection` instead of the `ExploreListItems` on the homepage. If the collection belongs to the `currentUser`, then Edit/Delete links are also available.
+
+![collection_page](https://raw.githubusercontent.com/ygdanchoi/city-sounds/master/docs/clippings/collection_page.jpg)
+
+### Adding/Editing Sound Collections
 
 The Sound Collection add/edit form has a tab for the collection, plus additional tabs for each Sound file. The form stores an array of all uploaded sounds and keeps track of the current index of this array to determine which tab is open. If this index is -1, then the collection tab is open. Upon submission, one massive formData is sent to the backend containing both collection and sound data. On the backend, all database manipulations are grouped into one transaction, with the collection save/update preceding the sound save/updates.
 
