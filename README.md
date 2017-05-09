@@ -48,7 +48,8 @@ In addition, `audio` files are stored on Amazon S3 via `paperclip`.
 
 ### Exploring Collections
 
-Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as tiles in the 'Explore' section. Next to this, an `ExploreSoundPlayer` React component is rendered.
+Upon entering the homepage, an AJAX request is made to fetch all `SoundCollection` objects, which are then rendered as `ExploreListItem` React components in the `Explore` section. Next to this, an `ExploreSoundPlayer` component is rendered. By default, the first `SoundCollection` is loaded into the `ExploreSoundPlayer` state;
+
 
 Next to the list of Sound Collection tiles, an audio player component utilizing ReactAudioPlayer is rendered. This keeps track of whether a sound is playing, which particular sound is playing, and what the time position of the playing sound is. The main play/pause button, timeline/playhead, and individual Sound Collection play/pause buttons are able to set this state accordingly, as well as to change their appearance based on it.
 
