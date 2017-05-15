@@ -97,7 +97,25 @@ p.user-sidebar-location {
   color: white;
 }
 
+.user-sidebar-save-disabled {
+  background-color: #b5dbfc;
+}
+
 .user-sidebar-location-cancel, .user-sidebar-bio-cancel {
   background-color: transparent;
   color: #0687f5;
+}
+
+.user-sidebar-chars-left {
+  position: relative;
+  top: -3px;
+  width: 120px;
+  background-color: #f2f2f2;
+  text-align: center;
+  font-size: 7.5pt;
+  padding: 4px 0px;
+}
+
+.user-sidebar-chars-red {
+  color: #ff0000;
 }

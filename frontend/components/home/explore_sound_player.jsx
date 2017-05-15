@@ -120,10 +120,10 @@ class ExploreSoundPlayer extends React.Component {
       />
     );
     let titleTruncated;
-    if (this.props.sound.title.length < 30) {
+    if (this.props.sound.title.length < 29) {
       titleTruncated = this.props.sound.title;
     } else {
-      titleTruncated = this.props.sound.title.slice(0, 27) + '...';
+      titleTruncated = this.props.sound.title.slice(0, 26) + '...';
     }
     let collectionPlayButton;
     if (this.props.playing) {
