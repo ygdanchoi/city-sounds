@@ -97,8 +97,8 @@ class ExploreSoundPlayer extends React.Component {
       audioCurrentTime: this.state.audioDuration * clickFraction
     });
     // stupid workaround for currentTime & seekbar not updating
-    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 100);
-    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 100);
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
   }
 
   render() {
