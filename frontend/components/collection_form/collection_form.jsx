@@ -74,7 +74,7 @@ class CollectionForm extends React.Component {
     fileReader.onloadend = (() => {
       const sound = {
         title: '',
-        description: 0,
+        description: '',
         audioFile: file,
         audioUrl: fileReader.result,
       };
