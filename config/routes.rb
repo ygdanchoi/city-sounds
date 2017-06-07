@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :sounds, only: [:index]
     end
     resources :sounds, only: [:index, :show, :create, :update, :destroy]
+    resources :tags, only: [:index]
     resource :session, only: [:create, :destroy]
     get 'search-collections', to: 'collections#search'
     get 'search-sounds', to: 'sounds#search'

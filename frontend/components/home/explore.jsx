@@ -114,7 +114,9 @@ class Explore extends React.Component {
   render() {
     return (
       <div className='explore'>
-        <div className='explore-filters-top' />
+        <div className='explore-filters-top'>
+          <p>tag</p>
+        </div>
         <div className='explore-filters-bottom' />
         <main className='explore-main'>
           <section className='explore-main-left'>
