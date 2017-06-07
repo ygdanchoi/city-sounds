@@ -59,14 +59,12 @@ TEXT
 
   tianmen_square = Sound.create!(
     title: 'Tianmen Square',
-    duration: 424,
     collection_id: beijing.id,
     audio: File.open('app/assets/audio/tianmen_square.mp3')
   )
 
   bullet_train_from_shanghai_to_beijing = Sound.create!(
     title: 'Bullet train from Shanghai to Beijing',
-    duration: 482,
     collection_id: beijing.id,
     audio: File.open('app/assets/audio/bullet_train_from_shanghai_to_beijing.mp3')
   )
@@ -106,21 +104,18 @@ TEXT
 
   ambience_train_station_inside = Sound.create!(
     title: 'Ambience - Train Station - Inside',
-    duration: 473,
     collection_id: location_recordings.id,
     audio: File.open('app/assets/audio/ambience_train_station_inside.mp3')
   )
 
   ambience_day_city_backyard_noon = Sound.create!(
     title: 'Ambience - Day - City - Backyard - Noon',
-    duration: 848,
     collection_id: location_recordings.id,
     audio: File.open('app/assets/audio/ambience_day_city_backyard_noon.mp3')
   )
 
   underground_inside_the_train_london_tube = Sound.create!(
     title: 'Underground - Inside the train - London Tube',
-    duration: 492,
     collection_id: location_recordings.id,
     audio: File.open('app/assets/audio/underground_inside_the_train_london_tube.mp3')
   )
@@ -156,14 +151,12 @@ TEXT
 
   walking_time_square_part_1 = Sound.create!(
     title: 'walking time square part 1',
-    duration: 545,
     collection_id: walking_time_square.id,
     audio: File.open('app/assets/audio/walking_time_square_part_1.mp3')
   )
 
   walking_time_square_part_2 = Sound.create!(
     title: 'walking time square part 2',
-    duration: 407,
     collection_id: walking_time_square.id,
     audio: File.open('app/assets/audio/walking_time_square_part_2.mp3')
   )
@@ -190,21 +183,18 @@ TEXT
 
   ulaanbaatar_night = Sound.create!(
     title: 'ulaanbaatar_night',
-    duration: 1845,
     collection_id: corsica_s_in_mongolia.id,
     audio: File.open('app/assets/audio/ulaanbaatar_night.mp3')
   )
 
   incheon_4am = Sound.create!(
     title: 'incheon_4am',
-    duration: 258,
     collection_id: corsica_s_in_mongolia.id,
     audio: File.open('app/assets/audio/incheon_4am.mp3')
   )
 
   pigeons = Sound.create!(
     title: 'pigeons',
-    duration: 82,
     collection_id: corsica_s_in_mongolia.id,
     audio: File.open('app/assets/audio/pigeons.mp3')
   )

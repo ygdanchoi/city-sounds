@@ -2,7 +2,7 @@ class Sound < ApplicationRecord
   include PgSearch
   pg_search_scope :search, :against => [:title, :description]
 
-  validates :title, :duration, presence: true
+  validates :title, presence: true
 
   belongs_to :collection
   has_one :user, through: :collection, inverse_of: :sounds
