@@ -144,18 +144,25 @@
   align-items: center;
 }
 
-.explore-filters-top-inner {
+.explore-filters-bottom {
+  height: 40px;
+  background-color: #4390a8;
+  display: flex;
+  align-items: center;
+}
+
+.explore-filters-top-inner, .explore-filters-bottom-inner {
   width: 1106px;
   margin: 0 auto;
 }
 
-.explore-filters-top-tags {
+.explore-filters-tags {
   display: flex;
   list-style: none;
 }
 
-.explore-filters-top-tags li {
-  background-color: rgba(0,0,0,0.8);
+.explore-filters-tags li {
+  background-color: transparent;
   padding: 6px 10px;
   margin: 2px;
   color: white;
@@ -165,14 +172,13 @@
   transition: background-color 0.2s ease-in;
 }
 
-.explore-filters-top-tags li:hover {
-  background-color: rgba(0,0,0,0.6);
-  cursor: pointer;
+.tag-selected {
+  background-color: rgba(0,0,0,0.8);
 }
 
-.explore-filters-bottom {
-  height: 40px;
-  background-color: #4390a8;
+.explore-filters-tags li:hover {
+  background-color: rgba(0,0,0,0.6);
+  cursor: pointer;
 }
 
 .explore-heading {

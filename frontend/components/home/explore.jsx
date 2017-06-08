@@ -114,19 +114,27 @@ class Explore extends React.Component {
 
   render() {
     let tags = Object.keys(this.props.tags).map(
-      id => <li>{ this.props.tags[id].name }</li>
+      id => <li key={id}>{ this.props.tags[id].name }</li>
     );
     if (tags.length > 0) {
-      tags = [<li>all</li>, ...tags];
+      tags = [<li key={0}>all</li>, ...tags];
     }
+    const orders = [
+      <li key={0}>most popular</li>,
+      <li key={1}>most recent</li>,
+    ]
     return (
       <div className='explore'>
         <div className='explore-filters-top'>
           <div className='explore-filters-top-inner'>
-            <ul className='explore-filters-top-tags'>{ tags }</ul>
+            <ul className='explore-filters-tags'>{ tags }</ul>
           </div>
         </div>
-        <div className='explore-filters-bottom' />
+        <div className='explore-filters-bottom'>
+          <div className='explore-filters-bottom-inner'>
+            <ul className='explore-filters-tags'>{ orders }</ul>
+          </div>
+        </div>
         <main className='explore-main'>
           <section className='explore-main-left'>
             <ExploreList
