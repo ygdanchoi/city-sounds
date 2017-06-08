@@ -44,6 +44,7 @@ class Explore extends React.Component {
         );
       }).bind(this)
     );
+    this.props.fetchAllTags();
   }
 
   playPauseAudio(action) {
@@ -112,10 +113,13 @@ class Explore extends React.Component {
   }
 
   render() {
+    const tags = Object.keys(this.props.tags).map(
+      id => <li>{ this.props.tags[id].name }</li>
+    );
     return (
       <div className='explore'>
         <div className='explore-filters-top'>
-          <p>tag</p>
+          <ul className='explore-filters-top-tags'>{ tags }</ul>
         </div>
         <div className='explore-filters-bottom' />
         <main className='explore-main'>
