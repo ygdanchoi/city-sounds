@@ -140,6 +140,34 @@
 .explore-filters-top {
   height: 40px;
   background-color: #42a0bd;
+  display: flex;
+  align-items: center;
+}
+
+.explore-filters-top-inner {
+  width: 1106px;
+  margin: 0 auto;
+}
+
+.explore-filters-top-tags {
+  display: flex;
+  list-style: none;
+}
+
+.explore-filters-top-tags li {
+  background-color: rgba(0,0,0,0.8);
+  padding: 6px 10px;
+  margin: 2px;
+  color: white;
+  font-weight: bold;
+  font-size: 10.5pt;
+  border-radius: 14px;
+  transition: background-color 0.2s ease-in;
+}
+
+.explore-filters-top-tags li:hover {
+  background-color: rgba(0,0,0,0.6);
+  cursor: pointer;
 }
 
 .explore-filters-bottom {

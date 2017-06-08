@@ -113,18 +113,27 @@ class Explore extends React.Component {
   }
 
   render() {
-    const tags = Object.keys(this.props.tags).map(
+    let tags = Object.keys(this.props.tags).map(
       id => <li>{ this.props.tags[id].name }</li>
     );
+    if (tags.length > 0) {
+      tags = [<li>all</li>, ...tags];
+    }
     return (
       <div className='explore'>
         <div className='explore-filters-top'>
-          <ul className='explore-filters-top-tags'>{ tags }</ul>
+          <div className='explore-filters-top-inner'>
+            <ul className='explore-filters-top-tags'>{ tags }</ul>
+          </div>
         </div>
         <div className='explore-filters-bottom' />
         <main className='explore-main'>
           <section className='explore-main-left'>
-            <ExploreList collections={ this.props.collections } setPlayingCollection={ this.setPlayingCollection } playing={ this.state.playing } playingCollectionId={ this.state.playingCollectionId } />
+            <ExploreList
+                collections={ this.props.collections }
+                setPlayingCollection={ this.setPlayingCollection }
+                playing={ this.state.playing }
+                playingCollectionId={ this.state.playingCollectionId } />
           </section>
           <aside className='explore-main-right'>
             <div className='explore-sound-player-container' >
