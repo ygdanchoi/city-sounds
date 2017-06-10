@@ -18,8 +18,8 @@ export const receiveCollection = (collection) => {
   };
 };
 
-export const fetchAllCollections = () => (dispatch) => {
-  return APIUtil.fetchAllCollections().then(
+export const fetchAllCollections = (params) => (dispatch) => {
+  return APIUtil.fetchAllCollections(params).then(
     response => dispatch(receiveCollections(response))
   );
 };

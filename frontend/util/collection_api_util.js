@@ -1,7 +1,7 @@
-export const fetchAllCollections = () => {
+export const fetchAllCollections = (params) => {
   return $.ajax({
     method: 'GET',
-    url: '/api/collections/',
+    url: `/api/collections/${params}`,
   });
 };
 

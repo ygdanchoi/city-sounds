@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllCollections: () => dispatch(fetchAllCollections()),
+    fetchAllCollections: (params) => dispatch(fetchAllCollections(params)),
     fetchCollectionSounds: (id) => dispatch(fetchCollectionSounds(id)),
     fetchAllTags: () => dispatch(fetchAllTags()),
   };

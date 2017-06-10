@@ -20,10 +20,22 @@ class Explore extends React.Component {
     this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingCollection = this.setPlayingCollection.bind(this);
     this.setPlayedYet = this.setPlayedYet.bind(this);
+    this.fetchCollectionsChain = this.fetchCollectionsChain.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchAllCollections().then(
+    this.fetchCollectionsChain();
+    this.props.fetchAllTags();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.location !== newProps.location) {
+      this.props.fetchAllCollections(this.props.location.search);
+    }
+  }
+
+  fetchCollectionsChain() {
+    this.props.fetchAllCollections(this.props.location.search).then(
       ((response) => {
         const playingCollection = response.collections[Object.keys(response.collections)[0]];
         this.setState({
@@ -44,7 +56,6 @@ class Explore extends React.Component {
         );
       }).bind(this)
     );
-    this.props.fetchAllTags();
   }
 
   playPauseAudio(action) {
