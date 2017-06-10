@@ -162,7 +162,6 @@
 }
 
 .explore-filters-tags li {
-  background-color: transparent;
   padding: 6px 10px;
   margin: 2px;
   color: white;
@@ -174,6 +173,10 @@
 
 .tag-selected {
   background-color: rgba(0,0,0,0.8);
+}
+
+.tag-unselected {
+  background-color: transparent;
 }
 
 .explore-filters-tags li:hover {

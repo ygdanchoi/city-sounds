@@ -113,7 +113,7 @@ class Home extends React.Component {
             <h3>Explore</h3>
           </div>
         </div>
-        <ExploreContainer />
+        <ExploreContainer location={this.props.location} />
       </div>
     );
   }

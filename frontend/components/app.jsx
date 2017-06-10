@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     let header;
     if (this.props.location.pathname === '/') {
-      header = <HomeContainer />;
+      header = <HomeContainer location={this.props.location} />;
     } else if (this.props.location.pathname === '/login' || this.props.location.pathname === '/signup') {
       header = null;
     } else {

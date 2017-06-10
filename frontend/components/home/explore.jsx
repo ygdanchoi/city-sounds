@@ -112,12 +112,53 @@ class Explore extends React.Component {
     };
   }
 
+  handleClickTag(tag) {
+    return (e) => {
+      e.preventDefault();
+      hashHistory.push(`/?tag=${tag}`);
+    }
+  }
+
   render() {
+    let paramsArr = this.props.location.search.slice(1).split('&');
+    let paramsObj = {};
+    paramsArr.forEach(param => {
+      const keyVal = param.split('=');
+      paramsObj[keyVal[0]] = keyVal[1];
+    });
     let tags = Object.keys(this.props.tags).map(
-      id => <li key={id}>{ this.props.tags[id].name }</li>
+      id => {
+        const name = this.props.tags[id].name;
+        let tagClassName;
+        if (paramsObj['tag'] === name) {
+          tagClassName = 'tag-selected';
+        } else {
+          tagClassName = 'tag-unselected';
+        }
+        return (
+          <li key={id}
+            className={ tagClassName }
+            onClick={ this.handleClickTag(name) }>
+              { name }
+          </li>
+        );
+      }
     );
     if (tags.length > 0) {
-      tags = [<li key={0}>all</li>, ...tags];
+      let allTagClassName;
+      if (paramsObj['tag'] === undefined || paramsObj['tag'] === 'all') {
+        allTagClassName = 'tag-selected';
+      } else {
+        allTagClassName = 'tag-unselected';
+      }
+      const allTag = (
+        <li key={0}
+          className={ allTagClassName }
+          onClick={ this.handleClickTag('all') }>
+            all
+        </li>
+      );
+      tags = [allTag, ...tags];
     }
     const orders = [
       <li key={0}>most popular</li>,
