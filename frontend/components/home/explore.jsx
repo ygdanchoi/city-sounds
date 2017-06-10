@@ -161,8 +161,7 @@ class Explore extends React.Component {
       tags = [allTag, ...tags];
     }
     const orders = [
-      <li key={0}>most popular</li>,
-      <li key={1}>most recent</li>,
+      <li key={0} className='tag-selected'>most recent</li>,
     ]
     return (
       <div className='explore'>
