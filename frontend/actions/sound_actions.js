@@ -29,12 +29,6 @@ export const searchSounds = (query) => (dispatch) => {
   );
 };
 
-export const fetchCollectionSounds = (collectionId) => (dispatch) => {
-  return APIUtil.fetchCollectionSounds(collectionId).then(
-    response => dispatch(receiveSounds(response))
-  );
-};
-
 export const fetchSound = (id) => (dispatch) => {
   return APIUtil.fetchSound(id).then(
     response => dispatch(receiveSound(response))

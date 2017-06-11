@@ -12,14 +12,6 @@ export const searchSounds = (query) => {
   });
 };
 
-export const fetchCollectionSounds = (collectionId) => {
-  return $.ajax({
-    method: 'GET',
-    url: `/api/collections/${collectionId}/sounds/`,
-  });
-};
-
-
 export const fetchSound = (id) => {
   return $.ajax({
     method: 'GET',

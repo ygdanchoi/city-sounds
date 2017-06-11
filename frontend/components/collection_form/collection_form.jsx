@@ -40,14 +40,8 @@ class CollectionForm extends React.Component {
             artworkUrl: response.collection.artworkUrl,
             title: response.collection.title,
             description: response.collection.description,
-          });
-        }
-      );
-      this.props.fetchCollectionSounds(id).then(
-        (response) => {
-          this.setState({
-            sounds: Object.keys(response.sounds).map(
-              id => response.sounds[id]
+            sounds: Object.keys(response.collection.sounds).map(
+              id => response.collection.sounds[id]
             )
           });
         }

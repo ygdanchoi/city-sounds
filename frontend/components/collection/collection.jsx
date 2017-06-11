@@ -22,10 +22,9 @@ class Collection extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchCollection(this.props.params.collectionId);
-    this.props.fetchCollectionSounds(this.props.params.collectionId).then(
+    this.props.fetchCollection(this.props.params.collectionId).then(
       (response) => {
-        const playingSound = response.sounds[Object.keys(response.sounds)[0]];
+        const playingSound = response.collection.sounds[Object.keys(response.collection.sounds)[0]];
         if (playingSound) {
           this.setState({
             playingSound: playingSound
@@ -37,10 +36,9 @@ class Collection extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props.params.collectionId !== newProps.params.collectionId) {
-      this.props.fetchCollection(newProps.params.collectionId);
-      this.props.fetchCollectionSounds(newProps.params.collectionId).then(
+      this.props.fetchCollection(newProps.params.collectionId).then(
         (response) => {
-          const playingSound = response.sounds[Object.keys(response.sounds)[0]];
+          const playingSound = response.collection.sounds[Object.keys(response.collection.sounds)[0]];
           if (playingSound) {
             this.setState({
               playedYet: false,
@@ -115,7 +113,7 @@ class Collection extends React.Component {
       );
     }
     const soundListItems = this.props.collection.soundIds.map(
-      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.sounds[id] } setPlayingSound={ this.setPlayingSound } playing={ this.state.playing } playingSound={ this.state.playingSound } />
+      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.collection.sounds[id] } setPlayingSound={ this.setPlayingSound } playing={ this.state.playing } playingSound={ this.state.playingSound } />
     );
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {

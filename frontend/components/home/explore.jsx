@@ -16,6 +16,7 @@ class Explore extends React.Component {
       playingUserId: '',
       playingUserUsername: '',
       playingUserLocation: '',
+      playingCollection: null,
     };
     this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingCollection = this.setPlayingCollection.bind(this);
@@ -34,7 +35,8 @@ class Explore extends React.Component {
           playingUserId: playingCollection.user.id,
           playingUserUsername: playingCollection.user.username,
           playingUserLocation: playingCollection.user.location,
-          playingSound: playingSound
+          playingSound: playingSound,
+          playingCollection: playingCollection,
         });
       }).bind(this)
     );
@@ -62,7 +64,8 @@ class Explore extends React.Component {
           playingUserId: collection.user.id,
           playingUserUsername: collection.user.username,
           playingUserLocation: collection.user.location,
-          playingSound: collection.sounds[Object.keys(collection.sounds)[0]]
+          playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
+          playingCollection: collection,
         });
       } else if (action === 'play') {
         this.setState({
@@ -73,7 +76,8 @@ class Explore extends React.Component {
           playingUserId: collection.user.id,
           playingUserUsername: collection.user.username,
           playingUserLocation: collection.user.location,
-          playingSound: collection.sounds[Object.keys(collection.sounds)[0]]
+          playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
+          playingCollection: collection,
         });
       }
     }).bind(this);
