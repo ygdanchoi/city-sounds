@@ -112,8 +112,13 @@ class Collection extends React.Component {
         </div>
       );
     }
-    const soundListItems = this.props.collection.soundIds.map(
-      (id, idx) => <SoundListItem key={ id } idx={ idx } sound={ this.props.collection.sounds[id] } setPlayingSound={ this.setPlayingSound } playing={ this.state.playing } playingSound={ this.state.playingSound } />
+    const soundListItems = Object.keys(this.props.collection.sounds).map(
+      (id, idx) => <SoundListItem key={ id }
+                      idx={ idx }
+                      sound={ this.props.collection.sounds[id] }
+                      setPlayingSound={ this.setPlayingSound }
+                      playing={ this.state.playing }
+                      playingSound={ this.state.playingSound } />
     );
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {

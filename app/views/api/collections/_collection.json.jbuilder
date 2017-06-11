@@ -8,7 +8,6 @@ end
 json.title _collection.title
 json.artworkUrl asset_path(_collection.artwork.url)
 json.description _collection.description
-json.soundIds _collection.sounds.map { |sound| sound.id }
 _collection.sounds.each do |sound|
   json.sounds do
     json.set! sound.id do
