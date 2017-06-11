@@ -5,7 +5,7 @@ const ExploreListItem = (props) => {
   if (props.collection) {
     let soundListItemPlayButton;
     let handleClick;
-    if (props.playingCollectionId && props.collection.id === props.playingCollectionId) {
+    if (props.playingCollection && props.collection.id === props.playingCollection.id) {
       if (props.playing) {
         soundListItemPlayButton = (
           <button id='explore-list-item-play-button' className='explore-list-item-playing' />
