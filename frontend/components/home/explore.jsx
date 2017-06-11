@@ -20,42 +20,25 @@ class Explore extends React.Component {
     this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingCollection = this.setPlayingCollection.bind(this);
     this.setPlayedYet = this.setPlayedYet.bind(this);
-    this.fetchCollectionsChain = this.fetchCollectionsChain.bind(this);
   }
 
   componentDidMount() {
-    this.fetchCollectionsChain();
-    this.props.fetchAllTags();
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (this.props.location !== newProps.location) {
-      this.props.fetchAllCollections(this.props.location.search);
-    }
-  }
-
-  fetchCollectionsChain() {
     this.props.fetchAllCollections(this.props.location.search).then(
       ((response) => {
         const playingCollection = response.collections[Object.keys(response.collections)[0]];
+        const playingSound = playingCollection.sounds[Object.keys(playingCollection.sounds)[0]];
         this.setState({
           playingCollectionId: playingCollection.id,
           playingCollectionArtworkUrl: playingCollection.artworkUrl,
           playingCollectionTitle: playingCollection.title,
           playingUserId: playingCollection.user.id,
           playingUserUsername: playingCollection.user.username,
-          playingUserLocation: playingCollection.user.location
+          playingUserLocation: playingCollection.user.location,
+          playingSound: playingSound
         });
-        this.props.fetchCollectionSounds(playingCollection.id).then(
-          ((response) => {
-            const playingSound = response.sounds[Object.keys(response.sounds)[0]];
-            this.setState({
-              playingSound: playingSound
-            });
-          }).bind(this)
-        );
       }).bind(this)
     );
+    this.props.fetchAllTags();
   }
 
   playPauseAudio(action) {
@@ -78,16 +61,9 @@ class Explore extends React.Component {
           playingCollectionTitle: collection.title,
           playingUserId: collection.user.id,
           playingUserUsername: collection.user.username,
-          playingUserLocation: collection.user.location
+          playingUserLocation: collection.user.location,
+          playingSound: collection.sounds[Object.keys(collection.sounds)[0]]
         });
-        this.props.fetchCollectionSounds(collection.id).then(
-          ((response) => {
-            const playingSound = response.sounds[Object.keys(response.sounds)[0]];
-            this.setState({
-              playingSound: playingSound
-            });
-          }).bind(this)
-        );
       } else if (action === 'play') {
         this.setState({
           playing: true,
@@ -96,16 +72,9 @@ class Explore extends React.Component {
           playingCollectionTitle: collection.title,
           playingUserId: collection.user.id,
           playingUserUsername: collection.user.username,
-          playingUserLocation: collection.user.location
+          playingUserLocation: collection.user.location,
+          playingSound: collection.sounds[Object.keys(collection.sounds)[0]]
         });
-        this.props.fetchCollectionSounds(collection.id).then(
-          ((response) => {
-            const playingSound = response.sounds[Object.keys(response.sounds)[0]];
-            this.setState({
-              playingSound: playingSound
-            });
-          }).bind(this)
-        );
       }
     }).bind(this);
   }
@@ -127,6 +96,7 @@ class Explore extends React.Component {
     return (e) => {
       e.preventDefault();
       hashHistory.push(`/?tag=${tag}`);
+      this.props.fetchAllCollections(`?tag=${tag}`);
     }
   }
 
@@ -173,7 +143,7 @@ class Explore extends React.Component {
     }
     const orders = [
       <li key={0} className='tag-selected'>most recent</li>,
-    ]
+    ];
     return (
       <div className='explore'>
         <div className='explore-filters-top'>
@@ -207,10 +177,18 @@ class Explore extends React.Component {
                     playedYet={ this.state.playedYet }
                     setPlayedYet={ this.setPlayedYet } />
               </div>
-              <p className='explore-sound-player-collection'>from the collection <Link to={`/collections/${this.state.playingCollectionId}`}>{ this.state.playingCollectionTitle }</Link></p>
-              <p className='explore-sound-player-user'>by <Link to={`/users/${this.state.playingUserId}`}>{ this.state.playingUserUsername }</Link></p>
-              <p className='explore-sound-player-location'>{ this.state.playingUserLocation }</p>
-              <button className='explore-sound-player-hear-more' onClick={ this.redirectToCollection(this.state.playingCollectionId) }>hear more from this collection</button>
+              <p className='explore-sound-player-collection'>
+                from the collection <Link to={`/collections/${this.state.playingCollectionId}`}>{ this.state.playingCollectionTitle }</Link>
+              </p>
+              <p className='explore-sound-player-user'>
+                by <Link to={`/users/${this.state.playingUserId}`}>{ this.state.playingUserUsername }</Link>
+              </p>
+              <p className='explore-sound-player-location'>
+                { this.state.playingUserLocation }
+              </p>
+              <button className='explore-sound-player-hear-more' onClick={ this.redirectToCollection(this.state.playingCollectionId) }>
+                hear more from this collection
+              </button>
             </div>
           </aside>
         </main>
