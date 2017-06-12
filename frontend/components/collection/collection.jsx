@@ -20,9 +20,10 @@ class Collection extends React.Component {
     this.props.fetchCollection(this.props.params.collectionId).then(
       (response) => {
         const playingSound = response.collection.sounds[Object.keys(response.collection.sounds)[0]];
-        if (playingSound) {
+        if (playingSound && this.props.playbackState.playingSound === null) {
           this.props.receivePlaybackState({
-            playingSound: playingSound
+            playingSound: playingSound,
+            playingCollection: response.collection,
           });
         }
       }
@@ -37,7 +38,8 @@ class Collection extends React.Component {
           if (playingSound) {
             this.props.receivePlaybackState({
               playedYet: false,
-              playingSound: playingSound
+              playingSound: playingSound,
+              playingCollection: response.collection,
             });
           }
         }
@@ -128,12 +130,16 @@ class Collection extends React.Component {
         </div>
       );
     }
-    const tags = Object.keys(this.props.collection.tags).map(
-      id => {
-        return this.props.collection.tags[id].name;
-      }
-    );
-    debugger;
+    let tags;
+    if (this.props.collection.tags) {
+      tags = Object.keys(this.props.collection.tags).map(
+        id => {
+          return this.props.collection.tags[id].name;
+        }
+      );
+    } else {
+      tags = [];
+    }
     return (
       <div className='collection-page'>
         <main className='collection-main'>

@@ -42,15 +42,23 @@ class Explore extends React.Component {
       if (action === 'pause') {
         this.props.receivePlaybackState({
           playing: false,
-          playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
-          playingCollection: collection,
         });
+        if (this.props.playbackState.playingCollection.id !== collection.id) {
+          this.props.receivePlaybackState({
+            playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
+            playingCollection: collection,
+          });
+        }
       } else if (action === 'play') {
         this.props.receivePlaybackState({
           playing: true,
-          playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
-          playingCollection: collection,
         });
+        if (this.props.playbackState.playingCollection.id !== collection.id) {
+          this.props.receivePlaybackState({
+            playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
+            playingCollection: collection,
+          });
+        }
       }
     }).bind(this);
   }
