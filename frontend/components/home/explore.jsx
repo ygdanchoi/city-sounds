@@ -22,7 +22,7 @@ class Explore extends React.Component {
       ((response) => {
         const playingCollection = response.collections[Object.keys(response.collections)[0]];
         const playingSound = playingCollection.sounds[Object.keys(playingCollection.sounds)[0]];
-        this.setState({
+        this.props.receivePlaybackState({
           playingSound: playingSound,
           playingCollection: playingCollection,
         });
@@ -34,9 +34,9 @@ class Explore extends React.Component {
   playPauseAudio(action) {
     return (() => {
       if (action === 'pause') {
-        this.setState({ playing: false });
+        this.props.receivePlaybackState({ playing: false });
       } else if (action === 'play') {
-        this.setState({ playing: true });
+        this.props.receivePlaybackState({ playing: true });
       }
     }).bind(this);
   }
@@ -44,13 +44,13 @@ class Explore extends React.Component {
   setPlayingCollection(collection, action) {
     return (() => {
       if (action === 'pause') {
-        this.setState({
+        this.props.receivePlaybackState({
           playing: false,
           playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
           playingCollection: collection,
         });
       } else if (action === 'play') {
-        this.setState({
+        this.props.receivePlaybackState({
           playing: true,
           playingSound: collection.sounds[Object.keys(collection.sounds)[0]],
           playingCollection: collection,
@@ -60,7 +60,7 @@ class Explore extends React.Component {
   }
 
   setPlayedYet() {
-    this.setState({
+    this.props.receivePlaybackState({
       playedYet: true
     });
   }
@@ -124,8 +124,8 @@ class Explore extends React.Component {
     const sortOrders = [
       <li key={0} className='tag-selected'>most recent</li>,
     ];
-    const playingCollection = this.state.playingCollection ? this.state.playingCollection : {};
-    const playingUser = this.state.playingCollection ? this.state.playingCollection.user : {};
+    const playingCollection = this.props.playbackState.playingCollection ? this.props.playbackState.playingCollection : {};
+    const playingUser = this.props.playbackState.playingCollection ? this.props.playbackState.playingCollection.user : {};
     return (
       <div className='explore'>
         <div className='explore-filters-top'>
@@ -143,8 +143,8 @@ class Explore extends React.Component {
             <ExploreList
                 collections={ this.props.collections }
                 setPlayingCollection={ this.setPlayingCollection }
-                playing={ this.state.playing }
-                playingCollection={ this.state.playingCollection } />
+                playing={ this.props.playbackState.playing }
+                playingCollection={ playingCollection } />
           </section>
           <aside className='explore-main-right'>
             <div className='explore-sound-player-container' >
@@ -153,11 +153,14 @@ class Explore extends React.Component {
               </figure>
               <div className='collection-sound-player-container'>
                 <ExploreSoundPlayer
-                    sound={ this.state.playingSound }
-                    playing={ this.state.playing }
+                    sound={ this.props.playbackState.playingSound }
+                    playing={ this.props.playbackState.playing }
                     playPauseAudio={ this.playPauseAudio }
-                    playedYet={ this.state.playedYet }
-                    setPlayedYet={ this.setPlayedYet } />
+                    playedYet={ this.props.playbackState.playedYet }
+                    setPlayedYet={ this.setPlayedYet }
+                    audioCurrentTime={ this.props.playbackState.audioCurrentTime }
+                    audioDuration={ this.props.playbackState.audioDuration }
+                    receivePlaybackState={ this.props.receivePlaybackState } />
               </div>
               <p className='explore-sound-player-collection'>
                 from the collection <Link to={`/collections/${playingCollection.id}`}>{ playingCollection.title }</Link>
