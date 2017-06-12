@@ -82,12 +82,14 @@ class Collection extends React.Component {
       if (action === 'pause') {
         this.props.receivePlaybackState({
           playing: false,
-          playingSound: sound
+          playingSound: sound,
+          playingCollection: this.props.collection
         });
       } else if (action === 'play') {
         this.props.receivePlaybackState({
           playing: true,
-          playingSound: sound
+          playingSound: sound,
+          playingCollection: this.props.collection
         });
       }
     }).bind(this);
