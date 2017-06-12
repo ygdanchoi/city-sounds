@@ -6,12 +6,6 @@ import ExploreSoundPlayer from './explore_sound_player';
 class Explore extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      playedYet: false,
-      playing: false,
-      playingSound: null,
-      playingCollection: null,
-    };
     this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingCollection = this.setPlayingCollection.bind(this);
     this.setPlayedYet = this.setPlayedYet.bind(this);

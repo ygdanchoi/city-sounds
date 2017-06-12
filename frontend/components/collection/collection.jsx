@@ -11,11 +11,6 @@ class Collection extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.redirectToCurrentUser = this.redirectToCurrentUser.bind(this);
     this.redirectToEditCollection = this.redirectToEditCollection.bind(this);
-    this.state = {
-      playedYet: false,
-      playing: false,
-      playingSound: null,
-    };
     this.playPauseAudio = this.playPauseAudio.bind(this);
     this.setPlayingSound = this.setPlayingSound.bind(this);
     this.setPlayedYet = this.setPlayedYet.bind(this);
@@ -26,7 +21,7 @@ class Collection extends React.Component {
       (response) => {
         const playingSound = response.collection.sounds[Object.keys(response.collection.sounds)[0]];
         if (playingSound) {
-          this.setState({
+          this.props.receivePlaybackState({
             playingSound: playingSound
           });
         }
@@ -40,7 +35,7 @@ class Collection extends React.Component {
         (response) => {
           const playingSound = response.collection.sounds[Object.keys(response.collection.sounds)[0]];
           if (playingSound) {
-            this.setState({
+            this.props.receivePlaybackState({
               playedYet: false,
               playingSound: playingSound
             });
@@ -73,9 +68,9 @@ class Collection extends React.Component {
   playPauseAudio(action) {
     return (() => {
       if (action === 'pause') {
-        this.setState({ playing: false });
+        this.props.receivePlaybackState({ playing: false });
       } else if (action === 'play') {
-        this.setState({ playing: true });
+        this.props.receivePlaybackState({ playing: true });
       }
     }).bind(this);
   }
@@ -83,12 +78,12 @@ class Collection extends React.Component {
   setPlayingSound(sound, action) {
     return (() => {
       if (action === 'pause') {
-        this.setState({
+        this.props.receivePlaybackState({
           playing: false,
           playingSound: sound
         });
       } else if (action === 'play') {
-        this.setState({
+        this.props.receivePlaybackState({
           playing: true,
           playingSound: sound
         });
@@ -97,7 +92,7 @@ class Collection extends React.Component {
   }
 
   setPlayedYet() {
-    this.setState({
+    this.props.receivePlaybackState({
       playedYet: true
     });
   }
@@ -117,8 +112,8 @@ class Collection extends React.Component {
                       idx={ idx }
                       sound={ this.props.collection.sounds[id] }
                       setPlayingSound={ this.setPlayingSound }
-                      playing={ this.state.playing }
-                      playingSound={ this.state.playingSound } />
+                      playing={ this.props.playbackState.playing }
+                      playingSound={ this.props.playbackState.playingSound } />
     );
     let editDelete = null;
     if (this.props.collection.id && this.props.currentUser && this.props.collection.user.id === this.props.currentUser.id) {
@@ -147,7 +142,16 @@ class Collection extends React.Component {
             </h3>
             { editDelete }
             <div className='collection-sound-player-container'>
-              <CollectionSoundPlayer sound={ this.state.playingSound } playing={ this.state.playing } playPauseAudio={ this.playPauseAudio } playingSound={ this.state.playingSound } playedYet={ this.state.playedYet } setPlayedYet={ this.setPlayedYet } />
+              <CollectionSoundPlayer
+                sound={ this.props.playbackState.playingSound }
+                playing={ this.props.playbackState.playing }
+                playPauseAudio={ this.playPauseAudio }
+                playingSound={ this.props.playbackState.playingSound }
+                playedYet={ this.props.playbackState.playedYet }
+                setPlayedYet={ this.setPlayedYet }
+                audioCurrentTime={ this.props.playbackState.audioCurrentTime }
+                audioDuration={ this.props.playbackState.audioDuration }
+                receivePlaybackState={ this.props.receivePlaybackState } />
             </div>
             <h3 className='collection-info-sound-collection'>
               Digital Sound Collection

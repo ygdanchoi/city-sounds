@@ -24,21 +24,6 @@ class ExploreSoundPlayer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (this.audioPlayer) {
-    //   if (this.props.playing) {
-    //     this.audioPlayer.audioEl.play();
-    //   } else {
-    //     this.audioPlayer.audioEl.pause();
-    //   }
-    //   if (this.props.sound !== prevProps.sound) {
-    //     this.audioPlayer.audioEl.currentTime = 0;
-    //     if (this.props.playedYet) {
-    //       this.audioPlayer.audioEl.play();
-    //     } else {
-    //       this.props.setPlayedYet();
-    //     }
-    //   }
-    // }
   }
 
 
@@ -64,6 +49,12 @@ class ExploreSoundPlayer extends React.Component {
 
   handleAudioEnded() {
     this.props.playPauseAudio('pause')();
+    this.props.receivePlaybackState({
+      audioCurrentTime: 0
+    });
+    // stupid workaround for currentTime & seekbar not updating
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
   }
 
   handleCanPlay() {
