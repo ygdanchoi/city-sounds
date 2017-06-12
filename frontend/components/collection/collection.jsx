@@ -128,6 +128,12 @@ class Collection extends React.Component {
         </div>
       );
     }
+    const tags = Object.keys(this.props.collection.tags).map(
+      id => {
+        return this.props.collection.tags[id].name;
+      }
+    );
+    debugger;
     return (
       <div className='collection-page'>
         <main className='collection-main'>
@@ -165,7 +171,15 @@ class Collection extends React.Component {
             <ul className='collection-sounds-list'>
               { soundListItems }
             </ul>
-            <p>{ this.props.collection.description }</p>
+            <p className='collection-info-description'>
+              { this.props.collection.description }
+            </p>
+            <p className='collection-info-uploaded-date'>
+              uploaded { this.props.collection.createdAt }
+            </p>
+            <p className='collection-info-tags'>
+              tags: { tags.join(', ') }
+            </p>
           </section>
           <section className='collection-artwork-section'>
             <img className='collection-artwork' src={ this.props.collection.artworkUrl } />
