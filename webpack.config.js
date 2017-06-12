@@ -25,13 +25,12 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", "*"]
   },
-  // TODO: minify code
-  // plugins: [
-  //   new webpack.DefinePlugin({
-  //     'process.env': {
-  //       NODE_ENV: JSON.stringify('production')
-  //     }
-  //   }),
-  //   new webpack.optimize.UglifyJsPlugin()
-  // ],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
+  ],
 };
