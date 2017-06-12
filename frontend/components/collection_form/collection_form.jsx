@@ -37,13 +37,17 @@ class CollectionForm extends React.Component {
     if (id) {
       this.props.fetchCollection(id).then(
         (response) => {
+          let tags = '';
+          if (response.collection.tags) {
+            tags = Object.keys(response.collection.tags).map(
+              id => response.collection.tags[id].name
+            ).join(', ');
+          }
           this.setState({
             artworkUrl: response.collection.artworkUrl,
             title: response.collection.title,
             description: response.collection.description,
-            tags: Object.keys(response.collection.tags).map(
-              id => response.collection.tags[id].name
-            ).join(', '),
+            tags: tags,
             sounds: Object.keys(response.collection.sounds).map(
               id => response.collection.sounds[id]
             )
