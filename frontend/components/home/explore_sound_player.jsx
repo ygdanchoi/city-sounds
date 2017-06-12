@@ -8,9 +8,14 @@ class ExploreSoundPlayer extends React.Component {
     this.handleCanPlay = this.handleCanPlay.bind(this);
     this.handleListen = this.handleListen.bind(this);
     this.handleClickTimeline = this.handleClickTimeline.bind(this);
+    this.stupidWorkaround = this.stupidWorkaround.bind(this);
   }
 
   componentDidMount() {
+    if (this.audioPlayer) {
+      this.audioPlayer.audioEl.currentTime = this.props.audioCurrentTime;
+      this.stupidWorkaround();
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -49,12 +54,7 @@ class ExploreSoundPlayer extends React.Component {
 
   handleAudioEnded() {
     this.props.playPauseAudio('pause')();
-    this.props.receivePlaybackState({
-      audioCurrentTime: 0
-    });
-    // stupid workaround for currentTime & seekbar not updating
-    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
-    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
+    this.stupidWorkaround();
   }
 
   handleCanPlay() {
@@ -83,9 +83,13 @@ class ExploreSoundPlayer extends React.Component {
     this.props.receivePlaybackState({
       audioCurrentTime: this.props.audioDuration * clickFraction
     });
+    this.stupidWorkaround();
+  }
+
+  stupidWorkaround() {
     // stupid workaround for currentTime & seekbar not updating
-    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
-    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 200);
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 500);
+    setTimeout((function() { this.collectionPlayButton.click(); }).bind(this), 500);
   }
 
   render() {

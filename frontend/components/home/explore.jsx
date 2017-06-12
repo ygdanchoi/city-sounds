@@ -14,12 +14,14 @@ class Explore extends React.Component {
   componentDidMount() {
     this.props.fetchAllCollections(this.props.location.search).then(
       ((response) => {
-        const playingCollection = response.collections[Object.keys(response.collections)[0]];
-        const playingSound = playingCollection.sounds[Object.keys(playingCollection.sounds)[0]];
-        this.props.receivePlaybackState({
-          playingSound: playingSound,
-          playingCollection: playingCollection,
-        });
+        if (this.props.playbackState.playingCollection === null) {
+          const playingCollection = response.collections[Object.keys(response.collections)[0]];
+          const playingSound = playingCollection.sounds[Object.keys(playingCollection.sounds)[0]];
+          this.props.receivePlaybackState({
+            playingSound: playingSound,
+            playingCollection: playingCollection,
+          });
+        }
       }).bind(this)
     );
     this.props.fetchAllTags();
