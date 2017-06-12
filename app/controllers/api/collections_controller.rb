@@ -4,12 +4,12 @@ end
 class Api::CollectionsController < ApplicationController
   def index
     if params[:user_id]
-      @collections = Collection.where(user_id: params[:user_id])
+      @collections = Collection.includes(:user).includes(:sounds).includes(:tags).where(user_id: params[:user_id])
     elsif params['tag'] && params['tag'] != 'all'
       tag = Tag.where(name: params['tag']).first
-      @collections = tag.collections
+      @collections = tag.collections.includes(:user).includes(:sounds).includes(:tags)
     else
-      @collections = Collection.all
+      @collections = Collection.includes(:user).includes(:sounds).includes(:tags).all
     end
   end
 

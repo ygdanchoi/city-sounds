@@ -118,7 +118,7 @@ class Explore extends React.Component {
       tags = [allTag, ...tags];
     }
     const sortOrders = [
-      <li key={0} className='tag-selected'>most recent</li>,
+      <li key={0} className='tag-selected'>by uploaded date</li>,
     ];
     const playingCollection = this.props.playbackState.playingCollection ? this.props.playbackState.playingCollection : {};
     const playingUser = this.props.playbackState.playingCollection ? this.props.playbackState.playingCollection.user : {};
