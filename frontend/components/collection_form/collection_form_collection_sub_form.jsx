@@ -46,7 +46,9 @@ class CollectionFormCollectionSubForm extends React.Component {
         { artworkForm }
         <div className='sub-form-divider' />
         <label className='sub-form-field-label' htmlFor='collection-form-description-input'>about this collection:</label>
-        <textarea id='collection-form-field' className='sub-form-field' placeholder='(optional)' value= { this.props.description } onChange={ this.props.handleChange('description') } />
+        <textarea id='collection-form-description-input' className='sub-form-field' placeholder='(optional)' value= { this.props.description } onChange={ this.props.handleChange('description') } />
+        <label className='sub-form-field-label' htmlFor='collection-form-tags-input'>tags:</label>
+        <textarea id='collection-form-tags-input' className='sub-form-field one-line-field' placeholder='comma-separated list of tags' value= { this.props.tags } onChange={ this.props.handleChange('tags') } />
       </div>
     );
   }

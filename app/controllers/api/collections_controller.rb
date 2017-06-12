@@ -72,6 +72,12 @@ class Api::CollectionsController < ApplicationController
   private
   def collection_params
     result = params.require(:collection).permit(:title, :description, :user_id)
+    tag_ids = []
+    params[:collection][:tags].delete(' ').split(',').each do |str|
+      tag = Tag.where(name: str).first
+      tag_ids.push(tag.id) if tag
+    end
+    result = result.merge(tag_ids: tag_ids)
     if params[:collection][:artwork] != 'null'
       return result.merge(artwork: params[:collection][:artwork])
     else

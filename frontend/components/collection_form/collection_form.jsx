@@ -14,6 +14,7 @@ class CollectionForm extends React.Component {
       soundsToDelete: [],
       title: '',
       description: '',
+      tags: '',
       currentForm: null,
       currentFormIdx: -1,
       submitted: false,
@@ -40,6 +41,9 @@ class CollectionForm extends React.Component {
             artworkUrl: response.collection.artworkUrl,
             title: response.collection.title,
             description: response.collection.description,
+            tags: Object.keys(response.collection.tags).map(
+              id => response.collection.tags[id].name
+            ).join(', '),
             sounds: Object.keys(response.collection.sounds).map(
               id => response.collection.sounds[id]
             )
@@ -92,6 +96,10 @@ class CollectionForm extends React.Component {
       } else if (field === 'description') {
         this.setState({
           description: e.currentTarget.value
+        });
+      } else if (field === 'tags') {
+        this.setState({
+          tags: e.currentTarget.value
         });
       }
     };
@@ -168,6 +176,7 @@ class CollectionForm extends React.Component {
     }
     formData.append('collection[title]', this.state.title);
     formData.append('collection[description]', this.state.description);
+    formData.append('collection[tags]', this.state.tags);
     formData.append('collection[user_id]', this.props.currentUser.id);
     this.state.soundsToDelete.forEach((sound) => {
       this.props.deleteSound(sound.id);
@@ -261,6 +270,7 @@ class CollectionForm extends React.Component {
         <CollectionFormCollectionSubForm
           title={ this.state.title }
           description={ this.state.description }
+          tags={ this.state.tags }
           handleChange={ this.handleChange }
           errors={ this.props.errors }
           handleAddArtwork={ this.handleAddArtwork }
