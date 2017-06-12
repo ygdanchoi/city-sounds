@@ -186,7 +186,7 @@ class Collection extends React.Component {
               uploaded { this.props.collection.createdAt }
             </p>
             <p className='collection-info-tags'>
-              tags: { tags.join(', ') }
+              { tags.length > 1 ? 'tags: ' + tags.join(', ') : '' }
             </p>
           </section>
           <section className='collection-artwork-section'>
