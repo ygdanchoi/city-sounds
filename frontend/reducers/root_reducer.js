@@ -7,6 +7,7 @@ import CollectionsReducer from './collections_reducer';
 import ErrorsReducer from './errors_reducer';
 import NavBarStateReducer from './nav_bar_state_reducer';
 import TagsReducer from './tags_reducer';
+import PlaybackStateReducer from './playback_state_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -16,6 +17,7 @@ const RootReducer = combineReducers({
   errors: ErrorsReducer,
   navBarState: NavBarStateReducer,
   tags: TagsReducer,
+  playbackState: PlaybackStateReducer,
 });
 
 export default RootReducer;
