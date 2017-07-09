@@ -25,6 +25,11 @@ ActiveRecord::Base.transaction do
     avatar: File.open('app/assets/images/avatars/dan.jpg')
   )
 
+  cafe = Tag.create!(name: 'cafe')
+  street = Tag.create!(name: 'street')
+  subway = Tag.create!(name: 'subway')
+  park = Tag.create!(name: 'park')
+
   taurindb = User.create!(
     username: 'taurindb',
     password: 'taurindb',
@@ -54,7 +59,8 @@ https://www.freesound.org/s/135995/
 Licensed under CC BY 3.0
 TEXT
     user_id: taurindb.id,
-    artwork: File.open('app/assets/images/artworks/beijing.jpg')
+    artwork: File.open('app/assets/images/artworks/beijing.jpg'),
+    tag_ids: [street.id, subway.id]
   )
 
   tianmen_square = Sound.create!(
@@ -67,57 +73,6 @@ TEXT
     title: 'Bullet train from Shanghai to Beijing',
     collection_id: beijing.id,
     audio: File.open('app/assets/audio/bullet_train_from_shanghai_to_beijing.mp3')
-  )
-
-  emanuele_correani = User.create!(
-    username: 'Emanuele_Correani',
-    password: 'Emanuele_Correani',
-    bio: <<-TEXT
-Sound Recordist, sound editor and foley artist based in London.
-TEXT
-  )
-
-  location_recordings = Collection.create!(
-    title: 'Location Recordings',
-    description: <<-TEXT,
-1. Inside Liverpool Street Station, London, 3:30pm
-
-2. Recorded in London, South Tottenham, Seven Sisters at noon.
-
-3. A journey in the Bakeloo Line: Waterloo Station to Oxford Circus
-
-Equipment used:
-
-- Two spaced Oktava 012 with omnidirectional capsules.
-- PSC M4 MKII Mixer
-- Tascam DR40 Recorder
-
-Original sources:
-https://www.freesound.org/s/332769/
-https://www.freesound.org/s/332593/
-https://www.freesound.org/s/332768/
-Licensed under CC BY 3.0
-TEXT
-    user_id: emanuele_correani.id,
-    artwork: File.open('app/assets/images/artworks/location_recordings.jpg')
-  )
-
-  ambience_train_station_inside = Sound.create!(
-    title: 'Ambience - Train Station - Inside',
-    collection_id: location_recordings.id,
-    audio: File.open('app/assets/audio/ambience_train_station_inside.mp3')
-  )
-
-  ambience_day_city_backyard_noon = Sound.create!(
-    title: 'Ambience - Day - City - Backyard - Noon',
-    collection_id: location_recordings.id,
-    audio: File.open('app/assets/audio/ambience_day_city_backyard_noon.mp3')
-  )
-
-  underground_inside_the_train_london_tube = Sound.create!(
-    title: 'Underground - Inside the train - London Tube',
-    collection_id: location_recordings.id,
-    audio: File.open('app/assets/audio/underground_inside_the_train_london_tube.mp3')
   )
 
   corsica_s = User.create!(
@@ -146,7 +101,8 @@ https://www.freesound.org/s/31983/
 Licensed under CC BY 3.0
 TEXT
     user_id: corsica_s.id,
-    artwork: File.open('app/assets/images/artworks/walking_time_square.jpg')
+    artwork: File.open('app/assets/images/artworks/walking_time_square.jpg'),
+    tag_ids: [street.id]
   )
 
   walking_time_square_part_1 = Sound.create!(
@@ -159,44 +115,6 @@ TEXT
     title: 'walking time square part 2',
     collection_id: walking_time_square.id,
     audio: File.open('app/assets/audio/walking_time_square_part_2.mp3')
-  )
-
-  corsica_s_in_mongolia = Collection.create!(
-    title: 'Corsica_S in Mongolia',
-    description: <<-TEXT,
-1. Walking around Ulaanbaatar at approximately 10 PM. First I walk by a fountain, then into the large square, stopping near a group of people for a short time, before heading to a bus stop, then a quiet park and finally into my hotel.
-
-2. Walking around the Incheon ticketing area in the early morning before anyone is really there. At the start of the recording there is a waxing machine that comes close, then turns off.
-
-3. I stood amongst a large group of pigeons that were being fed and chased by others.
-
-Recorded with The Sound Professionals in-ear mics into a modified Marantz PMD661.
-Original sources:
-https://www.freesound.org/s/78576/
-https://www.freesound.org/s/78575/
-https://www.freesound.org/s/78561/
-Licensed under CC BY 3.0
-TEXT
-    user_id: corsica_s.id,
-    artwork: File.open('app/assets/images/artworks/corsica_s_in_mongolia.jpg')
-  )
-
-  ulaanbaatar_night = Sound.create!(
-    title: 'ulaanbaatar_night',
-    collection_id: corsica_s_in_mongolia.id,
-    audio: File.open('app/assets/audio/ulaanbaatar_night.mp3')
-  )
-
-  incheon_4am = Sound.create!(
-    title: 'incheon_4am',
-    collection_id: corsica_s_in_mongolia.id,
-    audio: File.open('app/assets/audio/incheon_4am.mp3')
-  )
-
-  pigeons = Sound.create!(
-    title: 'pigeons',
-    collection_id: corsica_s_in_mongolia.id,
-    audio: File.open('app/assets/audio/pigeons.mp3')
   )
 
 end
