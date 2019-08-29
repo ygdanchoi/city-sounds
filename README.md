@@ -2,7 +2,7 @@
 
 [CitySounds live][heroku]
 
-[heroku]: http://www.citysoundsapp.com/#/
+[heroku]: https://city-sounds.herokuapp.com/#/
 
 CitySounds is a full-stack web application for sharing and playing ambient city soundscapes. Based on Bandcamp, it utilizes Ruby on Rails with PostgreSQL on the backend and React.js with Redux on the frontend.
 
